@@ -1,0 +1,248 @@
+2018-01-07 19:17:23 [COMMAND] : pgc set GLOBAL REPO https://s3.amazonaws.com/pgcentral 
+2018-01-07 19:17:24 [COMMAND] : pgc update --silent 
+2018-01-07 19:17:24 [INFO] : Retrieving the remote list of latest component versions (versions.sql) ...
+2018-01-07 19:17:27 [INFO] : Validating checksum file...
+2018-01-07 19:17:27 [INFO] : Updating local repository with remote entries...
+2018-01-07 19:17:27 [INFO] : 'hub' is v3.3.4
+2018-01-07 19:18:59 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-01-07 19:18:59 [COMMAND] : pgc install pg10 
+2018-01-07 19:18:59 [INFO] :   ['pg10']
+2018-01-07 19:18:59 [INFO] : Get:1 https://s3.amazonaws.com/pgcentral pg10-10.1-1-win64
+2018-01-07 19:18:59 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-01-07 19:19:01 [INFO] : Downloading file pg10-10.1-1-win64 
+2018-01-07 19:19:13 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-01-07 19:19:14 [INFO] :  Unpacking pg10-10.1-1-win64.tar.bz2
+2018-01-07 19:19:35 [INFO] : pg10 Enabled
+2018-01-07 19:20:46 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-01-07 19:20:46 [COMMAND] : pgc start pg10 
+ 
+## Initializing pg10 #######################
+ 
+Setting directory and file permissions.
+setting permission to log dir
+ 
+Initializing Postgres DB with:
+  c:\ETHANP~1\bigsql\pg10\bin\initdb -U postgres -A md5 -E UTF8 --no-locale -D "c:\ETHANP~1\bigsql\data\pg10" --pwfile="c:\ETHANP~1\bigsql\pg10\.pgpass" > "c:\ETHANP~1\bigsql\data\logs\pg10\install.log" 2>&1
+ 
+Using PostgreSQL Port 5432
+ 
+Password securely remembered in the file: C:\Users\price\AppData\Roaming\postgresql\pgpass.conf
+ 
+to load this postgres into your environment, run the env file: 
+    c:\ETHANP~1\bigsql\pg10\pg10-env.bat
+ 
+2018-01-07 20:34:54 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-01-07 20:34:54 [COMMAND] : pgc stop pg10 
+2018-01-07 20:35:01 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-01-07 20:35:01 [COMMAND] : pgc status 
+2018-01-07 20:35:16 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-01-07 20:35:16 [COMMAND] : pgc status pg10 
+2018-01-07 20:38:44 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-01-07 20:38:44 [COMMAND] : pgc start pg10 
+2018-01-07 21:19:27 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-01-07 21:19:27 [COMMAND] : pgc stop 
+2018-01-07 21:20:56 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-01-07 21:20:56 [COMMAND] : pgc start pg10 
+2018-01-07 21:21:19 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-01-07 21:21:19 [COMMAND] : pgc status 
+2018-01-07 21:21:31 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-01-07 21:21:31 [COMMAND] : pgc stop 
+2018-01-07 21:22:47 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-01-07 21:22:48 [COMMAND] : pgc start pg10 
+2018-01-07 21:23:01 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-01-07 21:23:01 [COMMAND] : pgc status 
+2018-01-07 21:23:08 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-01-07 21:23:08 [COMMAND] : pgc stop 
+2018-01-07 21:23:46 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-01-07 21:23:46 [COMMAND] : pgc status 
+2018-01-07 21:24:02 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-01-07 21:24:02 [COMMAND] : pgc start pg10 
+2018-01-07 21:25:43 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-01-07 21:25:43 [COMMAND] : pgc status 
+2018-01-07 22:24:14 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-01-07 22:24:14 [COMMAND] : pgc stop 
+2018-01-07 22:25:25 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-01-07 22:25:25 [COMMAND] : pgc start pg10 
+2018-01-07 22:25:48 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-01-07 22:25:48 [COMMAND] : pgc status 
+2018-01-07 22:29:28 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-01-07 22:29:28 [COMMAND] : pgc status 
+2018-01-07 22:30:47 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-01-07 22:30:47 [COMMAND] : pgc stop 
+2018-01-07 22:47:12 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-01-07 22:47:12 [COMMAND] : pgc status 
+2018-01-07 22:47:18 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-01-07 22:47:18 [COMMAND] : pgc start 
+2018-01-07 22:48:26 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-01-07 22:48:26 [COMMAND] : pgc stop 
+2018-01-07 22:48:41 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-01-07 22:48:41 [COMMAND] : pgc start pg10 
+2018-01-16 23:12:44 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-01-16 23:12:44 [COMMAND] : pgc start pg10 
+2018-01-17 21:59:15 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-01-17 21:59:15 [COMMAND] : pgc stop 
+2018-02-03 15:38:59 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-02-03 15:38:59 [COMMAND] : pgc status 
+2018-02-03 15:39:13 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-02-03 15:39:13 [COMMAND] : pgc stat 
+2018-02-03 15:39:13 [ERROR] : Invalid option or command
+2018-02-03 15:39:19 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-02-03 15:39:20 [COMMAND] : pgc start 
+2018-02-21 19:45:29 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-02-21 19:45:29 [COMMAND] : pgc status 
+2018-02-21 19:45:46 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-02-21 19:45:46 [COMMAND] : pgc start 
+2018-02-26 20:04:10 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-02-26 20:04:10 [COMMAND] : pgc start pg10 
+2018-02-27 20:37:05 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-02-27 20:37:05 [COMMAND] : pgc start pg10 
+2018-02-27 22:31:48 [ERROR] : System error 5 has occurred.
+
+Access is denied.
+
+
+2018-02-27 22:31:48 [COMMAND] : pgc stop 
