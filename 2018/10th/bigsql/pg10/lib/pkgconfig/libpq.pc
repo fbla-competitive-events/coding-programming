@@ -1,0 +1,9 @@
+Name: libpq
+Description: PostgreSQL libpq library
+Url: http://www.postgresql.org/
+Version: 10.1
+Requires: 
+Requires.private: 
+Cflags: -I/opt/pgbin-build/pgbin/bin/../20171107_0352/build/pg10-10.1-1-win64/include
+Libs: -L/opt/pgbin-build/pgbin/bin/../20171107_0352/build/pg10-10.1-1-win64/lib -lpq
+Libs.private: -L/opt/pgbin-build/pgbin/shared/win64/lib -L/usr/local/lib -L/usr/local/ssl/lib -LC:/msys64/mingw64/lib -lintl -lssl -lcrypto -lwldap32 -lshell32 -lws2_32 -lsecur32
