@@ -1,0 +1,115 @@
+2018-01-07 19:21:10 PST [5572]: [1-1] user=,db=,app=,client= LOG:  database system was shut down at 2018-01-07 19:21:02 PST
+2018-01-07 19:21:10 PST [6104]: [5-1] user=,db=,app=,client= LOG:  database system is ready to accept connections
+2018-01-07 19:21:59 PST [6132]: [1-1] user=postgres,db=postgres,app=psql,client=::1 ERROR:  database "libraryproject2db" does not exist
+2018-01-07 19:21:59 PST [6132]: [2-1] user=postgres,db=postgres,app=psql,client=::1 STATEMENT:  drop database libraryproject2db;
+2018-01-07 19:21:59 PST [6096]: [1-1] user=,db=,app=,client= LOG:  checkpoint starting: immediate force wait flush-all
+2018-01-07 19:21:59 PST [6096]: [2-1] user=,db=,app=,client= LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.046 s, sync=0.000 s, total=0.062 s; sync files=3, longest=0.001 s, average=0.000 s; distance=1 kB, estimate=1 kB
+2018-01-07 19:22:00 PST [6096]: [3-1] user=,db=,app=,client= LOG:  checkpoint starting: immediate force wait
+2018-01-07 19:22:00 PST [6096]: [4-1] user=,db=,app=,client= LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.000 s, sync=0.000 s, total=0.031 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=1 kB
+2018-01-07 19:22:40 PST [5844]: [1-1] user=,db=,app=,client= LOG:  automatic analyze of table "libraryproject2db.public.django_admin_log" system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.04 s
+2018-01-07 19:22:40 PST [5844]: [2-1] user=,db=,app=,client= LOG:  automatic analyze of table "libraryproject2db.public.libraryapp_booktable2" system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s
+2018-01-07 19:22:40 PST [5844]: [3-1] user=,db=,app=,client= LOG:  automatic analyze of table "libraryproject2db.pg_catalog.pg_class" system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.06 s
+2018-01-07 19:27:00 PST [6096]: [5-1] user=,db=,app=,client= LOG:  checkpoint starting: time
+2018-01-07 19:27:15 PST [6096]: [6-1] user=,db=,app=,client= LOG:  checkpoint complete: wrote 138 buffers (0.8%); 0 WAL file(s) added, 0 removed, 0 recycled; write=15.069 s, sync=0.093 s, total=15.178 s; sync files=71, longest=0.013 s, average=0.001 s; distance=625 kB, estimate=625 kB
+2018-01-07 20:32:00 PST [6096]: [7-1] user=,db=,app=,client= LOG:  checkpoint starting: time
+2018-01-07 20:32:01 PST [6096]: [8-1] user=,db=,app=,client= LOG:  checkpoint complete: wrote 12 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.310 s, sync=0.062 s, total=1.435 s; sync files=10, longest=0.014 s, average=0.007 s; distance=6 kB, estimate=563 kB
+2018-01-07 20:34:55 PST [6104]: [6-1] user=,db=,app=,client= LOG:  received fast shutdown request
+2018-01-07 20:34:55 PST [6104]: [7-1] user=,db=,app=,client= LOG:  aborting any active transactions
+2018-01-07 20:34:55 PST [6104]: [8-1] user=,db=,app=,client= LOG:  worker process: logical replication launcher (PID 5448) exited with exit code 1
+2018-01-07 20:34:55 PST [6096]: [9-1] user=,db=,app=,client= LOG:  shutting down
+2018-01-07 20:34:55 PST [6096]: [10-1] user=,db=,app=,client= LOG:  checkpoint starting: shutdown immediate
+2018-01-07 20:34:55 PST [6096]: [11-1] user=,db=,app=,client= LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.000 s, sync=0.000 s, total=0.062 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=507 kB
+2018-01-07 20:34:55 PST [6104]: [9-1] user=,db=,app=,client= LOG:  database system is shut down
+2018-01-07 20:38:45 PST [2932]: [1-1] user=,db=,app=,client= LOG:  database system was shut down at 2018-01-07 20:34:55 PST
+2018-01-07 20:38:45 PST [4328]: [5-1] user=,db=,app=,client= LOG:  database system is ready to accept connections
+2018-01-07 20:43:45 PST [5108]: [1-1] user=,db=,app=,client= LOG:  checkpoint starting: time
+2018-01-07 20:43:45 PST [5108]: [2-1] user=,db=,app=,client= LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.015 s, sync=0.000 s, total=0.171 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=0 kB
+2018-01-07 20:58:12 PST [3384]: [1-1] user=postgres,db=libraryproject2db,app=[unknown],client=127.0.0.1 LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2018-01-07 21:03:45 PST [5108]: [3-1] user=,db=,app=,client= LOG:  checkpoint starting: time
+2018-01-07 21:03:46 PST [5108]: [4-1] user=,db=,app=,client= LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.546 s, sync=0.015 s, total=0.608 s; sync files=5, longest=0.004 s, average=0.004 s; distance=7 kB, estimate=7 kB
+2018-01-07 21:04:20 PST [1180]: [1-1] user=postgres,db=libraryproject2db,app=[unknown],client=127.0.0.1 LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2018-01-07 21:17:05 PST [4328]: [6-1] user=,db=,app=,client= LOG:  worker process: logical replication launcher (PID 3908) was terminated by exception 0xC000013A
+2018-01-07 21:17:05 PST [4328]: [7-1] user=,db=,app=,client= HINT:  See C include file "ntstatus.h" for a description of the hexadecimal value.
+2018-01-07 21:17:05 PST [4328]: [8-1] user=,db=,app=,client= LOG:  terminating any other active server processes
+2018-01-07 21:17:05 PST [1228]: [1-1] user=,db=,app=,client= WARNING:  terminating connection because of crash of another server process
+2018-01-07 21:17:05 PST [1228]: [2-1] user=,db=,app=,client= DETAIL:  The postmaster has commanded this server process to roll back the current transaction and exit, because another server process exited abnormally and possibly corrupted shared memory.
+2018-01-07 21:17:05 PST [1228]: [3-1] user=,db=,app=,client= HINT:  In a moment you should be able to reconnect to the database and repeat your command.
+2018-01-07 21:17:05 PST [4328]: [9-1] user=,db=,app=,client= LOG:  statistics collector process (PID 1264) was terminated by exception 0xC000013A
+2018-01-07 21:17:05 PST [4328]: [10-1] user=,db=,app=,client= HINT:  See C include file "ntstatus.h" for a description of the hexadecimal value.
+2018-01-07 21:20:57 PST [2972]: [1-1] user=,db=,app=,client= LOG:  database system was interrupted; last known up at 2018-01-07 21:03:46 PST
+2018-01-07 21:20:57 PST [2972]: [2-1] user=,db=,app=,client= LOG:  database system was not properly shut down; automatic recovery in progress
+2018-01-07 21:20:57 PST [2972]: [3-1] user=,db=,app=,client= LOG:  redo starts at 0/165ED90
+2018-01-07 21:20:57 PST [2972]: [4-1] user=,db=,app=,client= LOG:  invalid record length at 0/165EE70: wanted 24, got 0
+2018-01-07 21:20:57 PST [2972]: [5-1] user=,db=,app=,client= LOG:  redo done at 0/165EE38
+2018-01-07 21:20:57 PST [2972]: [6-1] user=,db=,app=,client= LOG:  checkpoint starting: end-of-recovery immediate
+2018-01-07 21:20:57 PST [2972]: [7-1] user=,db=,app=,client= LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.000 s, sync=0.000 s, total=0.015 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=0 kB
+2018-01-07 21:20:58 PST [6352]: [5-1] user=,db=,app=,client= LOG:  database system is ready to accept connections
+2018-01-07 21:21:32 PST [6352]: [6-1] user=,db=,app=,client= LOG:  received fast shutdown request
+2018-01-07 21:21:32 PST [6352]: [7-1] user=,db=,app=,client= LOG:  aborting any active transactions
+2018-01-07 21:21:32 PST [6352]: [8-1] user=,db=,app=,client= LOG:  worker process: logical replication launcher (PID 5060) exited with exit code 1
+2018-01-07 21:21:32 PST [4536]: [1-1] user=,db=,app=,client= LOG:  shutting down
+2018-01-07 21:21:32 PST [4536]: [2-1] user=,db=,app=,client= LOG:  checkpoint starting: shutdown immediate
+2018-01-07 21:21:32 PST [4536]: [3-1] user=,db=,app=,client= LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.000 s, sync=0.000 s, total=0.078 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=0 kB
+2018-01-07 21:21:32 PST [6352]: [9-1] user=,db=,app=,client= LOG:  database system is shut down
+2018-01-07 21:22:49 PST [1864]: [1-1] user=,db=,app=,client= LOG:  database system was shut down at 2018-01-07 21:21:32 PST
+2018-01-07 21:22:49 PST [6512]: [5-1] user=,db=,app=,client= LOG:  database system is ready to accept connections
+2018-01-07 21:23:08 PST [6512]: [6-1] user=,db=,app=,client= LOG:  received fast shutdown request
+2018-01-07 21:23:08 PST [6512]: [7-1] user=,db=,app=,client= LOG:  aborting any active transactions
+2018-01-07 21:23:08 PST [6512]: [8-1] user=,db=,app=,client= LOG:  worker process: logical replication launcher (PID 5332) exited with exit code 1
+2018-01-07 21:23:08 PST [364]: [1-1] user=,db=,app=,client= LOG:  shutting down
+2018-01-07 21:23:08 PST [364]: [2-1] user=,db=,app=,client= LOG:  checkpoint starting: shutdown immediate
+2018-01-07 21:23:08 PST [364]: [3-1] user=,db=,app=,client= LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.000 s, sync=0.000 s, total=0.078 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=0 kB
+2018-01-07 21:23:08 PST [6512]: [9-1] user=,db=,app=,client= LOG:  database system is shut down
+2018-01-07 21:24:03 PST [3960]: [1-1] user=,db=,app=,client= LOG:  database system was shut down at 2018-01-07 21:23:08 PST
+2018-01-07 21:24:03 PST [6772]: [5-1] user=,db=,app=,client= LOG:  database system is ready to accept connections
+2018-01-07 21:29:03 PST [6204]: [1-1] user=,db=,app=,client= LOG:  checkpoint starting: time
+2018-01-07 21:29:03 PST [6204]: [2-1] user=,db=,app=,client= LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.000 s, sync=0.000 s, total=0.124 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=0 kB
+2018-01-07 21:51:09 PST [5700]: [1-1] user=postgres,db=libraryproject2db,app=[unknown],client=127.0.0.1 LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2018-01-07 21:54:03 PST [6204]: [3-1] user=,db=,app=,client= LOG:  checkpoint starting: time
+2018-01-07 21:54:04 PST [6204]: [4-1] user=,db=,app=,client= LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.503 s, sync=0.044 s, total=0.606 s; sync files=5, longest=0.013 s, average=0.008 s; distance=8 kB, estimate=8 kB
+2018-01-07 22:24:03 PST [6204]: [5-1] user=,db=,app=,client= LOG:  checkpoint starting: time
+2018-01-07 22:24:03 PST [6204]: [6-1] user=,db=,app=,client= LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.546 s, sync=0.062 s, total=0.655 s; sync files=5, longest=0.019 s, average=0.013 s; distance=9 kB, estimate=9 kB
+2018-01-07 22:24:14 PST [6772]: [6-1] user=,db=,app=,client= LOG:  received fast shutdown request
+2018-01-07 22:24:14 PST [6772]: [7-1] user=,db=,app=,client= LOG:  aborting any active transactions
+2018-01-07 22:24:14 PST [6772]: [8-1] user=,db=,app=,client= LOG:  worker process: logical replication launcher (PID 948) exited with exit code 1
+2018-01-07 22:24:14 PST [6204]: [7-1] user=,db=,app=,client= LOG:  shutting down
+2018-01-07 22:24:14 PST [6204]: [8-1] user=,db=,app=,client= LOG:  checkpoint starting: shutdown immediate
+2018-01-07 22:24:14 PST [6204]: [9-1] user=,db=,app=,client= LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.000 s, sync=0.000 s, total=0.062 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=8 kB
+2018-01-07 22:24:14 PST [6772]: [9-1] user=,db=,app=,client= LOG:  database system is shut down
+2018-01-07 22:25:26 PST [5300]: [1-1] user=,db=,app=,client= LOG:  database system was shut down at 2018-01-07 22:24:14 PST
+2018-01-07 22:25:26 PST [6352]: [5-1] user=,db=,app=,client= LOG:  database system is ready to accept connections
+2018-01-07 22:30:26 PST [628]: [1-1] user=,db=,app=,client= LOG:  checkpoint starting: time
+2018-01-07 22:30:26 PST [628]: [2-1] user=,db=,app=,client= LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.015 s, sync=0.000 s, total=0.156 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=0 kB
+2018-01-07 22:30:48 PST [6352]: [6-1] user=,db=,app=,client= LOG:  received fast shutdown request
+2018-01-07 22:30:48 PST [6352]: [7-1] user=,db=,app=,client= LOG:  aborting any active transactions
+2018-01-07 22:30:48 PST [6352]: [8-1] user=,db=,app=,client= LOG:  worker process: logical replication launcher (PID 2280) exited with exit code 1
+2018-01-07 22:30:48 PST [628]: [3-1] user=,db=,app=,client= LOG:  shutting down
+2018-01-07 22:30:48 PST [628]: [4-1] user=,db=,app=,client= LOG:  checkpoint starting: shutdown immediate
+2018-01-07 22:30:48 PST [628]: [5-1] user=,db=,app=,client= LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.000 s, sync=0.000 s, total=0.046 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=0 kB
+2018-01-07 22:30:48 PST [6352]: [9-1] user=,db=,app=,client= LOG:  database system is shut down
+2018-01-07 22:47:19 PST [4732]: [1-1] user=,db=,app=,client= LOG:  database system was shut down at 2018-01-07 22:30:48 PST
+2018-01-07 22:47:20 PST [7156]: [5-1] user=,db=,app=,client= LOG:  database system is ready to accept connections
+2018-01-07 22:48:27 PST [7156]: [6-1] user=,db=,app=,client= LOG:  received fast shutdown request
+2018-01-07 22:48:27 PST [7156]: [7-1] user=,db=,app=,client= LOG:  aborting any active transactions
+2018-01-07 22:48:27 PST [3512]: [1-1] user=postgres,db=libraryproject2db,app=[unknown],client=127.0.0.1 FATAL:  terminating connection due to administrator command
+2018-01-07 22:48:27 PST [7156]: [8-1] user=,db=,app=,client= LOG:  worker process: logical replication launcher (PID 364) exited with exit code 1
+2018-01-07 22:48:27 PST [5664]: [1-1] user=,db=,app=,client= LOG:  shutting down
+2018-01-07 22:48:27 PST [5664]: [2-1] user=,db=,app=,client= LOG:  checkpoint starting: shutdown immediate
+2018-01-07 22:48:27 PST [5664]: [3-1] user=,db=,app=,client= LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.000 s, sync=0.031 s, total=0.078 s; sync files=5, longest=0.004 s, average=0.004 s; distance=10 kB, estimate=10 kB
+2018-01-07 22:48:27 PST [7156]: [9-1] user=,db=,app=,client= LOG:  database system is shut down
+2018-01-07 22:48:42 PST [5244]: [1-1] user=,db=,app=,client= LOG:  database system was shut down at 2018-01-07 22:48:27 PST
+2018-01-07 22:48:42 PST [7164]: [5-1] user=,db=,app=,client= LOG:  database system is ready to accept connections
+2018-01-07 22:53:42 PST [2156]: [1-1] user=,db=,app=,client= LOG:  checkpoint starting: time
+2018-01-07 22:53:42 PST [2156]: [2-1] user=,db=,app=,client= LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.000 s, sync=0.000 s, total=0.156 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=0 kB
+2018-01-07 23:35:16 PST [1084]: [1-1] user=,db=,app=,client= ERROR:  canceling statement due to user request
+2018-01-07 23:35:16 PST [7164]: [6-1] user=,db=,app=,client= LOG:  worker process: logical replication launcher (PID 1084) was terminated by exception 0xC000013A
+2018-01-07 23:35:16 PST [7164]: [7-1] user=,db=,app=,client= HINT:  See C include file "ntstatus.h" for a description of the hexadecimal value.
+2018-01-07 23:35:16 PST [7164]: [8-1] user=,db=,app=,client= LOG:  terminating any other active server processes
+2018-01-07 23:35:16 PST [4464]: [1-1] user=,db=,app=,client= WARNING:  terminating connection because of crash of another server process
+2018-01-07 23:35:16 PST [4464]: [2-1] user=,db=,app=,client= DETAIL:  The postmaster has commanded this server process to roll back the current transaction and exit, because another server process exited abnormally and possibly corrupted shared memory.
+2018-01-07 23:35:16 PST [4464]: [3-1] user=,db=,app=,client= HINT:  In a moment you should be able to reconnect to the database and repeat your command.
+2018-01-07 23:35:16 PST [7164]: [9-1] user=,db=,app=,client= LOG:  statistics collector process (PID 2264) was terminated by exception 0xC000013A
+2018-01-07 23:35:16 PST [7164]: [10-1] user=,db=,app=,client= HINT:  See C include file "ntstatus.h" for a description of the hexadecimal value.

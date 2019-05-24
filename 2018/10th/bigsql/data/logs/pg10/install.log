@@ -1,0 +1,22 @@
+The files belonging to this database system will be owned by user "price".
+This user must also own the server process.
+
+The database cluster will be initialized with locale "C".
+The default text search configuration will be set to "english".
+
+Data page checksums are disabled.
+
+fixing permissions on existing directory c:/ETHANP~1/bigsql/data/pg10 ... ok
+creating subdirectories ... ok
+selecting default max_connections ... 100
+selecting default shared_buffers ... 128MB
+selecting dynamic shared memory implementation ... windows
+creating configuration files ... ok
+running bootstrap script ... ok
+performing post-bootstrap initialization ... ok
+syncing data to disk ... ok
+
+Success. You can now start the database server using:
+
+    ^"c^:^/ETHANP^~1^/bigsql^/pg10^/bin^/pg^_ctl^" -D ^"c^:^\ETHANP^~1^\bigsql^\data^\pg10^" -l logfile start
+
