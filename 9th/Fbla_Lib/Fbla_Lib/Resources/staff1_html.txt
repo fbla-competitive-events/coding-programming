@@ -1,0 +1,14 @@
+<html>
+<head>
+<!-- Jacob Smith -->
+<title>WHS-Help Menu</title>
+</head>
+
+<h1>Adding A New Staff</h1>
+<body>
+		<p>Adding new staff to the WHS Library Manager is as easy as one click
+	from anywhere in the application using the Side Panel. Click on the tab <b>Users</b>
+	and bring your mouse to the add a <b>new User panel</b>. Add the information needed and
+	generate a new id or add an old id. Select Staff at the bottom radio buttons and Click Add.</p>
+</body>
+</html>

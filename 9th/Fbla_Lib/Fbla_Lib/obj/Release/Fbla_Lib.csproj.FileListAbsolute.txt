@@ -1,0 +1,29 @@
+C:\Users\117420\Desktop\Fbla_Lib\Fbla_Lib\bin\Release\Fbla_Lib.exe.config
+C:\Users\117420\Desktop\Fbla_Lib\Fbla_Lib\bin\Release\Fbla_Lib.exe
+C:\Users\117420\Desktop\Fbla_Lib\Fbla_Lib\bin\Release\Fbla_Lib.pdb
+C:\Users\117420\Desktop\Fbla_Lib\Fbla_Lib\obj\Release\Fbla_Lib.Form1.resources
+C:\Users\117420\Desktop\Fbla_Lib\Fbla_Lib\obj\Release\Fbla_Lib.Properties.Resources.resources
+C:\Users\117420\Desktop\Fbla_Lib\Fbla_Lib\obj\Release\Fbla_Lib.csproj.GenerateResource.Cache
+C:\Users\117420\Desktop\Fbla_Lib\Fbla_Lib\obj\Release\Fbla_Lib.exe
+C:\Users\117420\Desktop\Fbla_Lib\Fbla_Lib\obj\Release\Fbla_Lib.pdb
+C:\Users\117420\Desktop\Fbla_Lib\Fbla_Lib\obj\Release\Fbla_Lib.csprojResolveAssemblyReference.cache
+C:\Users\117420\Desktop\Do not enter\Fbla_Lib\Fbla_Lib\bin\Release\Fbla_Lib.exe.config
+C:\Users\117420\Desktop\Do not enter\Fbla_Lib\Fbla_Lib\bin\Release\Fbla_Lib.exe
+C:\Users\117420\Desktop\Do not enter\Fbla_Lib\Fbla_Lib\bin\Release\Fbla_Lib.pdb
+C:\Users\117420\Desktop\Do not enter\Fbla_Lib\Fbla_Lib\obj\Release\Fbla_Lib.Form1.resources
+C:\Users\117420\Desktop\Do not enter\Fbla_Lib\Fbla_Lib\obj\Release\Fbla_Lib.Properties.Resources.resources
+C:\Users\117420\Desktop\Do not enter\Fbla_Lib\Fbla_Lib\obj\Release\Fbla_Lib.csproj.GenerateResource.Cache
+C:\Users\117420\Desktop\Do not enter\Fbla_Lib\Fbla_Lib\obj\Release\Fbla_Lib.exe
+C:\Users\117420\Desktop\Do not enter\Fbla_Lib\Fbla_Lib\obj\Release\Fbla_Lib.pdb
+C:\Users\117420\Desktop\Do not enter\Fbla_Lib\Fbla_Lib\obj\Release\Fbla_Lib.csprojResolveAssemblyReference.cache
+C:\Users\117420\Desktop\FBLA2018\Fbla_Lib\Fbla_Lib\bin\Release\Fbla_Lib.exe.config
+C:\Users\117420\Desktop\FBLA2018\Fbla_Lib\Fbla_Lib\bin\Release\Fbla_Lib.exe
+C:\Users\117420\Desktop\FBLA2018\Fbla_Lib\Fbla_Lib\bin\Release\Fbla_Lib.pdb
+C:\Users\117420\Desktop\FBLA2018\Fbla_Lib\Fbla_Lib\obj\Release\Fbla_Lib.Form1.resources
+C:\Users\117420\Desktop\FBLA2018\Fbla_Lib\Fbla_Lib\obj\Release\Fbla_Lib.Properties.Resources.resources
+C:\Users\117420\Desktop\FBLA2018\Fbla_Lib\Fbla_Lib\obj\Release\Fbla_Lib.csproj.GenerateResource.cache
+C:\Users\117420\Desktop\FBLA2018\Fbla_Lib\Fbla_Lib\obj\Release\Fbla_Lib.csproj.CoreCompileInputs.cache
+C:\Users\117420\Desktop\FBLA2018\Fbla_Lib\Fbla_Lib\obj\Release\Fbla_Lib.exe
+C:\Users\117420\Desktop\FBLA2018\Fbla_Lib\Fbla_Lib\obj\Release\Fbla_Lib.pdb
+C:\Users\117420\Desktop\FBLA2018\Fbla_Lib\Fbla_Lib\obj\Release\Fbla_Lib.csprojAssemblyReference.cache
+C:\Users\117420\Desktop\FBLA2018\Fbla_Lib\Fbla_Lib\obj\Release\Fbla_Lib.Help.resources

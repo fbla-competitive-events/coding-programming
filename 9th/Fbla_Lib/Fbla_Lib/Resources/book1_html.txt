@@ -1,0 +1,14 @@
+<html>
+<head>
+<!-- Jacob Smith -->
+<title>WHS-Help Menu</title>
+</head>
+
+<h1> Adding A New Book </h1>
+<body>
+	<p>Adding a new book to the WHS Library Manager is as easy as one click
+	from anywhere in the application using the <b>Side Panel</b>. Click on the tab <b>Books</b>
+	and bring your mouse to the add a <b>new book panel</b>. Add the information needed and
+	generate a new id or add the id on your book. Click the Add Button and you have added a new Book!</p>
+</body>
+</html>
