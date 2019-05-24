@@ -1,0 +1,21 @@
+<!--Takes Django's admin HTML File, extends this template from it-->
+{% extends "admin/base.html" %}
+
+<!-- Makes the title in the tab 'HWH Library System' -->
+{% block title %}
+HWH Library System
+
+{% endblock %}
+
+
+<!--Makes the site name: Hello World High Library Management System And adds a basic Print button to every page for printing reports-->
+
+{% block branding %}
+
+    <h1 id="site-name"><a href="{% url 'admin:index' %}">Library Management System</a>
+    <input type="button" onClick="window.print()" value="Print This Page"/>
+
+    </h1>
+
+{% endblock %}
+
