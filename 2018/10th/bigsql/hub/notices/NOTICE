@@ -1,0 +1,47 @@
+
+PostgreSQL & optionally one or more of the following projects are included:
+
+  PROJECT      PROJECT WEBSITE                    OSI LICENSE
+----------     ---------------------------------  -----------
+POSTGRES    
+  postgresql   postgresql.org                      postgres
+
+TOOLS
+  pgstudio     postgresqlstudio.org                postgres
+  pgadmin      pgadmin.org                         postgres
+  postgis      postgis.net                         gpl2
+  orafce       github.com/orafce                   postgres
+  plprofiler   bitbucket.org/openscg/plprofiler    artistic
+  pldebugger   git.postgresql.org                  postgres
+  pgbadger     github.com/dalibo/pgbadger          postgres
+  pgbackrest   github.com/pgbackrest               postgres
+  slony        slony.info                          postgres
+  pgha         bitbucket.org/openscg/pgha          gpl3
+  pgaudit      github.com/pgaudit                  postgres
+  pgsetuser    github.com/pgaudit/set_user         postgres
+  pgbouncer    pgbouncer.github.io                 postgres
+  bam2-ng      bitbucket.org/openscg/bam2-ng       postgres
+  pgcli        bitbucket.org/openscg/pgcli         postgres
+
+FRAMEWORKS  
+  python       python.org                          gpl2
+  perl         strawberryperl.com                  gpl3
+  java         openjdk.java.net                    gpl2
+
+PROCEDURAL LANGUAGES
+  plv8         github.com/plv8                     postgres
+  pltsql       bitbucket.org/openscg/pltsql        gpl3
+  plr          github.com/jconway/plr              gpl2
+
+FOREIGN DATA
+  cassandrafdw bitbucket.org/openscg/cassandrafdw  gpl3
+  hadoopfdw    bitbucket.org/openscg/hadoopfdw     gpl3
+  orafdw       github.com/laurenz/oracle_fdw       postgres
+  tdsfdw       github.com/tds-fdw                  postgres
+  cstore_fdw   github.com/citusdata/cstore_fdw     apache
+  mysqlfdw     github.com/enterprisedb/mysql_fdw   postgres
+  cassandra    cassandra.apache.org                apache
+  spark        spark.apache.org                    apache
+  zookeeper    zookeeper.apache.org                apache
+  hadoop       hadoop.apache.org                   apache
+  hive         hive.apache.org                     apache
