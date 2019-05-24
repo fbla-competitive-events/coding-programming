@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfUser xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <User>
+    <Name>Varun Kumar</Name>
+    <Age>16</Age>
+    <AccountType>Student</AccountType>
+    <Email>varunakumar@gmail.com</Email>
+    <PhoneNumber>7708889961</PhoneNumber>
+    <AmountBooksCheckedOut>0</AmountBooksCheckedOut>
+  </User>
+  <User>
+    <Name>Roshan Patel</Name>
+    <Age>17</Age>
+    <AccountType>Student</AccountType>
+    <Email>rapatel049@gmail.com</Email>
+    <PhoneNumber>6167778094</PhoneNumber>
+    <AmountBooksCheckedOut>0</AmountBooksCheckedOut>
+  </User>
+  <User>
+    <Name>Albert Einstein</Name>
+    <Age>45</Age>
+    <AccountType>Teacher</AccountType>
+    <Email>alberteinstein@yahoo.net</Email>
+    <PhoneNumber>8889990314</PhoneNumber>
+    <AmountBooksCheckedOut>1</AmountBooksCheckedOut>
+  </User>
+  <User>
+    <Name>Tyler Sedacca</Name>
+    <Age>16</Age>
+    <AccountType>Student</AccountType>
+    <Email>tylersedac@hotmail.com</Email>
+    <PhoneNumber>4445557786</PhoneNumber>
+    <AmountBooksCheckedOut>0</AmountBooksCheckedOut>
+  </User>
+  <User>
+    <Name>Kevin Huang</Name>
+    <Age>15</Age>
+    <AccountType>Student</AccountType>
+    <Email>kevhuang@gmail.com</Email>
+    <PhoneNumber>8881024855</PhoneNumber>
+    <AmountBooksCheckedOut>0</AmountBooksCheckedOut>
+  </User>
+  <User>
+    <Name>Nikola Tesla</Name>
+    <Age>35</Age>
+    <AccountType>Teacher</AccountType>
+    <Email>acpower@gmail.com</Email>
+    <PhoneNumber>8907765456</PhoneNumber>
+    <AmountBooksCheckedOut>1</AmountBooksCheckedOut>
+  </User>
+</ArrayOfUser>

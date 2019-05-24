@@ -1,0 +1,8 @@
+Books Checked Out This Week - 
+ 
+User: Albert Einstein
+Book: A Game of Thrones
+Date of checkout: 2/10/2018 7:44:43 PM
+Book due date: 3/10/2018 7:44:43 PM
+Book is due in: 28 days
+

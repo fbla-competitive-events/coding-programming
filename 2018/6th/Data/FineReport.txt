@@ -1,0 +1,8 @@
+Owed Fines On Checkouts - 
+ 
+User: Nikola Tesla
+Book: The Dark Tower
+Date of checkout: 2/10/2017 7:44:39 PM
+Book due date: 3/10/2017 7:44:39 PM
+Fine: $170
+

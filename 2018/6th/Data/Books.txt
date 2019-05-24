@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfBook xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Book>
+    <Title>The Great Gatsby</Title>
+    <Author>Scott F Fitzgerald</Author>
+    <BookGenre>Fiction</BookGenre>
+    <ISBN>1129546</ISBN>
+    <ID>2630968598:A5O362W7</ID>
+  </Book>
+  <Book>
+    <Title>Curious George</Title>
+    <Author>Margaret Ray</Author>
+    <BookGenre>Childrens</BookGenre>
+    <ISBN>079768</ISBN>
+    <ID>3755848185:56729F8J</ID>
+  </Book>
+  <Book>
+    <Title>The Count of Monte Cristo</Title>
+    <Author>Alexander Dumas</Author>
+    <BookGenre>Fiction</BookGenre>
+    <ISBN>9132456468</ISBN>
+    <ID>3148708658:IE3X0EOJ</ID>
+  </Book>
+  <Book>
+    <Title>A Game of Thrones</Title>
+    <Author>George R R Martin</Author>
+    <BookGenre>Fantasy</BookGenre>
+    <ISBN>56736680</ISBN>
+    <ID>2797388051:2H0DR1FB</ID>
+  </Book>
+  <Book>
+    <Title>To Kill a Mockingbird</Title>
+    <Author>Harper Lee</Author>
+    <BookGenre>Fiction</BookGenre>
+    <ISBN>78045648</ISBN>
+    <ID>1325705967:3C3PN8I6</ID>
+  </Book>
+  <Book>
+    <Title>The Dark Tower</Title>
+    <Author>Stephen King</Author>
+    <BookGenre>Fiction</BookGenre>
+    <ISBN>9780340881279</ISBN>
+    <ID>429475354:08YDL8P0</ID>
+  </Book>
+  <Book>
+    <Title>The Dark Tower</Title>
+    <Author>Stephen King</Author>
+    <BookGenre>Fiction</BookGenre>
+    <ISBN>9780340881279</ISBN>
+    <ID>429475354:K4C084K9</ID>
+  </Book>
+</ArrayOfBook>

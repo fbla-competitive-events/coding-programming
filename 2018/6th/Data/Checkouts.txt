@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfCheckout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Checkout>
+    <User>
+      <Name>Nikola Tesla</Name>
+      <Age>35</Age>
+      <AccountType>Teacher</AccountType>
+      <Email>acpower@gmail.com</Email>
+      <PhoneNumber>8907765456</PhoneNumber>
+      <AmountBooksCheckedOut>1</AmountBooksCheckedOut>
+    </User>
+    <Book>
+      <Title>The Dark Tower</Title>
+      <Author>Stephen King</Author>
+      <BookGenre>Fiction</BookGenre>
+      <ISBN>9780340881279</ISBN>
+      <ID>429475354:K4C084K9</ID>
+    </Book>
+    <DateOfCheckout>2017-02-10T19:44:39.9373721-05:00</DateOfCheckout>
+    <DateOfReturn>2017-03-10T19:44:39.9373721-05:00</DateOfReturn>
+  </Checkout>
+  <Checkout>
+    <User>
+      <Name>Albert Einstein</Name>
+      <Age>45</Age>
+      <AccountType>Teacher</AccountType>
+      <Email>alberteinstein@yahoo.net</Email>
+      <PhoneNumber>8889990314</PhoneNumber>
+      <AmountBooksCheckedOut>1</AmountBooksCheckedOut>
+    </User>
+    <Book>
+      <Title>A Game of Thrones</Title>
+      <Author>George R R Martin</Author>
+      <BookGenre>Fantasy</BookGenre>
+      <ISBN>56736680</ISBN>
+      <ID>2797388051:2H0DR1FB</ID>
+    </Book>
+    <DateOfCheckout>2018-02-10T19:44:43.7809258-05:00</DateOfCheckout>
+    <DateOfReturn>2018-03-10T19:44:43.7809258-05:00</DateOfReturn>
+  </Checkout>
+</ArrayOfCheckout>

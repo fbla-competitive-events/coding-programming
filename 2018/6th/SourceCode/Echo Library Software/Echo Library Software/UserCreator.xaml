@@ -1,0 +1,46 @@
+﻿<Window x:Class="Echo_Library_Software.UserCreator"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Echo_Library_Software"
+        mc:Ignorable="d"
+        Title="Create New User" Height="360" Width="640">
+    <StackPanel Background="#323031">
+        <Border Margin="5" BorderBrush="#3D3B3C" BorderThickness="2">
+            <StackPanel Margin="10">
+        
+            <local:LabelTextBox x:Name="Name" Label="Name"></local:LabelTextBox>
+            <local:LabelTextBox x:Name="Age" Label="Age" PreviewTextInput="OnPreviewNumbersOnly"></local:LabelTextBox>
+
+            <Grid>
+
+                <Label Content="User Type" Height="28" HorizontalAlignment="Left" Name="BaseLabel" VerticalAlignment="Top" Foreground="#7F7979"/>
+                <ComboBox x:Name="UserType" Height="23" Margin="0,26,0,0" VerticalAlignment="Top" Background="#C1BDB3">
+                    <ComboBoxItem>Student</ComboBoxItem>
+                    <ComboBoxItem>Teacher</ComboBoxItem>
+                </ComboBox>
+
+            </Grid>
+            
+            <local:LabelTextBox x:Name="Email" Label="Email"></local:LabelTextBox>
+            <local:LabelTextBox x:Name="PhoneNumber" Label="Phone Number" PreviewTextInput="OnPreviewNumbersOnly"></local:LabelTextBox>
+            
+                <Grid>
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0" Margin="10 10 10 0" Background="#C1BDB3" FontSize="15"
+                            Click="ButtonUserSaveExecute">Save</Button>
+                    <Button Grid.Column="1" Margin="10 10 10 0" Background="#C1BDB3" FontSize="15"
+                            Click="CloseWindow">Cancel</Button>
+                    
+                </Grid>
+                
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Window>
