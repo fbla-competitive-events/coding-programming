@@ -1,0 +1,21 @@
+REPORT
+
+Stu Dent (Student) (1) Fines: $1.30
+
+	- Pride and Prejudice by Jane Austen (140249). Due in 5 days.
+
+John Doe (Faculty) (5) Fines: $0.00
+
+	- David Copperfield by Charles Dickens (140275). Due in 13 days.
+	- Ulysses by James Joyce (140236). Due in 13 days.
+	- Harry Potter and the Deathly Hallows by J. K. Rowling (140290). Due in 13 days.
+	- Harry Potter and the Sorcerer's Stone by J. K. Rowling (140284). Due in 13 days.
+	- The Red and the Black by Stendhal (140269). Due in 13 days.
+
+Jagdeep Bhatia (Student) (0) Fines: $0.00
+
+
+Sean New (Faculty) (2) Fines: $0.00
+
+	- By the People by James W. Fraser (140291). Due in 14 days.
+	- Harry Potter and the Order of the Phoenix by J. K. Rowling (140288). Due in 14 days.

@@ -1,0 +1,16 @@
+Profile Image
+	- Link: https://pixabay.com/en/blank-profile-picture-mystery-man-973460/
+	- License: CC0 Creative Commons, Free for commercial use, No attribution required
+Book Image
+	- Link: https://pixabay.com/en/manual-docs-documentation-help-98728/
+	- License: CC0 Creative Commons, Free for commercial use, No attribution required
+Icon Image
+	- Link: https://pixabay.com/en/icon-book-flat-2727224/
+	- License: CC0 Creative Commons, Free for commercial use, No attribution required
+
+Font - Montserrat-Regular by Julieta Ulanovsky
+	- This Font Software is licensed under the SIL Open Font License, Version 1.1. (see OFL.txt)
+
+Multimedia Library - SFML
+	- Link: https://www.sfml-dev.org/index.php
+	- The SFML libraries and source code are distributed under the zlib/png license. (see Zlib.txt)
