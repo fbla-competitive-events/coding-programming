@@ -1,0 +1,16 @@
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+django_htmlmin.egg-info/PKG-INFO
+django_htmlmin.egg-info/SOURCES.txt
+django_htmlmin.egg-info/dependency_links.txt
+django_htmlmin.egg-info/entry_points.txt
+django_htmlmin.egg-info/requires.txt
+django_htmlmin.egg-info/top_level.txt
+htmlmin/__init__.py
+htmlmin/commands.py
+htmlmin/decorators.py
+htmlmin/middleware.py
+htmlmin/minify.py
+htmlmin/util.py
