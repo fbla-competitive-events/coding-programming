@@ -1,0 +1,106 @@
+Metadata-Version: 2.0
+Name: crossbar
+Version: 0.15.0
+Summary: Crossbar.io - The Unified Application Router
+Home-page: http://crossbar.io/
+Author: Tavendo GmbH
+Author-email: autobahnws@googlegroups.com
+License: AGPL3
+Keywords: crossbar router autobahn autobahn.ws websocket realtime rfc6455 wamp rpc pubsub oracle postgres postgresql
+Platform: Any
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: No Input/Output (Daemon)
+Classifier: Environment :: Console
+Classifier: Framework :: Twisted
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Internet
+Classifier: Topic :: Internet :: WWW/HTTP :: HTTP Servers
+Classifier: Topic :: Communications
+Classifier: Topic :: Database
+Classifier: Topic :: Home Automation
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Topic :: Software Development :: Embedded Systems
+Classifier: Topic :: Software Development :: Object Brokering
+Classifier: Topic :: System :: Distributed Computing
+Classifier: Topic :: System :: Networking
+Requires-Dist: Jinja2 (>=2.8)
+Requires-Dist: PyNaCl (>=1.0.1)
+Requires-Dist: PyTrie (>=0.2)
+Requires-Dist: PyYAML (>=3.11)
+Requires-Dist: Pygments (>=2.1.3)
+Requires-Dist: Twisted (>=16.3.0)
+Requires-Dist: autobahn (>=0.15.0)
+Requires-Dist: cbor (>=1.0.0)
+Requires-Dist: click (>=6.6)
+Requires-Dist: cryptography (>=1.4)
+Requires-Dist: lmdb (>=0.89)
+Requires-Dist: mistune (>=0.7.3)
+Requires-Dist: netaddr (>=0.7.18)
+Requires-Dist: psutil (>=4.3.0)
+Requires-Dist: py-ubjson (>=0.8.5)
+Requires-Dist: pyOpenSSL (>=16.0.0)
+Requires-Dist: pyasn1 (>=0.1.9)
+Requires-Dist: pyasn1-modules (>=0.0.8)
+Requires-Dist: sdnotify (>=0.3.1)
+Requires-Dist: service-identity (>=16.0.0)
+Requires-Dist: setproctitle (>=1.1.10)
+Requires-Dist: setuptools (>=18.3.1)
+Requires-Dist: shutilwhich (>=1.1.0)
+Requires-Dist: treq (>=15.1.0)
+Requires-Dist: u-msgpack-python (>=2.1)
+Requires-Dist: watchdog (>=0.8.3)
+Requires-Dist: zope.interface (>=4.2.0)
+Provides-Extra: dev
+Requires-Dist: colorama (>=0.3.3); extra == 'dev'
+Requires-Dist: flake8 (>=2.5.1); extra == 'dev'
+Requires-Dist: flask; extra == 'dev'
+Requires-Dist: hashin (>=0.4.1); extra == 'dev'
+Requires-Dist: jinja2-highlight; extra == 'dev'
+Requires-Dist: mistune; extra == 'dev'
+Requires-Dist: mock (>=1.3.0); extra == 'dev'
+Requires-Dist: pygments; extra == 'dev'
+Requires-Dist: towncrier; extra == 'dev'
+Requires-Dist: tox; extra == 'dev'
+Requires-Dist: wheel (>=0.26.0); extra == 'dev'
+
+Crossbar.io
+===========
+
+`Crossbar.io <http://crossbar.io>`__ is a networking platform for distributed
+and microservice applications.
+
+It is feature rich, scalable, robust and secure. Let Crossbar.io take care of
+the hard parts of messaging so you can focus on your app's features.
+
+| |Version| |Downloads| |Build Status| |Coverage|
+
+Resources
+---------
+
+-  Read more on the `Project Homepage <http://crossbar.io>`__
+-  Jump into the `Quick Start <http://crossbar.io/docs/Quick-Start/>`__
+-  Checkout the complete `Documentation <http://crossbar.io/docs/>`__
+-  Join the `Mailing List <https://groups.google.com/forum/#!forum/crossbario>`__
+-  Follow us on `Twitter <https://twitter.com/crossbario>`__
+-  Ask a question on `StackOverflow <http://stackoverflow.com/questions/ask?tags=crossbar,wamp>`__
+-  Read our `Legal Notes <https://github.com/crossbario/crossbar/blob/master/legal/README.md>`__
+
+.. |Version| image:: https://img.shields.io/pypi/v/crossbar.svg
+   :target: https://pypi.python.org/pypi/crossbar
+.. |Downloads| image:: https://img.shields.io/pypi/dm/crossbar.svg
+   :target: https://pypi.python.org/pypi/crossbar
+.. |Build Status| image:: https://travis-ci.org/crossbario/crossbar.svg?branch=master
+   :target: https://travis-ci.org/crossbario/crossbar
+.. |Coverage| image:: https://img.shields.io/codecov/c/github/crossbario/crossbar/master.svg
+   :target: https://codecov.io/github/crossbario/crossbar
+
+
