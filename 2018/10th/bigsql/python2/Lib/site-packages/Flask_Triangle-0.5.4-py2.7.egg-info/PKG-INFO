@@ -1,0 +1,48 @@
+Metadata-Version: 1.1
+Name: Flask-Triangle
+Version: 0.5.4
+Summary: Integration of AngularJS and Flask.
+Home-page: https://github.com/morgan-del/flask-triangle
+Author: Morgan Delahaye-Prat
+Author-email: mdp@m-del.fr
+License: BSD
+Description: Flask-Triangle
+        --------------
+        
+        **With great UX comes great security needs.**
+        *Uncle Ben*
+        
+        
+        Flask-Triangle is utterly influenced by Flask-WTF_. It aims to provide you with
+        similar features : form input handling and validation. The main difference is
+        that Flask-Triangle is designed with AngularJS_ and XHR in mind.
+        
+        
+        Turnkey features :
+        
+            * A collection of ready to use widgets for common HTML inputs.
+            * A collection of ready to use widgets for UI-Bootstrap_.
+            * A collection of `Modifiers` to alter the behaviour of a widget,
+              especially the validation process.
+        
+        
+        Advanced features :
+        
+            * end-to-end validation based on JSONschema_.
+            * a simple internal API to let you create your own widgets and modifiers.
+        
+        
+        .. _Flask-WTF: https://flask-wtf.readthedocs.org/en/latest/
+        .. _AngularJS: http://angularjs.org/
+        .. _UI-Bootstrap: http://angular-ui.github.io/bootstrap/
+        .. _JSONschema: http://json-schema.org/
+        
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
