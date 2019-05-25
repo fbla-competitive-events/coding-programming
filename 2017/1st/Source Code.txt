@@ -1,0 +1,3233 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.OleDb;
+using DGV2Printer;
+using DGVPrinterHelper;
+using System.Text.RegularExpressions;
+
+
+///-----------------------------------------------------------------
+///   Description:    <Description Management Software for Void (Family Entertainment Center) to Track Members, Employees, and Statistics>
+///   Author:         <Author Trevor Garner>           
+///   Revision History:
+///   Name:Start           Date:12/5/16        Description:Created Project, Started Basic Layout and Database Features
+///   Name:Graphics        Date:12/7/16        Description:Created and Edited All Graphics on Photoshop
+///   Name:Button Control  Date:12/17/16       Description:Created All Button Control, Still No Database
+///   Name:Connection      Date:1/25/17        Description:Created Database Connection
+///   Name:Revised Layout  Date:2/12/17        Description:Revised Layout
+///   Name:DataGrids       Date:2/13/17        Description:Created Datagrids and Connected to Database
+///   Name:Database Fill   Date:2/14/17        Description:Filled Database with Information
+///   Name:Commands        Date:3/1/17         Description:Created All Commands for Database Entry
+///   Name:Protection      Date:3/2/17         Description:Created Protection from Database Errors
+///   Name:Graphs          Date:3/9/17         Description:Created Graphs for Statistics
+///   Name:Printing        Date:3/10/17        Description:Added Printing Functionality
+///   Name:Delete Button   Date:3/11/17        Description:Added Employee Delete Button
+///   Name:Delete Button 2 Date:3/13/17        Description:Added Member Delete Button
+///   Name:MessageBoxes    Date:3/13/17        Description:Updated All Messages Boxes and Added Icons and Titles
+///   Name:Debugging       Date:3/14/17 p Day  Description:Debugging to find holes in code and fixing it
+///   Name:Help Button     Date:3/15/17        Description:Adding Detailed Text to Help Button
+///   Name:Fix Bugs        Date:3/26/17        Description:Fixing Bugs Within Program
+///   Name:Fix More Bugs   Date:3/27/17        Description:Fixing Even More Bugs
+///   Name:Graphics Update Date:4/23/17        Description:Updating Graphics To More Modern Look
+///   Name:Login           Date:4/23/17        Description:Creating Login Panel and Adding User Levels
+///   Name:Comments        Date:4/24/17        Description:Creating Comments For Every Section of Code
+///   Name:Reservations    Date:4/30/17        Description:Creating Reservation tab
+///-----------------------------------------------------------------
+///
+
+namespace VoidModel
+{
+    public partial class Form1 : Form
+    {
+
+        //Control Help Window
+        private int Help = -1;
+
+        //Variables For Login
+        private Boolean Login = false;
+        private String Username = "admin";
+        private String password = "password";
+
+        //Connection String For ACCDB(Microsoft Access Database) Database
+        OleDbConnection con = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\tgarner3750\Desktop\Fix Bugs\VoidModel\VoidDataBase.accdb");
+
+        public Form1()
+        {
+            InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+
+            //Change Width of ID Column
+            dgViewMembers.Columns[0].Width = 80;
+            //Change Width of Age Column
+            dgViewMembers.Columns[3].Width = 40;
+            //Change Width of Address Column
+            dgViewMembers.Columns[4].Width = 120;
+            //Change Width of Phone # Column
+            dgViewMembers.Columns[5].Width = 90;
+            //Change Width of Status Column
+            dgViewMembers.Columns[6].Width = 73;
+        }
+
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'voidDataBaseDataSetThursday.Thursday' table. You can move, or remove it, as needed.
+            this.thursdayTableAdapter.Fill(this.voidDataBaseDataSetThursday.Thursday);
+            // TODO: This line of code loads data into the 'voidDataBaseDataSetWednesday.Wednesday' table. You can move, or remove it, as needed.
+            this.wednesdayTableAdapter.Fill(this.voidDataBaseDataSetWednesday.Wednesday);
+            // TODO: This line of code loads data into the 'voidDataBaseDataSetTuesday.Tuesday' table. You can move, or remove it, as needed.
+            this.tuesdayTableAdapter.Fill(this.voidDataBaseDataSetTuesday.Tuesday);
+            // TODO: This line of code loads data into the 'voidDataBaseDataSetMonday.Monday' table. You can move, or remove it, as needed.
+            this.mondayTableAdapter.Fill(this.voidDataBaseDataSetMonday.Monday);
+            // TODO: This line of code loads data into the 'voidDataBaseDataSetSunday.Sunday' table. You can move, or remove it, as needed.
+            this.sundayTableAdapter.Fill(this.voidDataBaseDataSetSunday.Sunday);
+            // TODO: This line of code loads data into the 'voidDataBaseDataSetSaturday.Saturday' table. You can move, or remove it, as needed.
+            this.saturdayTableAdapter.Fill(this.voidDataBaseDataSetSaturday.Saturday);
+            // TODO: This line of code loads data into the 'voidDataBaseDataSetFriday.Friday' table. You can move, or remove it, as needed.
+            this.fridayTableAdapter.Fill(this.voidDataBaseDataSetFriday.Friday);
+            // TODO: This line of code loads data into the 'voidDataBaseDataSetAttendance.Attendance' table. You can move, or remove it, as needed.
+            this.attendanceTableAdapter1.Fill(this.voidDataBaseDataSetAttendance.Attendance);
+            // TODO: This line of code loads data into the 'voidDataBaseDataSetTimeSpent.TimeSpent' table. You can move, or remove it, as needed.
+            this.timeSpentTableAdapter.Fill(this.voidDataBaseDataSetTimeSpent.TimeSpent);
+            // TODO: This line of code loads data into the 'voidDataBaseDataSetAttendence.Attendance' table. You can move, or remove it, as needed.
+            this.attendanceTableAdapter.Fill(this.voidDataBaseDataSetAttendence.Attendance);
+            // TODO: This line of code loads data into the 'voidDataSet.Employee' table. You can move, or remove it, as needed.
+            this.employeeTableAdapter.Fill(this.voidDataSet.Employee);
+            // TODO: This line of code loads data into the 'voidDataSet.Members' table. You can move, or remove it, as needed.
+            this.membersTableAdapter.Fill(this.voidDataSet.Members);
+
+            //Hides Everything For Start Of Program Except For Main Menu
+            HideEveryThing();
+
+            //If No One Has Logged In, Hide Everything besides Login Screen
+            if (!Login)
+            {
+                //Hide Everything That we dont need
+                HideEveryThing();
+
+                //Show Login Variables
+                lblUsername.Show();
+                lblPassword.Show();
+                tbUserName.Show();
+                tbPassword.Show();
+                btnLogin.Show();
+
+                //Hide Tabs on Left Side
+                pbCustomerInfo.Hide();
+                pbEmployee.Hide();
+                pbNewSchedule.Hide();
+                pbCheckIn.Hide();
+                pbReservations.Hide();
+                pbViewMembers.Hide();
+                pbNewMembers.Hide();
+
+            }
+
+        }
+        /// <summary>
+        /// Allows To Login by hitting Enter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tbPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            //Checks If Users has not logged in and They Hit enter
+            if (!Login && e.KeyCode == Keys.Enter)
+            {
+                //Clicks Login Button
+                btnLogin.PerformClick();
+            }
+        }
+        /// <summary>
+        /// Allows To Login by hitting Enter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tbUserName_KeyDown(object sender, KeyEventArgs e)
+        {
+            //Checks If Users has not logged in and They Hit enter
+            if (!Login && e.KeyCode == Keys.Enter)
+            {
+                //Clicks Login Button
+                btnLogin.PerformClick();
+            }
+        }
+        /// <summary>
+        /// Timer To Constantly Update Help Text
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            //Constantly Update Help Text
+            updateHelp();
+        }
+        /// <summary>
+        /// Logins User
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            //Confirm Textbox Username is equal to username and password textbox is equal to password
+            if(tbUserName.Text == Username && tbPassword.Text == password)
+            {
+                //Capitalize Username For Design
+                lblLiveUsername.Text = Username.ToUpper();
+
+                //HideEveryThing Since They Just Logged In
+                HideEveryThing();
+
+                //Set Backgrounds to transparent
+                Transparent();
+
+                //Clear All Textboxes To Ged Rid of Any text within Textboxes
+                ClearBoxes();
+
+                //Set Login To True, Stating They have logged in
+                Login = true;
+
+                //Show Tabs on Left Side
+                pbCustomerInfo.Show();
+                pbEmployee.Show();
+                pbNewSchedule.Show();
+                pbCheckIn.Show();
+                pbReservations.Show();
+                pbViewMembers.Show();
+                pbNewMembers.Show();
+
+                //Show User They Have Logged in
+                MessageBox.Show("Success! Click On a Tab to Continue!", "Success", MessageBoxButtons.OK);
+            }
+            else
+            {
+                //Clear All Textboxes To Ged Rid of Any text within Textboxes
+                ClearBoxes();
+
+                //Show User They did not log in successfully
+                MessageBox.Show("Incorrect! Please Try Again!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+        /// <summary>
+        /// Logouts User
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pbLogout_Click(object sender, EventArgs e)
+        {
+            //Check If Username Text Box is filled With a Current User
+            if (lblLiveUsername.Text == "")
+            {
+                //Show User That No One has logged on
+                MessageBox.Show("Error! Please Log In First!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                //Set Help Text To Up-to-date text
+                Help = -1;
+
+                //Show Login Screen 
+                lblLiveUsername.Text = "";
+                HideEveryThing();
+                lblUsername.Show();
+                lblPassword.Show();
+                tbUserName.Show();
+                tbPassword.Show();
+                btnLogin.Show();
+
+                //Hide Tabs on Left Side
+                pbCustomerInfo.Hide();
+                pbEmployee.Hide();
+                pbNewSchedule.Hide();
+                pbCheckIn.Hide();
+                pbReservations.Hide();
+                pbViewMembers.Hide();
+                pbNewMembers.Hide();
+
+                //Clear All Left Over Text In Textboxes
+                ClearBoxes();
+
+                //Set login to false 
+                Login = false;
+
+                //Show User they have logged Out
+                MessageBox.Show("Successfully Logged Out", "Success", MessageBoxButtons.OK);
+            }
+        }
+        /// <summary>
+        /// Sets Form Up for Customer Info
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pbCustomerInfo_Click(object sender, EventArgs e)
+        {
+            //Sets help text
+            Help = 4;
+
+            //Call Transparent
+            Transparent();
+
+            //Set BackColor of Picture Box To Grey
+            pbCustomerInfo.BackColor = Color.FromArgb(160, 160, 160);
+
+            //Clear all boxes
+            ClearBoxes();
+            cbCustomerInfoSelection2.Text = "";
+            cbCustomerInfoSelection.Text = "";
+
+            //Resets DataGridView Source
+            dgCustomerInfo.DataSource = null;
+
+            //Show and Hide
+            HideEveryThing();
+            cbCustomerInfoSelection.Show();
+            cbCustomerInfoSelection2.Hide();
+            btnCustomerInfoPrint.Show();
+            btnCustomerInfoView.Show();
+
+        }
+        /// <summary>
+        /// Sets Form Up for Employee
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pbEmployee_Click(object sender, EventArgs e)
+        {
+            //Call Transparent
+            Transparent();
+
+            //Set BackColor of Picture Box To Grey
+            pbEmployee.BackColor = Color.FromArgb(160, 160, 160);
+
+            try
+            {
+                //Open Connection To database
+                con.Open();
+                
+                //Updates and Refreshes Member List on click
+                string query = "select * from Employee";
+                OleDbCommand cmd = new OleDbCommand(query, con);
+                OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dgEmployee.DataSource = dt;
+
+            }
+            catch (Exception ex)
+            {
+                //Exception Message
+                MessageBox.Show("Error" + ex, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            //Closes Connection To Database
+            con.Close();
+
+            //Set Help Text
+            Help = 3;
+
+            //Clear all boxes
+            ClearBoxes();
+
+            //Show and Hide
+            HideEveryThing();
+            lblEmployeeFN.Show();
+            lblEmployeeLastName.Show();
+            lblEmployeePosition.Show();
+            lblEmployeeSocial.Show();
+            dgEmployee.Show();
+            btnEmployeePrint.Show();
+            btnEmployeeSave.Show();
+            tbEmployeeFirstName.Show();
+            tbEmployeeLastName.Show();
+            tbEmployeeSocial.Show();
+            cbEmployeePosition.Show();
+            btnEmployeeDelete.Show();
+
+        }
+        /// <summary>
+        /// Adds Time into Schedule
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pbNewSchedule_Click(object sender, EventArgs e)
+        {
+            //Call Transparent 
+            Transparent();
+
+            //Set BackColor of Picture Box To Grey
+            pbNewSchedule.BackColor = Color.FromArgb(160, 160, 160);
+
+            try
+            {
+                //Open Connection To database
+                con.Open();
+
+                //Updates and Refreshes Schedule Combobox
+                string query = "select * from Schedule";
+                OleDbCommand cmd = new OleDbCommand(query, con);
+                OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dgSchedule.DataSource = dt;
+
+                string query2 = "select Name from Schedule";
+                OleDbDataAdapter da2 = new OleDbDataAdapter(query2, con);
+
+                DataSet ds = new DataSet();
+                da2.Fill(ds, "Name");
+                cbScheduleEmployee.DisplayMember = "Name";
+                cbScheduleEmployee.ValueMember = "Name";
+                cbScheduleEmployee.DataSource = ds.Tables["Name"];
+
+
+            }
+            catch (Exception ex)
+            {
+                //Exception Message
+                MessageBox.Show("Error" + ex, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            con.Close();
+
+            //Set Help Text
+            Help = 2;
+
+            //Clear all textboxes
+            ClearBoxes();
+
+            //Show and Hide
+            HideEveryThing();
+            lblScheduleDay.Show();
+            lblScheduleEmployeeName.Show();
+            lblScheduleTF.Show();
+            lblScheduleTS.Show();
+            cbScheduleAm.Show();
+            cbScheduleDate.Show();
+            cbScheduleEmployee.Show();
+            cbSchedulePm.Show();
+            btnSchedulePrint.Show();
+            btnScheduleSave.Show();
+            tbScheduleTF.Show();
+            tbScheduleTS.Show();
+            dgSchedule.Show();
+            btnScheduleDelete.Show();
+
+        }
+        /// <summary>
+        /// Deletes Item From Schedule
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnScheduleDelete_Click(object sender, EventArgs e)
+        {
+            String Day = cbScheduleDate.Text; //Get Schedule Date
+            String Employee = cbScheduleEmployee.Text; //Get LastName, FirstName
+
+            String FirstName = Employee.Substring((Employee.IndexOf(" ")) + 1); //Get Everything after Space in Name 
+            String LastName = Employee.Substring(0, Employee.IndexOf(",")); //Get Everything to Comma
+
+            //Open Connection To database
+            con.Open();
+
+            //Getting Schedule Time For Employee on var Day, for var Employee
+            OleDbCommand GetHours = new OleDbCommand("select [" + Day + "] from Schedule where Name ='" + Employee + "'", con);
+            //Store Info Into String Original
+            String Original = GetHours.ExecuteScalar().ToString();
+
+            //IF Original is empty
+            if (Original == "")
+            {
+                //Out print error message
+                MessageBox.Show("There must be a time on " + Day + "", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                //Is Combobox 'ScheduleDate' Contains 'Day'
+                if (cbScheduleDate.Items.Contains(Day))
+                {
+                    try
+                    {
+                        //Select Everything From Employee Table Where FirstName is equal to var FirstName
+                        OleDbCommand cmd = con.CreateCommand();
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandText = "select * from [Employee]where FirstName='" + FirstName + "'";
+                        cmd.Connection = con;
+                        OleDbDataReader rd = cmd.ExecuteReader();
+                        //Check to see if that info is within database
+                        if (rd.HasRows)
+                        {
+                            rd.Close();
+                            //Select Everything From Employee Table Where LastName is equal to var FirstName
+                            OleDbCommand cmd2 = con.CreateCommand();
+                            cmd2.CommandType = CommandType.Text;
+                            cmd2.CommandText = "select * from [Employee]where LastName='" + LastName + "'";
+                            cmd2.Connection = con;
+                            OleDbDataReader rf = cmd.ExecuteReader();
+                            //Check to see if that info is within database
+                            if (rf.HasRows)
+                            {
+                                    //Confirms they want to delete Schedule Entry
+                                    var confirmResult = MessageBox.Show("Are you sure you want to remove that entry?!",
+                                    "Confirm Delete!!",
+                                    MessageBoxButtons.YesNo);
+                                    if (confirmResult == DialogResult.Yes)
+                                    {
+                                        try
+                                        {
+                                            //Create new command var
+                                            OleDbCommand cmd3 = con.CreateCommand();
+
+                                            //Get Time from TotalHours from Schedue where Name is equal to var Employee
+                                            OleDbCommand GetTime = new OleDbCommand("select TotalHours from Schedule where Name ='" + Employee + "'", con);
+                                            double TotalTime = Double.Parse(GetTime.ExecuteScalar().ToString());
+
+                                            int Dash = Original.IndexOf(" - ");
+                                            int DashPlus3 = Dash + 3;
+                                            int OriginalMinus2 = Original.Length - 2;
+
+                                            string First, Last, FirstTime, LastTime;
+
+                                            //Gathering FirstName From Original (FirstName, Lastname)
+                                            First = Original.Substring(0, Dash - 2);
+                                            //Gathering LastName From Original (FirstName, LastName)
+                                            Last = Original.Substring(DashPlus3, OriginalMinus2 - DashPlus3);
+                                            //Gathering FirstTime From Original (AM or PM)
+                                            FirstTime = Original.Substring(Dash - 2, 2);
+                                            //Gathering LastTime From Original (AM or PM)
+                                            LastTime = Original.Substring(Original.Length - 2);
+
+                                            //Replace All ':' With Decimals For Math
+                                            First = First.Replace(':', '.');
+                                            Last = Last.Replace(':', '.');
+
+                                            //Convert Strings To Doubles
+                                            double fTime = double.Parse(First);
+                                            double lTime = double.Parse(Last);
+
+                                            //Add 12 to each time if it is PM
+                                            if (FirstTime == "PM" && fTime != 12)
+                                            {
+                                                fTime = fTime + 12;
+                                            }
+                                            if (LastTime == "PM" && lTime != 12)
+                                            {
+                                                lTime = lTime + 12;
+                                            }
+
+                                            double Difference = lTime - fTime;
+
+                                            //Subtract Previous Time From Schedules TotalHours
+                                            TotalTime -= Difference;
+
+                                            //Update Schedule Table and set TotalHours to var Totaltime where name is equal to Employee's name
+                                            cmd3.CommandText = "update Schedule set TotalHours='" + TotalTime + "' where Name='" + Employee + "' ";
+                                            cmd3.ExecuteNonQuery();
+
+                                            //Update Employee Table and set TotalWeekHours to TotalTime where FirstName is equal to var FirstName and LastName is equal to var LastName
+                                            cmd3.CommandText = "update Employee set TotalWeekHours='" + TotalTime + "' where FirstName='" + FirstName + "' and LastName ='" + LastName + "'";
+                                            cmd3.ExecuteNonQuery();
+
+                                            //Update Schedule Table and Set Day to null where Time was previously located where Name is equal to var Emplyoee
+                                            cmd3.CommandText = "update Schedule set " + Day + "='" + null + "' where Name='" + Employee + "' ";
+                                            cmd3.ExecuteNonQuery();
+
+                                            //Show User The Entry was deleted
+                                            MessageBox.Show("Enrty Successfully Deleted", "Success");
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            //Show User Error Message if one is presented
+                                            MessageBox.Show("Error " + ex, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        //Clears all TextBoxes
+                                        ClearBoxes();
+                                    }
+                            }
+                            else
+                            {
+                                //Show User Error Message if one is presented
+                                MessageBox.Show("Employee Not Found", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                //Close DB Reader
+                                rf.Close();
+                            }
+
+                        }
+                        else
+                        {
+                            //Show User Error Message if one is presented
+                            MessageBox.Show("Employee Not Found", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            //Close DB Reader
+                            rd.Close();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        //Show User Error Message if one is presented
+                        MessageBox.Show("Error " + ex, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+
+                }
+                else
+                {
+                    //Show User Error Message if one is presented
+                    MessageBox.Show("Please Enter a Correct Day and Employee!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            try
+            {
+                //Updates and Refreshes Schedule Datagrid on click
+                string query = "select * from Schedule";
+                OleDbCommand cmd = new OleDbCommand(query, con);
+                OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dgSchedule.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                //Show User Error Message if one is presented
+                MessageBox.Show("Data Grid Cannot Update! " + ex, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            //Clears all TextBoxes
+            ClearBoxes();
+            //Closes the Connection
+            con.Close();
+        }
+        /// <summary>
+        /// Saves Schedule Data
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnScheduleSave_Click(object sender, EventArgs e)
+        {
+            String Day = cbScheduleDate.Text; //Day of Week
+            String Employee = cbScheduleEmployee.Text; //LastName, FirstName
+
+            String Start = cbScheduleAm.Text.ToUpper(); //AM or PM
+            String Finish = cbSchedulePm.Text.ToUpper(); //AM or PM
+
+            String FinishTime = tbScheduleTF.Text; //Time of Day
+            String StartTime = tbScheduleTS.Text; //Time of Day
+
+            //Confirms All Textboxes are filled with required information 
+            if (cbScheduleDate.Items.Contains(Day) && cbScheduleAm.Items.Contains(Start) && cbSchedulePm.Items.Contains(Finish) && FinishTime.Length < 6 && StartTime.Length < 6 && (new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ":", }.Any(c => FinishTime.Contains(c))) && (new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ":", }.Any(c => StartTime.Contains(c))))
+            {
+                double StartTimeDobule = 0, FinishTimeDouble = 0;
+
+                //Add :00 To End of Single Digit Times (6 PM -> 6:00 PM)
+                if (!(StartTime.Contains(':')))
+                {
+                    StartTime = StartTime + ":00";
+                }
+                if (!(FinishTime.Contains(':')))
+                {
+                    FinishTime = FinishTime + ":00";
+                }
+
+                //Confirms ':' Is in the correct location (6:00 GOOD || 600:00 BAD)
+                if (FinishTime.IndexOf(':') == 1 || FinishTime.IndexOf(':') == 2 && (StartTime.IndexOf(':') == 1 || StartTime.IndexOf(':') == 2))
+                {
+                    //Gets Firstname From Employee String
+                    String FirstName = Employee.Substring((Employee.IndexOf(" ")) + 1); //LastName, FirstName
+                    //Gets Lastname From Employee String
+                    String LastName = Employee.Substring(0, Employee.IndexOf(",")); //LastName, FirstName
+                    //Formats Text
+                    String Input = StartTime + Start + " - " + FinishTime + Finish; //6:00AM - 7:00PM
+
+                    //Open Connection To database
+                    con.Open();
+                    try
+                    {
+                        //Checks To Make Sure The FirstName is one of the employees FirstNames
+                        OleDbCommand cmd = con.CreateCommand();
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandText = "select * from [Employee]where FirstName='" + FirstName + "'";
+                        cmd.Connection = con;
+                        OleDbDataReader rd = cmd.ExecuteReader();
+                        if (rd.HasRows)
+                        {
+                            //Closes Previous DB Reader
+                            rd.Close();
+
+                            //Checks To Make Sure The LastName is one of the employees LastNames
+                            OleDbCommand cmd2 = con.CreateCommand();
+                            cmd2.CommandType = CommandType.Text;
+                            cmd2.CommandText = "select * from [Employee]where LastName='" + LastName + "'";
+                            cmd2.Connection = con;
+                            OleDbDataReader rf = cmd.ExecuteReader();
+                            if (rf.HasRows)
+                            {
+                                try
+                                {
+                                    OleDbCommand cmd3 = con.CreateCommand();
+
+                                    //Selects TotalHours From Schedule Table Where Name is Equal to Employees Name
+                                    OleDbCommand GetTime = new OleDbCommand("select TotalHours from Schedule where Name ='" + Employee + "'", con);
+                                    //Converting Time Into Double
+                                    double TotalTime = Double.Parse(GetTime.ExecuteScalar().ToString());
+
+                                    //Select Day From Schedule Table Where Name is Equal to Employee
+                                    OleDbCommand GetHours = new OleDbCommand("select [" + Day + "] from Schedule where Name ='" + Employee + "'", con);
+                                    //Add Day into String
+                                    String Original = GetHours.ExecuteScalar().ToString();
+
+                                    //Makes sure Original is not empty
+                                    if (Original != "")
+                                    {
+                                        //Initalize Variables
+                                        int Dash = Original.IndexOf(" - ");
+                                        int DashPlus3 = Dash + 3;
+                                        int OriginalMinus2 = Original.Length - 2;
+                                        string First, Last, FirstTime, LastTime;
+
+                                        //Gathering FirstName From Original (FirstName, Lastname)
+                                        First = Original.Substring(0, Dash - 2);
+                                        //Gathering LastName From Original (FirstName, LastName)
+                                        Last = Original.Substring(DashPlus3, OriginalMinus2 - DashPlus3);
+                                        //Gathering FirstTime From Original (AM or PM)
+                                        FirstTime = Original.Substring(Dash - 2, 2);
+                                        //Gathering LastTime From Original (AM or PM)
+                                        LastTime = Original.Substring(Original.Length - 2);
+
+                                        //Replaces All ':' With '.'
+                                        First = First.Replace(':', '.');
+                                        Last = Last.Replace(':', '.');
+
+                                        //Converts Strings To Doubles
+                                        double fTime = double.Parse(First);
+                                        double lTime = double.Parse(Last);
+
+                                        //Checks To See if Time is PM and Not Noon, If it is Add 12 to it
+                                        if (FirstTime == "PM" && fTime != 12)
+                                        {
+                                            fTime = fTime + 12;
+                                        }
+                                        if (LastTime == "PM" && lTime != 12)
+                                        {
+                                            lTime = lTime + 12;
+                                        }
+
+                                        //Checks To See if Time minus Its rounded form is less than or equal to .59
+                                        if ((fTime - Math.Truncate(fTime) <= .59) && (fTime - Math.Truncate(fTime) <= .59) && fTime <= 12 && lTime <= 12)
+                                        {
+
+                                            //Subtract Finish Time to StartTime 
+                                            double Difference = lTime - fTime;
+                                            TotalTime -= Difference;
+                                        }
+                                        else
+                                        {
+                                            //Shows User Error if one is presented
+                                            MessageBox.Show("Please Enter A Valid Number!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                        }
+                                    }
+
+                                    //Replaces All ':' with '.'
+                                    StartTime = StartTime.Replace(':', '.');
+                                    FinishTime = FinishTime.Replace(':', '.');
+
+                                    //Convert All Strings to Doubles 
+                                    FinishTimeDouble = (Double.Parse(FinishTime.Substring(0, FinishTime.Length)));
+                                    StartTimeDobule = (Double.Parse(StartTime.Substring(0, StartTime.Length)));
+
+                                    //Checks To See if Time minus Its rounded form is less than or equal to .59
+                                    if ((FinishTimeDouble - Math.Truncate(FinishTimeDouble) <= .59) && (StartTimeDobule - Math.Truncate(StartTimeDobule) <= .59) && FinishTimeDouble <= 12 && StartTimeDobule <= 12)
+                                    {
+                                        //Add 12 To number if it is PM and doesnt equal 12
+                                        if (Finish == "PM" && (FinishTimeDouble != 12))
+                                        {
+                                            FinishTimeDouble = FinishTimeDouble + 12;
+                                        }
+
+                                        if (Start == "PM" && (StartTimeDobule != 12))
+                                        {
+                                            StartTimeDobule = StartTimeDobule + 12;
+                                        }
+
+                                        //IF Start is Less than Finish Time
+                                        if (StartTimeDobule < FinishTimeDouble)
+                                        {
+                                            //Adds Difference between times and adds them to TotalTime
+                                            TotalTime = TotalTime + (FinishTimeDouble - StartTimeDobule);
+
+                                            //Updates Schedule Table and set TotalHours to var TotalTime where Name is equal to var employee
+                                            cmd3.CommandText = "update Schedule set TotalHours='" + TotalTime + "' where Name='" + Employee + "' ";
+                                            cmd3.ExecuteNonQuery();
+
+                                            //Updates Employee Table and set TotalWeekHours to var TotalTime where FirstName is equal to var FirstName and Lastnane is equal to var LastName
+                                            cmd3.CommandText = "update Employee set TotalWeekHours='" + TotalTime + "' where FirstName='" + FirstName + "' and LastName ='" + LastName + "'";
+                                            cmd3.ExecuteNonQuery();
+
+                                            //Updates Schedule Table and set Day equal to var Input where Name is equal to var Employee
+                                            cmd3.CommandText = "update Schedule set " + Day + "='" + Input + "' where Name='" + Employee + "' ";
+                                            cmd3.ExecuteNonQuery();
+
+                                            //Show User that they have successfuly entered data
+                                            MessageBox.Show("Enrty Successfully Added", "Success");
+                                        }
+                                        else
+                                        {
+                                            //Shows User Error if one is presented
+                                            MessageBox.Show("Please Enter A Valid Number!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        //Shows User Error if one is presented
+                                        MessageBox.Show("Please Enter A Valid Number!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    }
+                                    //Close DB Reader
+                                    rf.Close();
+                                }
+                                catch (Exception)
+                                {
+                                    //Shows User Error if one is presented
+                                    MessageBox.Show("Please Enter A Valid Number!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                }
+
+                            }
+                            else
+                            {
+                                //Shows User Error if one is presented
+                                MessageBox.Show("Employee Not Found", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                //Close DB Reader
+                                rf.Close();
+                            }
+                        }
+                        else
+                        {
+                            //Shows User Error if one is presented
+                            MessageBox.Show("Employee Not Found", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            //Close DB Reader
+                            rd.Close();
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        //Shows User Error if one is presented
+                        MessageBox.Show("Error " + ex, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                else
+                {
+                    //Shows User Error if one is presented
+                    MessageBox.Show("Please Enter A Valid Number!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+                try
+                {
+                    //Updates and Refreshes Schedule Datagrid
+                    string query = "select * from Schedule";
+                    OleDbCommand cmd = new OleDbCommand(query, con);
+                    OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    dgSchedule.DataSource = dt;
+                }
+                catch (Exception ex)
+                {
+                    //Shows User Error if one is presented
+                    MessageBox.Show("Data Grid Cannot Update! " + ex, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                //Shows User Error if one is presented
+                MessageBox.Show("Please Check All Fields", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            //Clear All TextBoxes
+            ClearBoxes();
+            //Close The Connection
+            con.Close();
+
+        }
+        /// <summary>
+        /// Saves Employee Data
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnEmployeeSave_Click(object sender, EventArgs e)
+        {
+            //Initalize Variables
+            string FirstName = tbEmployeeFirstName.Text;
+            string LastName = tbEmployeeLastName.Text;
+            string Social = tbEmployeeSocial.Text;
+            string Position = cbEmployeePosition.Text;
+            string ComboNames = LastName + ", " + FirstName;
+
+            //Check To See if any string is empty else continue with execution
+            if (Social == "")
+            {
+                //Shows User Error if one is presented
+                MessageBox.Show("You Must Enter a Social Security Number", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (!(cbEmployeePosition.Items.Contains(Position)))
+            {
+                //Shows User Error if one is presented
+                MessageBox.Show("You Must Enter a Valid Position", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (FirstName == "" || LastName == "")
+            {
+                //Shows User Error if one is presented
+                MessageBox.Show("You Must Enter a Valid First Name or Last Name", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                //Open Connection To database
+                con.Open();
+                try
+                {
+                    //Check To See if There is a Social Security Number all ready in Employee Table
+                    OleDbCommand cmd = con.CreateCommand();
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "select * from [Employee]where Social='" + Social + "'";
+                    cmd.Connection = con;
+                    OleDbDataReader rd = cmd.ExecuteReader();
+                    if (rd.HasRows)
+                    {
+                        OleDbCommand cmd2 = con.CreateCommand();
+
+                        //Get First and LastName from Employee Table Where Social is equal to var Social
+                        OleDbCommand GetName = new OleDbCommand("select FirstName from Employee where Social ='" + Social + "'", con);
+                        OleDbCommand GetLastName = new OleDbCommand("select LastName from Employee where Social ='" + Social + "'", con);
+                        
+                        //Format Names To (LastName, FirstName)
+                        string PrevNames = GetLastName.ExecuteScalar().ToString() + ", " + GetName.ExecuteScalar().ToString();
+
+                        //Check To See if Variables Are Not Empty
+                        if (FirstName != "")
+                        {
+                            //Update Employee Table and set Firstname to var FirstName where Social is equal to var Social
+                            cmd2.CommandText = "update Employee set FirstName='" + FirstName + "' where Social='" + Social + "' ";
+                            cmd2.ExecuteNonQuery();
+                            //Update Schedule Table and set Name equal to var ComboNames where Name is equal to var PrevNames
+                            cmd2.CommandText = "update Schedule set Name='" + ComboNames + "' where Name='" + PrevNames + "' ";
+                            cmd2.ExecuteNonQuery();
+                        }
+                        if (LastName != "")
+                        {
+                            //Update Employee Table and set LastName to var LastName where Social is equal to var Social
+                            cmd2.CommandText = "update Employee set LastName='" + LastName + "' where Social='" + Social + "' ";
+                            cmd2.ExecuteNonQuery();
+                            //Update Schedule Table and set Name equal to var ComboNames where Name is equal to var PrevNames
+                            cmd2.CommandText = "update Schedule set Name='" + ComboNames + "' where Name='" + PrevNames + "' ";
+                            cmd2.ExecuteNonQuery();
+                        }
+                        if (Position != "")
+                        {
+                            //Add Values To Text (@Position and @Social)
+                            cmd2.Parameters.AddWithValue("@Position", Position);
+                            cmd2.Parameters.AddWithValue("@Social", Social);
+
+                            //Update Employee Table and Set Postion To @Position (var Position) where Social is equal to @Social (var Social)
+                            cmd2.CommandText = @"UPDATE [Employee] SET [Position] =@Position WHERE [Social] =@Social ";
+                            cmd2.ExecuteNonQuery();
+                        }
+                        //Show User Employee Was Updated Successfully
+                        MessageBox.Show(LastName + ", " + FirstName + " Was Updated Successfully", "SUCCESS");
+                        //Close DB Reader
+                        rd.Close();
+                    }
+                    else
+                    {
+                        OleDbCommand cmd2 = con.CreateCommand();
+
+                        //Insert Employee Info Into Employee Table
+                        cmd2.CommandText = "insert into [Employee] values('" + FirstName + "','" + LastName + "','" + Social + "','" + Position + "','" + 0 + "')";
+                        cmd2.ExecuteNonQuery();
+
+                        //Insert Employee Into Schedule Table
+                        cmd2.CommandText = "insert into [Schedule] values('" + ComboNames + "','" + null + "','" + null + "','" + null + "','" + null + "','" + null + "','" + null + "','" + null + "','" + 0 + "')";
+                        cmd2.ExecuteNonQuery();
+
+                        //Show User Employee Was Updated Successfully
+                        MessageBox.Show(LastName + ", " + FirstName + " Was Added Successfully", "SUCCESS");
+                        //Close DB Reader
+                        rd.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //Show User Error if one is present
+                    MessageBox.Show("Error " + ex);
+                }
+            }
+
+            try
+            {
+                //Updates and Refreshes Employee Datagrid
+                string query = "select * from Employee";
+                OleDbCommand cmd = new OleDbCommand(query, con);
+                OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dgEmployee.DataSource = dt;
+
+            }
+            catch (Exception ex)
+            {
+                //Exception Message
+                MessageBox.Show("Error" + ex, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            //Close Connection
+            con.Close();
+
+            //Clear All TextBoxes
+            ClearBoxes();
+        }
+        /// <summary>
+        /// Shows Customer Information
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCustomerInfoView_Click(object sender, EventArgs e)
+        {
+            //Set Button To Focus For Fast Use
+            btnCustomerInfoPrint.Focus();
+
+            //Open Connection To database
+            con.Open();
+            
+            //Clear Everypoint on Graph
+            foreach (var series in chart1.Series)
+            {
+                series.Points.Clear();
+            }
+
+            //Confirms Text is equal to Users Per Day and Second Combobox is not visible
+            if (cbCustomerInfoSelection.Text == "Users Per Day" && cbCustomerInfoSelection2.Visible == false)
+            {
+                //Show All Info we need
+                chart1.Show();
+                dgCustomerInfo.Show();
+                cbCustomerInfoSelection2.Show();
+                cbManualEnterDay.Show();
+                cbManualEnterHourAmPm.Show();
+                tbManualEnterHour.Show();
+                lblManualEnter.Show();
+                lblManualEnterDay.Show();
+                lblManualEnterHour.Show();
+                btnManualEnter.Show();
+                lblManualAttendanceAmount.Show();
+                tbManualAttendanceAmount.Show();
+
+                //Set Text In Second Combobox to "Week (SUN-SAT)"
+                cbCustomerInfoSelection2.Text = "Week (SUN-SAT)";
+
+                //Selecting All Information For Everyday from Attendance Table
+                OleDbCommand GetSunday = new OleDbCommand("select Sunday from Attendance", con);
+                int GetSundayInt = Int32.Parse(GetSunday.ExecuteScalar().ToString());
+
+                OleDbCommand GetMonday = new OleDbCommand("select Monday from Attendance", con);
+                int GetMondayInt = Int32.Parse(GetMonday.ExecuteScalar().ToString());
+
+                OleDbCommand GetTuesday = new OleDbCommand("select Tuesday from Attendance", con);
+                int GetTuesdayInt = Int32.Parse(GetTuesday.ExecuteScalar().ToString());
+
+                OleDbCommand GetWednesday = new OleDbCommand("select Wednesday from Attendance", con);
+                int GetWednesdayInt = Int32.Parse(GetWednesday.ExecuteScalar().ToString());
+
+                OleDbCommand GetThursday = new OleDbCommand("select Thursday from Attendance", con);
+                int GetThursdayInt = Int32.Parse(GetThursday.ExecuteScalar().ToString());
+
+                OleDbCommand GetFriday = new OleDbCommand("select Friday from Attendance", con);
+                int GetFridayInt = Int32.Parse(GetFriday.ExecuteScalar().ToString());
+
+                OleDbCommand GetSaturday = new OleDbCommand("select Saturday from Attendance", con);
+                int GetSaturdayInt = Int32.Parse(GetSaturday.ExecuteScalar().ToString());
+                //End Selecting Information
+                
+                //Add Information into points on Users Per Day Series
+                this.chart1.Series["Users Per Day"].Points.AddXY("Sunday", GetSundayInt);
+                this.chart1.Series["Users Per Day"].Points.AddXY("Monday", GetMondayInt);
+                this.chart1.Series["Users Per Day"].Points.AddXY("Tuesday", GetTuesdayInt);
+                this.chart1.Series["Users Per Day"].Points.AddXY("Wednesday", GetWednesdayInt);
+                this.chart1.Series["Users Per Day"].Points.AddXY("Thursday", GetThursdayInt);
+                this.chart1.Series["Users Per Day"].Points.AddXY("Friday", GetFridayInt);
+                this.chart1.Series["Users Per Day"].Points.AddXY("Saturday", GetSaturdayInt);
+
+                try
+                {
+                    //Updates and Refreshes Attendance Datagrid on click
+                    string query = "select * from Attendance";
+                    OleDbCommand cmd = new OleDbCommand(query, con);
+                    OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    dgCustomerInfo.DataSource = dt;
+                }
+                catch (Exception ex)
+                {
+                    //Exception Message
+                    MessageBox.Show("Database Error! " + ex, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            //Check if ComboBox is Equal to Users Avg. Time Spent
+            else if (cbCustomerInfoSelection.Text == "Users Avg. Time Spent")
+            {
+                //Show Info We Need
+                chart1.Show();
+                cbCustomerInfoSelection2.Hide();
+                dgDayAMPM.Hide();
+                cbManualEnterDay.Hide();
+                cbManualEnterHourAmPm.Hide();
+                tbManualEnterHour.Hide();
+                lblManualEnter.Hide();
+                lblManualEnterDay.Hide();
+                lblManualEnterHour.Hide();
+                btnManualEnter.Hide();
+                lblManualAttendanceAmount.Hide();
+                tbManualAttendanceAmount.Hide();
+                dgCustomerInfo.Show();
+
+                //Set Datagrid's DataSource equal to timeSpentBindingSource
+                dgCustomerInfo.DataSource = timeSpentBindingSource;
+
+                try
+                {
+                    //Selecting All Information For Everyday from Attendance Table
+                    OleDbCommand GetSunday = new OleDbCommand("select Sunday from TimeSpent", con);
+                    double GetSundayInt = double.Parse(GetSunday.ExecuteScalar().ToString());
+
+                    OleDbCommand GetMonday = new OleDbCommand("select Monday from TimeSpent", con);
+                    double GetMondayInt = double.Parse(GetMonday.ExecuteScalar().ToString());
+
+                    OleDbCommand GetTuesday = new OleDbCommand("select Tuesday from TimeSpent", con);
+                    double GetTuesdayInt = double.Parse(GetTuesday.ExecuteScalar().ToString());
+
+                    OleDbCommand GetWednesday = new OleDbCommand("select Wednesday from TimeSpent", con);
+                    double GetWednesdayInt = double.Parse(GetWednesday.ExecuteScalar().ToString());
+
+                    OleDbCommand GetThursday = new OleDbCommand("select Thursday from TimeSpent", con);
+                    double GetThursdayInt = double.Parse(GetThursday.ExecuteScalar().ToString());
+
+                    OleDbCommand GetFriday = new OleDbCommand("select Friday from TimeSpent", con);
+                    double GetFridayInt = double.Parse(GetFriday.ExecuteScalar().ToString());
+
+                    OleDbCommand GetSaturday = new OleDbCommand("select Saturday from TimeSpent", con);
+                    double GetSaturdayInt = double.Parse(GetSaturday.ExecuteScalar().ToString());
+                    //End Selecting Information
+
+                    //Clear all points on Graph
+                    foreach (var series in chart1.Series)
+                    {
+                        series.Points.Clear();
+                    }
+
+                    //Add All points into Users Avg. Time Spent Series
+                    this.chart1.Series["Users Avg. Time Spent"].Points.AddXY("Sunday", GetSundayInt);
+                    this.chart1.Series["Users Avg. Time Spent"].Points.AddXY("Monday", GetMondayInt);
+                    this.chart1.Series["Users Avg. Time Spent"].Points.AddXY("Tuesday", GetTuesdayInt);
+                    this.chart1.Series["Users Avg. Time Spent"].Points.AddXY("Wednesday", GetWednesdayInt);
+                    this.chart1.Series["Users Avg. Time Spent"].Points.AddXY("Thursday", GetThursdayInt);
+                    this.chart1.Series["Users Avg. Time Spent"].Points.AddXY("Friday", GetFridayInt);
+                    this.chart1.Series["Users Avg. Time Spent"].Points.AddXY("Saturday", GetSaturdayInt);
+
+                    try
+                    {
+                        //Updates and Refreshes TimeSpent Datagrid
+                        string query = "select * from TimeSpent";
+                        OleDbCommand cmd = new OleDbCommand(query, con);
+                        OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        dgCustomerInfo.DataSource = dt;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        //Shows User Error Message if one occurs
+                        MessageBox.Show("Database Error! " + ex, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    //Shows User Error Message if one occurs
+                    MessageBox.Show("Could NOT load Database " + ex, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else if (cbCustomerInfoSelection.Text == "" || !(cbCustomerInfoSelection.Items.Contains(cbCustomerInfoSelection.Text)))
+            {
+                //Shows User Error Message if one occurs
+                MessageBox.Show("Must Select Which Data You Want to View", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cbCustomerInfoSelection.Text = "";
+            }
+
+            if ((cbCustomerInfoSelection2.Text == "" || !(cbCustomerInfoSelection2.Items.Contains(cbCustomerInfoSelection2.Text))) && cbCustomerInfoSelection2.Visible == true)
+            {
+                //Shows User Error Message if one occurs
+                MessageBox.Show("Please Enter Valid Info To View", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cbCustomerInfoSelection2.Text = "";
+            }
+            else if (cbCustomerInfoSelection2.Text == "Sunday (AM-PM)" && cbCustomerInfoSelection2.Visible == true)
+            {
+                //Updates DataGrid To Day and Fills Graph with Data from that day
+                dgDayAMPM.Show();
+                dgDayAMPM.DataSource = sundayBindingSource;
+                FillDataBase("Sunday");
+            }
+            else if (cbCustomerInfoSelection2.Text == "Monday (AM-PM)" && cbCustomerInfoSelection2.Visible == true)
+            {
+                //Updates DataGrid To Day and Fills Graph with Data from that day
+                dgDayAMPM.Show();
+                dgDayAMPM.DataSource = mondayBindingSource;
+                FillDataBase("Monday");
+            }
+            else if (cbCustomerInfoSelection2.Text == "Tuesday (AM-PM)" && cbCustomerInfoSelection2.Visible == true)
+            {
+                //Updates DataGrid To Day and Fills Graph with Data from that day
+                dgDayAMPM.Show();
+                dgDayAMPM.DataSource = tuesdayBindingSource;
+                FillDataBase("Tuesday");
+            }
+            else if (cbCustomerInfoSelection2.Text == "Wednesday (AM-PM)" && cbCustomerInfoSelection2.Visible == true)
+            {
+                //Updates DataGrid To Day and Fills Graph with Data from that day
+                dgDayAMPM.Show();
+                dgDayAMPM.DataSource = wednesdayBindingSource;
+                FillDataBase("Wednesday");
+            }
+            else if (cbCustomerInfoSelection2.Text == "Thursday (AM-PM)" && cbCustomerInfoSelection2.Visible == true)
+            {
+                //Updates DataGrid To Day and Fills Graph with Data from that day
+                dgDayAMPM.Show();
+                dgDayAMPM.DataSource = thursdayBindingSource;
+                FillDataBase("Thursday");
+            }
+            else if (cbCustomerInfoSelection2.Text == "Friday (AM-PM)" && cbCustomerInfoSelection2.Visible == true)
+            {
+                //Updates DataGrid To Day and Fills Graph with Data from that day
+                dgDayAMPM.Show();
+                dgDayAMPM.DataSource = fridayBindingSource;
+                FillDataBase("Friday");
+            }
+            else if (cbCustomerInfoSelection2.Text == "Saturday (AM-PM)" && cbCustomerInfoSelection2.Visible == true)
+            {
+                //Updates DataGrid To Day and Fills Graph with Data from that day
+                dgDayAMPM.Show();
+                dgDayAMPM.DataSource = saturdayBindingSource;
+                FillDataBase("Saturday");
+            }
+            else if (cbCustomerInfoSelection2.Text == "Week (SUN-SAT)" && cbCustomerInfoSelection2.Visible == true)
+            {
+
+                dgDayAMPM.Hide();
+                dgDayAMPM.DataSource = null;
+
+                //Selecting All Information For Everyday from Attendance Table
+                OleDbCommand GetSunday = new OleDbCommand("select Sunday from Attendance", con);
+                double GetSundayInt = double.Parse(GetSunday.ExecuteScalar().ToString());
+
+                OleDbCommand GetMonday = new OleDbCommand("select Monday from Attendance", con);
+                double GetMondayInt = double.Parse(GetMonday.ExecuteScalar().ToString());
+
+                OleDbCommand GetTuesday = new OleDbCommand("select Tuesday from Attendance", con);
+                double GetTuesdayInt = double.Parse(GetTuesday.ExecuteScalar().ToString());
+
+                OleDbCommand GetWednesday = new OleDbCommand("select Wednesday from Attendance", con);
+                double GetWednesdayInt = double.Parse(GetWednesday.ExecuteScalar().ToString());
+
+                OleDbCommand GetThursday = new OleDbCommand("select Thursday from Attendance", con);
+                double GetThursdayInt = double.Parse(GetThursday.ExecuteScalar().ToString());
+
+                OleDbCommand GetFriday = new OleDbCommand("select Friday from Attendance", con);
+                double GetFridayInt = double.Parse(GetFriday.ExecuteScalar().ToString());
+
+                OleDbCommand GetSaturday = new OleDbCommand("select Saturday from Attendance", con);
+                double GetSaturdayInt = double.Parse(GetSaturday.ExecuteScalar().ToString());
+                //End Selecting Information
+
+                //Clear Graph of all points
+                foreach (var series in chart1.Series)
+                {
+                    series.Points.Clear();
+                }
+
+                //Add data to Series Users Per Day
+                this.chart1.Series["Users Per Day"].Points.AddXY("Sunday", GetSundayInt);
+                this.chart1.Series["Users Per Day"].Points.AddXY("Monday", GetMondayInt);
+                this.chart1.Series["Users Per Day"].Points.AddXY("Tuesday", GetTuesdayInt);
+                this.chart1.Series["Users Per Day"].Points.AddXY("Wednesday", GetWednesdayInt);
+                this.chart1.Series["Users Per Day"].Points.AddXY("Thursday", GetThursdayInt);
+                this.chart1.Series["Users Per Day"].Points.AddXY("Friday", GetFridayInt);
+                this.chart1.Series["Users Per Day"].Points.AddXY("Saturday", GetSaturdayInt);
+            }
+            //Close Connection
+            con.Close();
+        }
+        /// <summary>
+        /// Checks Member In or Out of System
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCheckInOut_Click(object sender, EventArgs e)
+        {
+
+            string PersonID = tbCheckInID.Text; //Get ID
+            string Time = DateTime.Now.ToString("HH:mm"); //Get Hour Hour:Minutes
+            string Day = DateTime.Now.DayOfWeek.ToString(); //Get Day of Week
+
+            //Open Connection To database
+            con.Open();
+            try
+            {
+                //Check If A Person with that ID Is in Members Table
+                OleDbCommand cmd = con.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select * from [Members]where Id='" + PersonID + "'";
+                cmd.Connection = con;
+                OleDbDataReader rd = cmd.ExecuteReader();
+                if (rd.HasRows)
+                {
+                    //Close DB Reader
+                    rd.Close();
+
+                    //Check If A Person with that ID Is in Members Table
+                    OleDbCommand cmd1 = con.CreateCommand();
+                    cmd1.CommandType = CommandType.Text;
+                    cmd1.Connection = con;
+                    cmd1.CommandText = "select * from [CheckInOut]where Id='" + PersonID + "'";
+                    OleDbDataReader rf = cmd1.ExecuteReader();
+                    OleDbCommand cmd2 = con.CreateCommand();
+                    if (rf.HasRows)
+                    {
+                        //Get CheckIn time from CheckInOut Where ID is equal to var PersonID
+                        OleDbCommand GetTime = new OleDbCommand("select CheckedIn from CheckInOut where Id ='" + PersonID + "'", con);
+                        //Convert The Info to String
+                        String FirstTime = GetTime.ExecuteScalar().ToString(); 
+
+                        //Get Day from TimeSpent Table
+                        OleDbCommand GetTimeSpent = new OleDbCommand("select " + Day + " from TimeSpent", con);
+                        //Convert The Info to String
+                        String CurrentTimeSpent = GetTimeSpent.ExecuteScalar().ToString();
+
+                        //Replace All ':' with '.'
+                        FirstTime = FirstTime.Replace(':', '.');
+                        Time = Time.Replace(':', '.');
+
+                        //Convert Times To Doubles 
+                        double FirstHour = Double.Parse(FirstTime.Substring(0, FirstTime.Length));
+                        double CurrentHour = Double.Parse(Time.Substring(0, Time.Length));
+                        double TotalTime = Double.Parse(CurrentTimeSpent) + (CurrentHour - FirstHour);
+
+                        String FinalTime = TotalTime.ToString();
+
+                        //Update TimeSpent Table and set Day to var FinalTime
+                        cmd2.CommandText = "update TimeSpent set " + Day + "='" + FinalTime + "' ";
+                        cmd2.ExecuteNonQuery();
+
+                        //Select The CurrentTime from Day Table
+                        OleDbCommand GetTotalTimeAttendance = new OleDbCommand(@"select [" + GetCurrentTime() + "] from [" + Day + "]", con);
+                        //Convert Info to String
+                        String final = GetTotalTimeAttendance.ExecuteScalar().ToString();
+
+                        //Convert Total and Add one Then Add to final String
+                        int total = Int32.Parse(final) + 1;
+                        final = total.ToString();
+
+                        //Update Day and set CurrentTime to var final 
+                        cmd2.CommandText = @"UPDATE [" + Day + "] SET [" + GetCurrentTime() + "] ='" + final + "' ";
+                        cmd2.ExecuteNonQuery();
+
+                        //Delete Entry from CheckInOut Table where ID is equal to var PersonID
+                        cmd2.CommandText = "delete from CheckInOut where Id = '" + PersonID + "'";
+                        cmd2.ExecuteNonQuery();
+
+                        //Show User that var PersonID was Checked out
+                        MessageBox.Show("ID: " + PersonID + " Was Checked Out");
+                        //Close DB Reader
+                        rf.Close();
+                    }
+                    else
+                    {
+                        //Insert var PersonID and var Time In CheckInOut Table 
+                        cmd2.CommandText = "insert into [CheckInOut] values('" + PersonID + "','" + Time + "','" + null + "','" + null + "')";
+                        cmd2.ExecuteNonQuery();
+
+                        //Get Day from Attendance Tabel
+                        OleDbCommand GetAttendance = new OleDbCommand("select " + Day + " from Attendance", con);
+                        //Convert To Int
+                        int IntDayAttendance = Int32.Parse(GetAttendance.ExecuteScalar().ToString()) + 1;
+
+                        //Update attendance table and set Day equal to var IntDayAttendance
+                        cmd2.CommandText = "update Attendance set " + Day + "='" + IntDayAttendance + "' ";
+                        cmd2.ExecuteNonQuery();
+
+                        //Show User that var PersonID was Checked In
+                        MessageBox.Show("ID: " + PersonID + " Was Checked In");
+                        //Close DB Reader
+                        rf.Close();
+                    }
+
+                }
+                else if (tbCheckInID.Text == "")
+                {
+                    //Show Error messesage if one occurs
+                    MessageBox.Show("Please Enter An Id", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //Close DB Reader
+                    rd.Close();
+                }
+                else
+                {
+                    //Show Error messesage if one occurs
+                    MessageBox.Show("ID: " + PersonID + " Was Not Found", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //Close DB Reader
+                    rd.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                //Show Error messesage if one occurs
+                MessageBox.Show("Database Error! " + ex, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            //Close Database Connection
+            con.Close();
+            //Clear All Textboxes
+            ClearBoxes();
+        }
+        /// <summary>
+        /// Updates Member Information
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnViewMemberUpdate_Click(object sender, EventArgs e)
+        {
+            //Initialize Variables
+            string error = "";
+            string update = "";
+
+            if (tbCheckInMemberId.Text != "")
+            {
+                //Open Connection To database
+                con.Open();
+                try
+                {
+                    //Check To See if var MemberID is located in Members Table
+                    OleDbCommand cmd = con.CreateCommand();
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "select * from [Members]where Id='" + tbCheckInMemberId.Text + "'";
+                    cmd.Connection = con;
+                    OleDbDataReader rd = cmd.ExecuteReader();
+                    if (rd.HasRows)
+                    {
+                        //Close DB Reader
+                        rd.Close();
+                        //Check To See if Text Is Not Empty and is only Letters
+                        if (tbCheckInFN.Text != "" && (Regex.IsMatch(this.tbCheckInFN.Text, @"^[a-zA-z]+$")))
+                        {
+                            //Updates Members Table and sets FirstName to var tbCheckInFN.Text where Id is equal to var tbCheckInMemberID.Text
+                            cmd.CommandText = "update Members set FirstName='" + tbCheckInFN.Text + "'where Id = '" + tbCheckInMemberId.Text + "'  ";
+                            cmd.ExecuteNonQuery();
+
+                            //Updates Update Text
+                            update += "FirstName. ";
+                        }
+                        else
+                        {
+                            //Adds To Error Message, If Error occurs
+                            error = error + "First Name. ";
+                        }
+                        if (tbCheckInLN.Text != "" && (Regex.IsMatch(this.tbCheckInLN.Text, @"^[a-zA-z]+$")))
+                        {
+                            //Updates Members Table and sets LastName to var tbCheckInLN.text where Id is equal to tbCheckInMemberId.Text
+                            cmd.CommandText = "update Members set LastName='" + tbCheckInLN.Text + "' where Id = '" + tbCheckInMemberId.Text + "' ";
+                            cmd.ExecuteNonQuery();
+
+                            //Updates Update Text
+                            update += "LastName. ";
+                        }
+                        else
+                        {
+                            //Adds To Error Message, If Error occurs
+                            error = error + "Last Name. ";
+                        }
+                        if (tbCheckInPhoneNumber.Text != "")
+                        {
+                            //Updates Members Table and sets PhoneNumber equal to var tbCheckInPhoneNumber.Text where ID is equal to var tbCheckInMemberId.Text
+                            cmd.CommandText = "update Members set PhoneNumber='" + tbCheckInPhoneNumber.Text + "'where Id = '" + tbCheckInMemberId.Text + "' ";
+                            cmd.ExecuteNonQuery();
+
+                            //Updates Update Text
+                            update += "PhoneNumber. ";
+                        }
+                        if (tbCheckInAddress.Text != "")
+                        {
+                            //Updates Mebers and sets Address to var tbCheckInAddress.Text where Id is equal to var tbCheckInMemberId.Text
+                            cmd.CommandText = "update Members set Address='" + tbCheckInAddress.Text + "'where Id = '" + tbCheckInMemberId.Text + "' ";
+                            cmd.ExecuteNonQuery();
+
+                            //Updates Update Text
+                            update += "Address. ";
+                        }
+                        if (tbCheckInAge.Text != "")
+                        {
+                            try
+                            {
+                                //Checks To See If Age is a number
+                                if (Int32.Parse(tbCheckInAge.Text) >= 0)
+                                {
+                                    //Updates Members Table and sets Age to var tbCheckInAge.Text where ID is equal to var tbCheckInMemberId.Text
+                                    cmd.CommandText = "update Members set Age='" + tbCheckInAge.Text + "'where Id = '" + tbCheckInMemberId.Text + "' ";
+                                    cmd.ExecuteNonQuery();
+
+                                    //Updates Update Text
+                                    update += "Age. ";
+                                }
+                            }
+                            catch
+                            {
+                                //Adds To Error Message, If Error occurs
+                                error = error + "Age. ";
+                            }
+                        }
+                        if (cbCheckInMembership.Text != "" && cbCheckInMembership.Items.Contains(cbCheckInMembership.Text))
+                        {
+                            //Updatesx Members table and sets Status equal to var cbCheckInMembership.Text where Id is equal to tbCheckInMemberId.Text
+                            cmd.CommandText = "update Members set Status='" + cbCheckInMembership.Text + "'where Id = '" + tbCheckInMemberId.Text + "' ";
+                            cmd.ExecuteNonQuery();
+
+                            //Updates Update Text
+                            update += "Membership Level. ";
+                        }
+                        else
+                        {
+                            //Adds To Error Message, If Error occurs
+                            error = error + "Membership Level. ";
+                        }
+
+                        ///  !Error Message!
+                        ///  - Checks To See if Error message is blank 
+                        ///  !Error Message!
+                        
+                        if (error == "")
+                        {
+                            error = "N/A";
+                        }
+                        if (update == "")
+                        {
+                            update = "N/A";
+                        }
+                        if (error != "N/A")
+                        {
+                            //Error Message
+                            MessageBox.Show("Did Not Update: " + error, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        if (update != "N/A")
+                        {
+                            //Update Message
+                            MessageBox.Show("Updated: " + update, "Success", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                    else
+                    {
+                        //Error Message if one Occurs
+                        MessageBox.Show("Id: " + tbCheckInMemberId.Text + " Was NOT found", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        //Closes DB Reader
+                        rd.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //Error Message if one Occurs
+                    MessageBox.Show("Database Error! " + ex, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                //Error Message if one Occurs
+                MessageBox.Show("You MUST input an ID", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            try
+            {
+                //Updates and Refreshes Member DataGrid
+                string query = "select * from Members";
+                OleDbCommand cmd = new OleDbCommand(query, con);
+                OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dgViewMembers.DataSource = dt;
+
+            }
+            catch (Exception ex)
+            {
+                //Exception Message
+                MessageBox.Show("Database Error! " + ex, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            //Close Connection To Database
+            con.Close();
+            //Clear All Textboxes
+            ClearBoxes();
+        }
+        /// <summary>
+        /// Allows For Manual Enter of Data
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnManualEnter_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Confirms All text meets requirements for text
+                if ((tbManualEnterHour.Text.Length <= 5) && (cbManualEnterHourAmPm.Items.Contains(cbManualEnterHourAmPm.Text)) && (cbManualEnterDay.Items.Contains(cbManualEnterDay.Text)) && (tbManualAttendanceAmount.Text != "") && (new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ":", }.Any(c => tbManualEnterHour.Text.Contains(c))))
+                {
+                    //Initialize Variables
+                    string hour = tbManualEnterHour.Text;
+                    string day = cbManualEnterDay.Text;
+
+                    //Checks For Input of 08:30 with 0 infront 
+                    if (hour[0] == '0')
+                    {
+                        //Converts String To Add AM or PM
+                        hour.Remove(0);
+                        if (hour.Length == 1 || hour.Length == 4)
+                        {
+                            hour = (hour[0]).ToString() + cbManualEnterHourAmPm.Text;
+                        }
+                        else if (hour.Length == 2 || hour.Length == 5)
+                        {
+                            hour = (hour[0]).ToString() + (hour[1]).ToString() + cbManualEnterHourAmPm.Text;
+                        }
+
+                    }
+                    else
+                    {
+                        //Converts String To Add AM or PM
+                        if (hour.Length == 1 || hour.Length == 4)
+                        {
+                            hour = (hour[0]).ToString() + cbManualEnterHourAmPm.Text;
+                        }
+                        else if (hour.Length == 2 || hour.Length == 5)
+                        {
+                            hour = (hour[0]).ToString() + (hour[1]).ToString() + cbManualEnterHourAmPm.Text;
+                        }
+                    }
+
+
+                    OleDbCommand cmd = con.CreateCommand();
+                    //Open Connection To database
+                    con.Open();
+
+                    try
+                    {
+                        //Selects Hour from Day Table
+                        OleDbCommand GetTotalTimeAttendance = new OleDbCommand(@"select [" + hour + "] from [" + day + "]", con);
+                        //Convert Data to String
+                        String final = GetTotalTimeAttendance.ExecuteScalar().ToString();
+
+                        //Convert Strings to Int 
+                        int total = Int32.Parse(final) + Int32.Parse(tbManualAttendanceAmount.Text);
+                        final = total.ToString();
+
+                        //Update Day Table and set Hour equal to var final
+                        cmd.CommandText = @"UPDATE [" + day + "] SET [" + hour + "] ='" + final + "' ";
+                        cmd.ExecuteNonQuery();
+
+                        //Select Day from Attendance table
+                        OleDbCommand GetTotalTimeAttendanceDay = new OleDbCommand(@"select [" + day + "] from [Attendance]", con);
+                        //Convert Data to String
+                        String finalDay = GetTotalTimeAttendanceDay.ExecuteScalar().ToString();
+
+                        //Convert Strings To ints
+                        int totalDay = Int32.Parse(finalDay) + Int32.Parse(tbManualAttendanceAmount.Text);
+                        finalDay = totalDay.ToString();
+
+                        //Update Attendance Table and Set day equal to var finalDay
+                        cmd.CommandText = @"UPDATE [Attendance] SET [" + day + "] ='" + finalDay + "' ";
+                        cmd.ExecuteNonQuery();
+
+                        try
+                        {
+                            //Updates and Refreshes var Day DataGrid 
+                            string query = @"select * from [" + day + "]";
+                            OleDbCommand cmd2 = new OleDbCommand(query, con);
+                            OleDbDataAdapter da = new OleDbDataAdapter(cmd2);
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+                            dgDayAMPM.DataSource = dt;
+
+                        }
+                        catch (Exception ex)
+                        {
+                            //Exception Message
+                            MessageBox.Show("Database Error! " + ex, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        try
+                        {
+                            //Updates and Refreshes Attendance DataGrid
+                            string query = "select * from Attendance";
+                            OleDbCommand cmd3 = new OleDbCommand(query, con);
+                            OleDbDataAdapter da = new OleDbDataAdapter(cmd3);
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+                            dgCustomerInfo.DataSource = dt;
+                        }
+                        catch (Exception ex)
+                        {
+                            //Exception Message
+                            MessageBox.Show("Database Error! " + ex, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+
+                        //Success Message
+                        MessageBox.Show("Success", "Success");
+                    }
+                    catch (Exception ex)
+                    {
+                        //Error Message If one occurs
+                        MessageBox.Show("Error in database" + ex, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+
+                    //If Second ComboBox Does not equal text
+                    if (cbCustomerInfoSelection2.Text != "Week (SUN-SAT)")
+                    {
+                        //Clear Graph
+                        foreach (var series in chart1.Series)
+                        {
+                            series.Points.Clear();
+                        }
+
+                        //Fill Graph with data from var Day
+                        FillDataBase(day);
+                    }
+                    else
+                    {
+                        //Hides What we dont need to see
+                        dgDayAMPM.Hide();
+                        dgDayAMPM.DataSource = null;
+
+                        //Selecting All Information For Everyday from Attendance Table
+                        OleDbCommand GetSunday = new OleDbCommand("select Sunday from Attendance", con);
+                        double GetSundayInt = double.Parse(GetSunday.ExecuteScalar().ToString());
+
+                        OleDbCommand GetMonday = new OleDbCommand("select Monday from Attendance", con);
+                        double GetMondayInt = double.Parse(GetMonday.ExecuteScalar().ToString());
+
+                        OleDbCommand GetTuesday = new OleDbCommand("select Tuesday from Attendance", con);
+                        double GetTuesdayInt = double.Parse(GetTuesday.ExecuteScalar().ToString());
+
+                        OleDbCommand GetWednesday = new OleDbCommand("select Wednesday from Attendance", con);
+                        double GetWednesdayInt = double.Parse(GetWednesday.ExecuteScalar().ToString());
+
+                        OleDbCommand GetThursday = new OleDbCommand("select Thursday from Attendance", con);
+                        double GetThursdayInt = double.Parse(GetThursday.ExecuteScalar().ToString());
+
+                        OleDbCommand GetFriday = new OleDbCommand("select Friday from Attendance", con);
+                        double GetFridayInt = double.Parse(GetFriday.ExecuteScalar().ToString());
+
+                        OleDbCommand GetSaturday = new OleDbCommand("select Saturday from Attendance", con);
+                        double GetSaturdayInt = double.Parse(GetSaturday.ExecuteScalar().ToString());
+                        //End Selecting Information
+
+                        foreach (var series in chart1.Series)
+                        {
+                            //Clear Graph
+                            series.Points.Clear();
+                        }
+
+                        //Adds Data To Series Users Per Day
+                        this.chart1.Series["Users Per Day"].Points.AddXY("Sunday", GetSundayInt);
+                        this.chart1.Series["Users Per Day"].Points.AddXY("Monday", GetMondayInt);
+                        this.chart1.Series["Users Per Day"].Points.AddXY("Tuesday", GetTuesdayInt);
+                        this.chart1.Series["Users Per Day"].Points.AddXY("Wednesday", GetWednesdayInt);
+                        this.chart1.Series["Users Per Day"].Points.AddXY("Thursday", GetThursdayInt);
+                        this.chart1.Series["Users Per Day"].Points.AddXY("Friday", GetFridayInt);
+                        this.chart1.Series["Users Per Day"].Points.AddXY("Saturday", GetSaturdayInt);
+
+                    }
+                }
+                else
+                {
+                    //Shows Error Message if one occurs
+                    MessageBox.Show("Please Check ALL Fields", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+                //Clear TextBoxes
+                ClearBoxes();
+                //Closes Database Connection
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                //Shows Error Message if one occurs
+                MessageBox.Show("Error " + ex);
+            }
+        }
+        /// <summary>
+        /// Creates A New Member
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCheckInRegister_Click(object sender, EventArgs e)
+        {
+            //Generate Random ID number
+            Random random = new Random();
+            int id = random.Next(100000, 1000000);
+            string PersonID = id.ToString();
+            string error = "";
+
+            //Open Connection To database
+            con.Open();
+
+            //Checks To See If Someone Already has that ID
+            OleDbCommand cmd = con.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select Id from [Members] where Id='" + id + "'";
+            cmd.Connection = con;
+            OleDbDataReader rd = cmd.ExecuteReader();
+
+            try
+            {
+                if (rd.HasRows)
+                {
+                    //Error Message if one occurs
+                    MessageBox.Show("Please Try Again. Someone Already Has that Generated ID", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    //Close DB Reader
+                    rd.Close();
+                }
+                else
+                {
+                    //Close DB Reader
+                    rd.Close();
+                    try
+                    {
+                        //Confirm Data Entered Follows guidelines
+                        if (Int32.Parse(tbCheckInAge.Text) >= 0 && (Regex.IsMatch(this.tbCheckInFN.Text, @"^[a-zA-z]+$")) && Regex.IsMatch(this.tbCheckInLN.Text, @"^[a-zA-z]+$") && cbCheckInMembership.Items.Contains(cbCheckInMembership.Text) && (tbCheckInAddress.Text != "") && new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "(", ")" }.Any(c => tbCheckInPhoneNumber.Text.Contains(c)))
+                        {
+                            //Inset Member In Members Table
+                            cmd.CommandText = "insert into [Members] values('" + PersonID + "','" + tbCheckInFN.Text + "','" + tbCheckInLN.Text + "','" + tbCheckInAge.Text + "','" + tbCheckInAddress.Text + "','" + tbCheckInPhoneNumber.Text + "', '" + cbCheckInMembership.SelectedItem + "')";
+                            cmd.ExecuteNonQuery();
+                            //Display var PersonId and var tbCheckInFN.text and state he/she was added successfully
+                            MessageBox.Show("Id: " + PersonID + ", Name: " + tbCheckInFN.Text + " Was Successfully Added");
+                        }
+                        else
+                        {
+                            //Display Accurate Error Message
+                            if (!(Regex.IsMatch(this.tbCheckInFN.Text, @"^[a-zA-z]+$")))
+                            {
+                                error = error + "First Name. ";
+                            }
+                            if (!(Regex.IsMatch(this.tbCheckInLN.Text, @"^[a-zA-z]+$")))
+                            {
+                                error = error + "Last Name. ";
+                            }
+                            if (!(cbCheckInMembership.Items.Contains(cbCheckInMembership.Text)))
+                            {
+                                error = error + "Membership Rank. ";
+                            }
+                            if (tbCheckInAddress.Text == "")
+                            {
+                                error = error + "Address. ";
+                            }
+                            if (!(new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "(", ")" }.Any(c => tbCheckInPhoneNumber.Text.Contains(c))))
+                            {
+                                error = error + "Phone Number. ";
+                            }
+                            //Error Message if one occurs
+                            MessageBox.Show("Please Check: " + error, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                    catch
+                    {
+                        //Error Message if one occurs
+                        MessageBox.Show("Please Check All Fields!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //Error Message if one occurs
+                MessageBox.Show("ERROR. Please Try Again " + ex, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            //Close Database Connection
+            con.Close();
+            //Clear All TextBoxes
+            ClearBoxes();
+
+        }
+        /// <summary>
+        /// Deletes Employee From Database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnEmployeeDelete_Click(object sender, EventArgs e)
+        {
+            //Initialize Variables
+            string Social = tbEmployeeSocial.Text;
+
+            if (Social == "")
+            {
+                //Error Message if one occurs
+                MessageBox.Show("You Must Enter a Social Security Number", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                //Open Connection To database
+                con.Open();
+
+                try
+                {
+                    //Check To See If Someone Has that Social In Employee Table
+                    OleDbCommand cmd = con.CreateCommand();
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "select * from [Employee]where Social='" + Social + "'";
+                    cmd.Connection = con;
+                    OleDbDataReader rd = cmd.ExecuteReader();
+                    if (rd.HasRows)
+                    {
+                        //Close DB Reader
+                        rd.Close();
+
+                        //Combines LastName and FirstName
+                        string ComboNames = tbEmployeeLastName.Text + ", " + tbEmployeeFirstName.Text;
+
+                        //Confirms they want to delete Employee
+                        var confirmResult = MessageBox.Show("Are you sure you want to remove " + Social + "?!",
+                                     "Confirm Delete!!",
+                                     MessageBoxButtons.YesNo);
+                        if (confirmResult == DialogResult.Yes)
+                        {
+                            //Deletes Employee from Employee Table where Social is equal to var Social
+                            cmd.CommandText = "DELETE FROM [Employee] where Social='" + Social + "'";
+                            cmd.ExecuteNonQuery();
+
+                            //Deletes Employee from Schedule table where Name is equal to var comboNames
+                            cmd.CommandText = "DELETE FROM [Schedule] where Name='" + ComboNames + "'";
+                            cmd.ExecuteNonQuery();
+
+                            //Updates and Refreshes Employee Datagrid 
+                            string query = "select * from Employee";
+                            OleDbCommand cmd3 = new OleDbCommand(query, con);
+                            OleDbDataAdapter da = new OleDbDataAdapter(cmd3);
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+                            dgEmployee.DataSource = dt;
+
+                            //Updates and Refreshes Schedule DataGrid 
+                            string query1 = "select * from Schedule";
+                            OleDbCommand cmd1 = new OleDbCommand(query1, con);
+                            OleDbDataAdapter da1 = new OleDbDataAdapter(cmd1);
+                            DataTable dt1 = new DataTable();
+                            da.Fill(dt1);
+                            dgEmployee.DataSource = dt1;
+                        }
+                        else
+                        {
+                            //Clears all TextBoxes
+                            ClearBoxes();
+                        }
+                    }
+                    else
+                    {
+                        //Error Message if one occurs
+                        MessageBox.Show("Id Not Found", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //Error Message if one occurs
+                    MessageBox.Show("Database Error " + ex, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            //Clears All TextBoxes
+            ClearBoxes();
+            //Closes DataBase Connection
+            con.Close();
+        }
+        /// <summary>
+        /// Deletes Member From Database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnMemberDelete_Click(object sender, EventArgs e)
+        {
+            string id = tbCheckInMemberId.Text;
+
+            //Confirms var id Isnt empty
+            if (id == "")
+            {
+                //Error Message if one occurs
+                MessageBox.Show("You Must Enter the Member Id", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                //Open Connection To database
+                con.Open();
+                try
+                {
+                    //Checks to see if someone has var id in Members Table
+                    OleDbCommand cmd = con.CreateCommand();
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "select * from [Members]where Id='" + id + "'";
+                    cmd.Connection = con;
+                    OleDbDataReader rd = cmd.ExecuteReader();
+                    if (rd.HasRows)
+                    {
+                        //Close DB Reader
+                        rd.Close();
+
+                        //Confirm They Want To Delete var id
+                        var confirmResult = MessageBox.Show("Are you sure you want to remove " + id + "?!",
+                                     "Confirm Delete!!",
+                                     MessageBoxButtons.YesNo);
+                        if (confirmResult == DialogResult.Yes)
+                        {
+                            //Delete var ID From Members Table
+                            cmd.CommandText = "DELETE FROM [Members] where Id='" + id + "'";
+                            cmd.ExecuteNonQuery();
+
+                            //Updates and Refreshes Member DataGrid
+                            string query = "select * from Members";
+                            OleDbCommand cmd3 = new OleDbCommand(query, con);
+                            OleDbDataAdapter da = new OleDbDataAdapter(cmd3);
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+                            dgViewMembers.DataSource = dt;
+
+                        }
+                        else
+                        {
+                            //Clears all TextBoxes
+                            ClearBoxes();
+                        }
+                    }
+                    else
+                    {
+                        //Error Message if one occurs
+                        MessageBox.Show("Id Not Found", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //Error Message if one occurs
+                    MessageBox.Show("Database Error " + ex, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            //Clears All TextBoxes
+            ClearBoxes();
+            //Closes Connection To Database
+            con.Close();
+        }
+        /// <summary>
+        /// Inserts Reseervation Into Database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnReservationEnter_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Opens Connection To database
+                con.Open();
+
+                //Confirm Text Meets All Requirements
+                if(cbReservationTimeStart.Items.Contains(cbReservationTimeStart.Text) && cbReservationTimeFinish.Items.Contains(cbReservationTimeFinish.Text) && (new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ":", }.Any(c => tbReservationTimeStart.Text.Contains(c))) && (new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ":", }.Any(c => tbReservationTimeFinish.Text.Contains(c))) && (new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", }.Any(c => tbReservationPeople.Text.Contains(c))) && tbReservationPurpose.Text != "")
+                {
+                    OleDbCommand cmd = con.CreateCommand();
+
+                    //Replaces ':' with '.'
+                    String TimeStart = tbReservationTimeStart.Text.Replace(':', '.');
+                    String TimeFinish = tbReservationTimeFinish.Text.Replace(':', '.');
+
+                    //Confirm ComboBoxes Meet Requirements
+                    if ((cbReservationTimeStart.Text == "PM" && cbReservationTimeFinish.Text == "AM") || (cbReservationTimeStart.Text == "AM" && cbReservationTimeFinish.Text == "AM" && double.Parse(TimeStart) > double.Parse(TimeFinish)) || (cbReservationTimeStart.Text == "PM" && cbReservationTimeFinish.Text == "PM" && double.Parse(TimeStart) + 12 > double.Parse(TimeFinish) + 12) || double.Parse(TimeStart) > 12 || double.Parse(TimeFinish) > 12)
+                    {
+                        //Clear All Textboxes
+                        ClearBoxes();
+                        //Error Message if one occurs
+                        MessageBox.Show("Please Enter Correct Times! ", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        try
+                        {
+                            //cmd.Parameters.AddWithValue("@Purpose", tbReservationPurpose.Text);
+
+                            //Instert Reservation Time Into Reservation Table
+                            cmd.CommandText = "INSERT into [Reservation] values('" + dateTimePickerReservation.Text + "','" + tbReservationTimeStart.Text + cbReservationTimeStart.Text + "','" + tbReservationTimeFinish.Text + cbReservationTimeFinish.Text + "','" + tbReservationPeople.Text + "','" + tbReservationPurpose.Text + "')";
+                            cmd.ExecuteNonQuery();
+
+                            //Clear TextBoxes
+                            ClearBoxes();
+
+                            //Show User Data Was Entered successfully
+                            MessageBox.Show("Date Has Been Successfully Entered!", "Success", MessageBoxButtons.OK);
+
+                            try
+                            {
+                                //Updates Current Reservation Text
+                                updateReservation();
+                            }
+                            catch (Exception ex)
+                            {
+                                //Error Message if one occurs
+                                MessageBox.Show("Database Error " + ex, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            //Error Message if one occurs
+                            MessageBox.Show("Database Error " + ex, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
+                else
+                {
+                    //Clears All Textboxes
+                    ClearBoxes();
+                    //Error Message if one occurs
+                    MessageBox.Show("Make Sure All Fields Are Filled Out Correctly!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch(Exception ex)
+            {
+                //Error Message if one occurs
+                MessageBox.Show("Database Error " + ex, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            //Closes Connection To Database
+            con.Close();
+        }
+        /// <summary>
+        /// Deletes Entry From Reservation Database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnReservationDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Opens Connection To Database
+                con.Open();
+                
+                //Confirm TextBoxes Meet Requirements
+                if(cbReservationTimeStart.Items.Contains(cbReservationTimeStart.Text) && cbReservationTimeFinish.Items.Contains(cbReservationTimeFinish.Text) && (new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ":", }.Any(c => tbReservationTimeStart.Text.Contains(c))) && (new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ":", }.Any(c => tbReservationTimeFinish.Text.Contains(c))) && (new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", }.Any(c => tbReservationPeople.Text.Contains(c))) && tbReservationPurpose.Text != "")
+                {
+                    //Checks to see if someone has var dateTimePickerReservation.Text and more are in Reservations Table
+                    OleDbCommand cmd = con.CreateCommand();
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "select * from [Reservation] where Date='" + dateTimePickerReservation.Text + "'and TimeStart ='" + tbReservationTimeStart.Text + cbReservationTimeStart.Text + "'and TimeFinish ='" + tbReservationTimeFinish.Text + cbReservationTimeFinish.Text + "'and People ='" + tbReservationPeople.Text + "'and Purpose ='" + tbReservationPurpose.Text + "'";
+                    cmd.Connection = con;
+                    OleDbDataReader rd = cmd.ExecuteReader();
+                    if (rd.HasRows)
+                    {
+                        //Confirms Deletion of Data
+                        var confirmResult = MessageBox.Show("Are you sure you want to remove that entry?!",
+                                     "Confirm Delete!!",
+                                     MessageBoxButtons.YesNo);
+                        if (confirmResult == DialogResult.Yes)
+                        {
+                            OleDbCommand cmd2 = con.CreateCommand();
+
+                            //Deletes Data From Reservations Table
+                            cmd2.CommandText = "Delete from [Reservation] where Date='" + dateTimePickerReservation.Text + "'and TimeStart ='" + tbReservationTimeStart.Text + cbReservationTimeStart.Text + "'and TimeFinish ='" + tbReservationTimeFinish.Text + cbReservationTimeFinish.Text + "'and People ='" + tbReservationPeople.Text + "'and Purpose ='" + tbReservationPurpose.Text + "'";
+                            cmd2.ExecuteNonQuery();
+
+                            //Clears All Textboxes
+                            ClearBoxes();
+
+                            //Updates Current Reservation Text
+                            updateReservation();
+
+                            //Shows User They Have Successfully Deleted Data 
+                            MessageBox.Show("Date Has Been Successfully Deleted!", "Success", MessageBoxButtons.OK);
+                        }
+                        //Clears all TextBoxes
+                        ClearBoxes();
+                    }
+                    else
+                    {
+                        //Clears All Textboxes
+                        ClearBoxes();
+                        //Error Message if one occurs
+                        MessageBox.Show("Reservation Not Found!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                else
+                {
+                    //Clears All Textboxes
+                    ClearBoxes();
+                    //Error Message if one occurs
+                    MessageBox.Show("Make Sure All Fields Are Filled Out Correctly!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch(Exception ex)
+            {
+                //Error Message if one occurs
+                MessageBox.Show("Database Error " + ex, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            //Closes Connection To Database
+            con.Close();
+        }
+        /// <summary>
+        /// Prepares form for new member
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCheckInNewMember_Click(object sender, EventArgs e)
+        {
+            //Change Help Text
+            Help = 8;
+
+            //Clears Textboxes
+            ClearBoxes();
+
+            //Show and Hide
+            HideEveryThing();
+            lblCheckInAddress.Show();
+            lblCheckInAge.Show();
+            lblCheckInFN.Show();
+            lblCheckInLN.Show();
+            lblCheckInMembership.Show();
+            lblCheckInPhone.Show();
+            tbCheckInAge.Show();
+            tbCheckInAddress.Show();
+            tbCheckInFN.Show();
+            tbCheckInLN.Show();
+            tbCheckInPhoneNumber.Show();
+            cbCheckInMembership.Show();
+            btnCheckInRegister.Show();
+
+            //Move Locations of items to save code space
+            this.lblCheckInFN.Location = new Point(455, 296);
+            this.tbCheckInFN.Location = new Point(538, 293);
+
+            this.lblCheckInLN.Location = new Point(455, 339);
+            this.tbCheckInLN.Location = new Point(538, 336);
+
+            this.lblCheckInAge.Location = new Point(487, 379);
+            this.tbCheckInAge.Location = new Point(538, 376);
+
+            this.lblCheckInAddress.Location = new Point(468, 422);
+            this.tbCheckInAddress.Location = new Point(538, 419);
+
+            this.lblCheckInPhone.Location = new Point(435, 456);
+            this.tbCheckInPhoneNumber.Location = new Point(538, 453);
+
+            this.lblCheckInMembership.Location = new Point(420, 499);
+            this.cbCheckInMembership.Location = new Point(538, 491);
+
+        }
+        /// <summary>
+        /// Shows Employee All Members
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pbViewMembers_Click_1(object sender, EventArgs e)
+        {
+            //Sets All Other Tab BackGrounds to Transparent
+            Transparent();
+            //Set Background to grey
+            pbViewMembers.BackColor = Color.FromArgb(160, 160, 160);
+
+            try
+            {
+                //Open Connection To database
+                con.Open();
+
+                //Updates and Refreshes Member DataGrid
+                string query = "select * from Members";
+                OleDbCommand cmd = new OleDbCommand(query, con);
+                OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dgViewMembers.DataSource = dt;
+            }
+            catch (Exception)
+            {
+                //Error Message if one occurs
+                MessageBox.Show("Data Grid Cannot Update!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            //Close Connection
+            con.Close();
+
+            //Change Help Text
+            Help = 7;
+
+            //Hide and Show Whats needed
+            HideEveryThing();
+            dgViewMembers.Show();
+            lblCheckInAddress.Show();
+            lblCheckInAge.Show();
+            lblCheckInFN.Show();
+            lblCheckInLN.Show();
+            lblCheckInMembership.Show();
+            lblCheckInPhone.Show();
+            tbCheckInAge.Show();
+            tbCheckInAddress.Show();
+            tbCheckInFN.Show();
+            tbCheckInLN.Show();
+            tbCheckInPhoneNumber.Show();
+            cbCheckInMembership.Show();
+            btnViewMemberUpdate.Show();
+            btnMemberDelete.Show();
+            lblCheckInMemberId.Show();
+            tbCheckInMemberId.Show();
+
+            //Move Locations of items to save code space
+            this.lblCheckInMemberId.Location = new Point(241, 220);
+            this.tbCheckInMemberId.Location = new Point(283, 217);
+
+            this.lblCheckInFN.Location = new Point(200, 255);
+            this.tbCheckInFN.Location = new Point(283, 252);
+
+            this.lblCheckInLN.Location = new Point(200, 298);
+            this.tbCheckInLN.Location = new Point(283, 295);
+
+            this.lblCheckInAge.Location = new Point(232, 338);
+            this.tbCheckInAge.Location = new Point(283, 335);
+
+            this.lblCheckInAddress.Location = new Point(213, 378);
+            this.tbCheckInAddress.Location = new Point(283, 375);
+
+            this.lblCheckInPhone.Location = new Point(180, 415);
+            this.tbCheckInPhoneNumber.Location = new Point(283, 412);
+
+            this.lblCheckInMembership.Location = new Point(165, 458);
+            this.cbCheckInMembership.Location = new Point(283, 450);
+
+            this.btnViewMemberUpdate.Location = new Point(291, 490);
+            this.btnMemberDelete.Location = new Point(303, 522);
+        }
+        /// <summary>
+        /// Prepares Form For Checking In Member
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pbCheckIn_Click_1(object sender, EventArgs e)
+        {
+            //Sets All Other Tab BackGrounds to Transparent
+            Transparent();
+
+            //Set Background to grey
+            pbCheckIn.BackColor = Color.FromArgb(160, 160, 160);
+
+            //Changes Help Text
+            Help = 6;
+
+            //Show and Hide
+            HideEveryThing();
+            lblCheckInID.Show();
+            tbCheckInID.Show();
+            btnCheckInOut.Show();
+        }
+        /// <summary>
+        /// Prints Data From Schedule DataGrid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSchedulePrint_Click(object sender, EventArgs e)
+        {
+            //Printing Paper Style (Title/Data/Created On)
+            DGVPrinter printer = new DGVPrinter();
+            printer.Title = "Employee Schedule";
+            printer.PageNumbers = false;
+            printer.PageNumberInHeader = false;
+            printer.PorportionalColumns = true;
+            printer.ColumnWidth = DGVPrinter.ColumnWidthSetting.Porportional;
+            printer.HeaderCellAlignment = StringAlignment.Near;
+            printer.Footer = "Created on: " + DateTime.Now.ToString();
+            printer.FooterSpacing = 15;
+            System.Drawing.Printing.Margins m = new System.Drawing.Printing.Margins(0, 0, 60, 60);
+            printer.PrintMargins = m;
+            printer.PageSettings.Landscape = true;
+            printer.PrintDataGridView(dgSchedule);
+        }
+        /// <summary>
+        /// Prints Data From Employee DataGrid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnEmployeePrint_Click(object sender, EventArgs e)
+        {
+            //Printing Paper Style (Title/Data/Created On)
+            DGVPrinter printer = new DGVPrinter();
+            printer.Title = "Employee List";
+            printer.PageNumbers = false;
+            printer.PageNumberInHeader = false;
+            printer.PorportionalColumns = true;
+            printer.ColumnWidth = DGVPrinter.ColumnWidthSetting.Porportional;
+            printer.HeaderCellAlignment = StringAlignment.Near;
+            printer.Footer = "Created on: " + DateTime.Now.ToString();
+            printer.FooterSpacing = 15;
+            System.Drawing.Printing.Margins m = new System.Drawing.Printing.Margins(0, 0, 60, 60);
+            printer.PrintMargins = m;
+            printer.PageSettings.Landscape = true;
+            printer.PrintDataGridView(dgEmployee);
+        }
+        /// <summary>
+        /// Prints Data From CustomerInfo DataGrid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCustomerInfoPrint_Click(object sender, EventArgs e)
+        {
+            //Printing Paper Style (Title/Data/Created On)
+            DGVPrinter printer = new DGVPrinter();
+
+            if (cbCustomerInfoSelection2.Text == "Week (SUN-SAT)")
+            {
+                printer.Title = "Customers Per Day Week View";
+                printer.PageNumbers = false;
+                printer.PageNumberInHeader = false;
+                printer.PorportionalColumns = true;
+                printer.ColumnWidth = DGVPrinter.ColumnWidthSetting.Porportional;
+                printer.HeaderCellAlignment = StringAlignment.Near;
+                printer.Footer = "Created on: " + DateTime.Now.ToString();
+                printer.FooterSpacing = 15;
+                System.Drawing.Printing.Margins m = new System.Drawing.Printing.Margins(0, 0, 60, 60);
+                printer.PrintMargins = m;
+                printer.PageSettings.Landscape = true;
+                printer.PrintDataGridView(dgCustomerInfo);
+            }
+            else if (cbCustomerInfoSelection2.Text != "" && cbCustomerInfoSelection2.Visible == true)
+            {
+                string day = cbCustomerInfoSelection2.Text.Substring(0, cbCustomerInfoSelection2.Text.IndexOf(" "));
+                printer.Title = "Customers Per Day (" + day + ") AM-PM View";
+                printer.PageNumbers = false;
+                printer.PageNumberInHeader = false;
+                printer.PorportionalColumns = true;
+                printer.ColumnWidth = DGVPrinter.ColumnWidthSetting.Porportional;
+                printer.HeaderCellAlignment = StringAlignment.Near;
+                printer.Footer = "Created on: " + DateTime.Now.ToString();
+                printer.FooterSpacing = 15;
+                System.Drawing.Printing.Margins m = new System.Drawing.Printing.Margins(0, 0, 60, 60);
+                printer.PrintMargins = m;
+                printer.PageSettings.Landscape = true;
+                dgDayAMPM.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                printer.PrintDataGridView(dgDayAMPM);
+                dgDayAMPM.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            }
+            else if (cbCustomerInfoSelection.Text == "Users Avg. Time Spent")
+            {
+                printer.Title = "Customers Average Time Spent (Hours)";
+                printer.PageNumbers = false;
+                printer.PageNumberInHeader = false;
+                printer.PorportionalColumns = true;
+                printer.ColumnWidth = DGVPrinter.ColumnWidthSetting.Porportional;
+                printer.HeaderCellAlignment = StringAlignment.Near;
+                printer.Footer = "Created on: " + DateTime.Now.ToString();
+                printer.FooterSpacing = 15;
+                System.Drawing.Printing.Margins m = new System.Drawing.Printing.Margins(0, 0, 60, 60);
+                printer.PrintMargins = m;
+                printer.PageSettings.Landscape = true;
+                printer.PrintDataGridView(dgCustomerInfo);
+            }
+            else if (cbCustomerInfoSelection2.Visible == false && cbCustomerInfoSelection.Text == "")
+            {
+                //Error Message if one occurs
+                MessageBox.Show("Please Select Data to Print!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (cbCustomerInfoSelection2.Text == "" && cbCustomerInfoSelection2.Visible == true)
+            {
+                //Error Message if one occurs
+                MessageBox.Show("Please Select Data to Print!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                //Error Message if one occurs
+                MessageBox.Show("Please Select Data to Print!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+        /// <summary>
+        /// Prepares Form For Reservations
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pbReservations_Click(object sender, EventArgs e)
+        {
+            //Changes Help Text
+            Help = 9;
+
+            //Sets All Other Tab BackGrounds to Transparent
+            Transparent();
+
+            //Set Background to grey
+            pbReservations.BackColor = Color.FromArgb(160, 160, 160);
+
+            //Show Reservation Information
+            HideEveryThing();
+            dateTimePickerReservation.Show();
+            btnReservationSearch.Show();
+        }
+        /// <summary>
+        /// Adds Every Reservation Entry of that day into Hidden Labels
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnReservationSearch_Click(object sender, EventArgs e)
+        {
+            //Changes Help Text
+            Help = 10;
+
+            //Show Information
+            lblReservationPeople.Show();
+            lblReservationPurpose.Show();
+            lblReservationTimeFinish.Show();
+            lblReservationTimeStart.Show();
+            tbReservationPeople.Show();
+            tbReservationPurpose.Show();
+            tbReservationTimeFinish.Show();
+            tbReservationTimeStart.Show();
+            cbReservationTimeFinish.Show();
+            cbReservationTimeStart.Show();
+            btnReservationEnter.Show();
+            btnReservationDelete.Show();
+            lblReservationOtherEvents.Show();
+            lblReservationEventDate.Show();
+            lblReservationEventDesc.Show();
+            lblReservationEventPeople.Show();
+            lblReservationEventTimeFinish.Show();
+            lblReservationEventTimeStart.Show();
+
+            lblEventDate.Show();
+            lblEventDesc.Show();
+            lblEventPeople.Show();
+            lblEventTimeFinish.Show();
+            lblEventTimeStart.Show();
+
+            lblEventDate.Text = "";
+            lblEventDesc.Text = "";
+            lblEventPeople.Text = "";
+            lblEventTimeFinish.Text = "";
+            lblEventTimeStart.Text = "";
+
+            try
+            {
+                //Open Connection To database
+                con.Open();
+
+                //Selects All Information From Reservation Table Where Date is equal to var dateTimePickerReservation.Text
+                String SQL = "SELECT * FROM Reservation WHERE Date = '" + dateTimePickerReservation.Text + "'";
+                OleDbDataAdapter Adpt = new OleDbDataAdapter(SQL, con);
+                DataSet Info = new DataSet();
+                Adpt.Fill(Info);
+
+                //Add Data To Labels and Show To User
+                int i = 0;
+                foreach (DataRow dr in Info.Tables[0].Rows)
+                {
+                    lblEventDate.Text += Info.Tables[0].Rows[i]["Date"].ToString() + "\n";
+                    lblEventTimeStart.Text += Info.Tables[0].Rows[i]["TimeStart"].ToString() + "\n";
+                    lblEventTimeFinish.Text += Info.Tables[0].Rows[i]["TimeFinish"].ToString() + "\n";
+                    lblEventPeople.Text += Info.Tables[0].Rows[i]["People"].ToString() + "\n";
+                    lblEventDesc.Text += Info.Tables[0].Rows[i]["Purpose"].ToString() + "\n";
+                    i++;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //Error Message if one occurs
+                MessageBox.Show("Database Error " + ex, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            //Close Connection To Database
+            con.Close();
+        }
+        /// <summary>
+        /// Sets Form Up For Adding a new member
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pbNewMembers_Click(object sender, EventArgs e)
+        {
+            //Change Help Text
+            Help = 8;
+
+            //Clears Textboxes
+            ClearBoxes();
+
+            //Show and Hide What we need to see
+            HideEveryThing();
+            lblCheckInAddress.Show();
+            lblCheckInAge.Show();
+            lblCheckInFN.Show();
+            lblCheckInLN.Show();
+            lblCheckInMembership.Show();
+            lblCheckInPhone.Show();
+            tbCheckInAge.Show();
+            tbCheckInAddress.Show();
+            tbCheckInFN.Show();
+            tbCheckInLN.Show();
+            tbCheckInPhoneNumber.Show();
+            cbCheckInMembership.Show();
+            btnCheckInRegister.Show();
+
+            //Move Locations of items to save code space
+            this.lblCheckInFN.Location = new Point(539, 241);
+            this.tbCheckInFN.Location = new Point(622, 238);
+
+            this.lblCheckInLN.Location = new Point(539, 284);
+            this.tbCheckInLN.Location = new Point(622, 281);
+
+            this.lblCheckInAge.Location = new Point(571, 324);
+            this.tbCheckInAge.Location = new Point(622, 321);
+
+            this.lblCheckInAddress.Location = new Point(552, 364);
+            this.tbCheckInAddress.Location = new Point(622, 361);
+
+            this.lblCheckInPhone.Location = new Point(519, 401);
+            this.tbCheckInPhoneNumber.Location = new Point(622, 398);
+
+            this.lblCheckInMembership.Location = new Point(504, 444);
+            this.cbCheckInMembership.Location = new Point(622, 436);
+
+            //Call Transparent To Hide all other Tab Background Colors
+            Transparent();
+
+            //Sets Background Color To match Background Color Of Program
+            pbNewMembers.BackColor = Color.FromArgb(160, 160, 160);
+        }
+        /// <summary>
+        /// Sets Focus To ComboBox 2
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cbCustomerInfoSelection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Sets Focus to View Info Button For Easy Access
+            cbCustomerInfoSelection2.Focus();
+        }
+        /// <summary>
+        /// Sets Focus To Button View Info
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cbCustomerInfoSelection2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Sets Focus to View Info Button For Easy Access
+            btnCustomerInfoView.Focus();
+        }
+        /// <summary>
+        /// Fills Textboxes With Data From DataGridView
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dgEmployee_SelectionChanged(object sender, EventArgs e)
+        {
+            //Autofills Textboxes With data from Data Grid View
+            if (dgEmployee.SelectedRows.Count > 0)
+            {
+                tbEmployeeFirstName.Text = dgEmployee.SelectedRows[0].Cells[0].Value + string.Empty;
+                tbEmployeeLastName.Text = dgEmployee.SelectedRows[0].Cells[1].Value + string.Empty;
+                tbEmployeeSocial.Text = dgEmployee.SelectedRows[0].Cells[2].Value + string.Empty;
+                cbEmployeePosition.Text = dgEmployee.SelectedRows[0].Cells[3].Value + string.Empty;
+            }
+        }
+        /// <summary>
+        /// Fills Textboxes With Data From DataGridView
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dgViewMembers_SelectionChanged(object sender, EventArgs e)
+        {
+            //Autofills Textboxes With data from Data Grid View
+            if (dgViewMembers.SelectedRows.Count > 0)
+            {
+                tbCheckInMemberId.Text = dgViewMembers.SelectedRows[0].Cells[0].Value + string.Empty;
+                tbCheckInFN.Text = dgViewMembers.SelectedRows[0].Cells[1].Value + string.Empty;
+                tbCheckInLN.Text = dgViewMembers.SelectedRows[0].Cells[2].Value + string.Empty;
+                tbCheckInAge.Text = dgViewMembers.SelectedRows[0].Cells[3].Value + string.Empty;
+                tbCheckInAddress.Text = dgViewMembers.SelectedRows[0].Cells[4].Value + string.Empty;
+                tbCheckInPhoneNumber.Text = dgViewMembers.SelectedRows[0].Cells[5].Value + string.Empty;
+                cbCheckInMembership.Text = dgViewMembers.SelectedRows[0].Cells[6].Value + string.Empty;
+            }
+        }
+        /// <summary>
+        /// Return Current Time
+        /// </summary>
+        /// <returns>Current Time</returns>
+        public string GetCurrentTime()
+        {
+            //Get The Current Hour Of the Day
+            string Time = DateTime.Now.ToString("HH");
+            string finalTime = "";
+
+            //Checks To See if Time is greater than noon
+            if (double.Parse(Time) >= 13)
+            {
+                //If Greater than noon, subtract 12 and add PM onto String
+                finalTime = (double.Parse(Time) - 12) + "PM";
+            }
+            else
+            {
+                //If Less than noon, keep the same number and add AM onto String
+                finalTime = Time + "AM";
+            }
+            return finalTime;
+        }
+        /// <summary>
+        /// Fills Graph With Data From Var Day
+        /// </summary>
+        /// <param name="Day"></param>
+        public void FillDataBase(string Day)
+        {
+            try
+            {
+                //Checking If Connection To Database is Open Or Closed
+                if (con.State == ConnectionState.Closed)
+                {
+                    //Open Connection To database
+                    con.Open();
+                }
+
+                //Clear All Points Of Graph
+                foreach (var series in chart1.Series)
+                {
+                    series.Points.Clear();
+                }
+
+                //Retrive Data For Every Hour For 24 hours.
+                OleDbCommand GetOneAM = new OleDbCommand("select [1AM] from [" + Day + "] ", con);
+                int OneAM = Int32.Parse(GetOneAM.ExecuteScalar().ToString());
+
+                OleDbCommand GetTwoAM = new OleDbCommand("select [2AM] from [" + Day + "]  ", con);
+                int TwoAM = Int32.Parse(GetTwoAM.ExecuteScalar().ToString());
+
+                OleDbCommand GetThreeAM = new OleDbCommand("select [3AM] from [" + Day + "]  ", con);
+                int ThreeAM = Int32.Parse(GetThreeAM.ExecuteScalar().ToString());
+
+                OleDbCommand GetFourAM = new OleDbCommand("select [4AM] from [" + Day + "]  ", con);
+                int FourAM = Int32.Parse(GetFourAM.ExecuteScalar().ToString());
+
+                OleDbCommand GetFiveAM = new OleDbCommand("select [5AM] from [" + Day + "]  ", con);
+                int FiveAM = Int32.Parse(GetFiveAM.ExecuteScalar().ToString());
+
+                OleDbCommand GetSixAM = new OleDbCommand("select [6AM] from [" + Day + "]  ", con);
+                int SixAM = Int32.Parse(GetFiveAM.ExecuteScalar().ToString());
+
+                OleDbCommand GetSevenAM = new OleDbCommand("select [7AM] from [" + Day + "]  ", con);
+                int SevenAM = Int32.Parse(GetSevenAM.ExecuteScalar().ToString());
+
+                OleDbCommand GetEightAM = new OleDbCommand("select [8AM] from [" + Day + "]  ", con);
+                int EightAM = Int32.Parse(GetEightAM.ExecuteScalar().ToString());
+
+                OleDbCommand GetNineAM = new OleDbCommand("select [9AM] from [" + Day + "]  ", con);
+                int NineAM = Int32.Parse(GetNineAM.ExecuteScalar().ToString());
+
+                OleDbCommand GetTenAM = new OleDbCommand("select [10AM] from [" + Day + "]  ", con);
+                int TenAM = Int32.Parse(GetTenAM.ExecuteScalar().ToString());
+
+                OleDbCommand GetElevenAM = new OleDbCommand("select [11AM] from [" + Day + "]  ", con);
+                int ElevenAM = Int32.Parse(GetTenAM.ExecuteScalar().ToString());
+
+                OleDbCommand GetTwelvePM = new OleDbCommand("select [12PM] from [" + Day + "]  ", con);
+                int TwelvePM = Int32.Parse(GetTwelvePM.ExecuteScalar().ToString());
+
+                OleDbCommand GetOnePM = new OleDbCommand("select [1PM] from [" + Day + "]  ", con);
+                int OnePM = Int32.Parse(GetOnePM.ExecuteScalar().ToString());
+
+                OleDbCommand GetTwoPM = new OleDbCommand("select [2PM] from [" + Day + "]  ", con);
+                int TwoPM = Int32.Parse(GetTwoPM.ExecuteScalar().ToString());
+
+                OleDbCommand GetThreePM = new OleDbCommand("select [3PM] from [" + Day + "]  ", con);
+                int ThreePM = Int32.Parse(GetThreePM.ExecuteScalar().ToString());
+
+                OleDbCommand GetFourPM = new OleDbCommand("select [4PM] from [" + Day + "]  ", con);
+                int FourPM = Int32.Parse(GetFourPM.ExecuteScalar().ToString());
+
+                OleDbCommand GetFivePM = new OleDbCommand("select [5PM] from [" + Day + "]  ", con);
+                int FivePM = Int32.Parse(GetFivePM.ExecuteScalar().ToString());
+
+                OleDbCommand GetSixPM = new OleDbCommand("select [6PM] from [" + Day + "]  ", con);
+                int SixPM = Int32.Parse(GetSixPM.ExecuteScalar().ToString());
+
+                OleDbCommand GetSevenPM = new OleDbCommand("select [7PM] from [" + Day + "]  ", con);
+                int SevenPM = Int32.Parse(GetSevenPM.ExecuteScalar().ToString());
+
+                OleDbCommand GetEightPM = new OleDbCommand("select [8PM] from [" + Day + "]  ", con);
+                int EightPM = Int32.Parse(GetEightPM.ExecuteScalar().ToString());
+
+                OleDbCommand GetNinePM = new OleDbCommand("select [9PM] from [" + Day + "]  ", con);
+                int NinePM = Int32.Parse(GetNinePM.ExecuteScalar().ToString());
+
+                OleDbCommand GetTenPM = new OleDbCommand("select [10PM] from [" + Day + "]  ", con);
+                int TenPM = Int32.Parse(GetTenPM.ExecuteScalar().ToString());
+
+                OleDbCommand GetElevenPM = new OleDbCommand("select [11PM] from [" + Day + "]  ", con);
+                int ElevenPM = Int32.Parse(GetElevenPM.ExecuteScalar().ToString());
+
+                OleDbCommand GetTwelveAM = new OleDbCommand("select [12AM] from [" + Day + "]  ", con);
+                int TwelveAM = Int32.Parse(GetTwelveAM.ExecuteScalar().ToString());
+
+                //Adds Data That We Gathered Into Series Users Per Hour Which Plots it on the Graph
+                this.chart1.Series["Users Per Hour"].Points.AddXY("1AM", OneAM);
+                this.chart1.Series["Users Per Hour"].Points.AddXY("2AM", TwoAM);
+                this.chart1.Series["Users Per Hour"].Points.AddXY("3AM", ThreeAM);
+                this.chart1.Series["Users Per Hour"].Points.AddXY("4AM", FourAM);
+                this.chart1.Series["Users Per Hour"].Points.AddXY("5AM", FiveAM);
+                this.chart1.Series["Users Per Hour"].Points.AddXY("6AM", SixAM);
+                this.chart1.Series["Users Per Hour"].Points.AddXY("7AM", SevenAM);
+                this.chart1.Series["Users Per Hour"].Points.AddXY("8AM", EightAM);
+                this.chart1.Series["Users Per Hour"].Points.AddXY("9AM", NineAM);
+                this.chart1.Series["Users Per Hour"].Points.AddXY("10AM", TenAM);
+                this.chart1.Series["Users Per Hour"].Points.AddXY("11AM", ElevenAM);
+                this.chart1.Series["Users Per Hour"].Points.AddXY("12PM", TwelvePM);
+                this.chart1.Series["Users Per Hour"].Points.AddXY("1PM", OnePM);
+                this.chart1.Series["Users Per Hour"].Points.AddXY("2PM", TwoPM);
+                this.chart1.Series["Users Per Hour"].Points.AddXY("3PM", ThreePM);
+                this.chart1.Series["Users Per Hour"].Points.AddXY("4PM", FourPM);
+                this.chart1.Series["Users Per Hour"].Points.AddXY("5PM", FivePM);
+                this.chart1.Series["Users Per Hour"].Points.AddXY("6PM", SixPM);
+                this.chart1.Series["Users Per Hour"].Points.AddXY("8PM", EightPM);
+                this.chart1.Series["Users Per Hour"].Points.AddXY("9PM", NinePM);
+                this.chart1.Series["Users Per Hour"].Points.AddXY("10PM", TenPM);
+                this.chart1.Series["Users Per Hour"].Points.AddXY("11PM", ElevenPM);
+                this.chart1.Series["Users Per Hour"].Points.AddXY("12AM", TwelveAM);
+            }
+            catch (Exception)
+            {
+                //Shows User Error If it occurs
+                MessageBox.Show("Could not Update Graph", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                con.Close();
+            }
+        }
+        /// <summary>
+        /// Makes All Backgrounds Transparent
+        /// </summary>
+        public void Transparent()
+        {
+            //Set Every Main Menu Tab Back Color To Transparent When Another Tab is clicked
+            pbCustomerInfo.BackColor = Color.Transparent;
+            pbEmployee.BackColor = Color.Transparent;
+            pbNewSchedule.BackColor = Color.Transparent;
+            pbReservations.BackColor = Color.Transparent;
+            pbCheckIn.BackColor = Color.Transparent;
+            pbViewMembers.BackColor = Color.Transparent;
+            pbNewMembers.BackColor = Color.Transparent;
+        }
+        /// <summary>
+        /// Hides Everything in Form Besides Tabs For Main Menu
+        /// </summary>
+        public void HideEveryThing()
+        {
+            //Hides Every Object Except for Main Menu Items
+            pBCustInfo.Hide();
+            pbCheckIn.Hide();
+            pbViewMembers.Hide();
+            pbNewSchedule.Hide();
+            pbEmployee.Hide();
+            pbCustomerInfo.Hide();
+            lblScheduleDay.Hide();
+            lblScheduleEmployeeName.Hide();
+            lblScheduleTF.Hide();
+            lblScheduleTS.Hide();
+            cbScheduleAm.Hide();
+            cbScheduleDate.Hide();
+            cbScheduleEmployee.Hide();
+            cbSchedulePm.Hide();
+            btnSchedulePrint.Hide();
+            btnScheduleSave.Hide();
+            tbScheduleTF.Hide();
+            tbScheduleTS.Hide();
+            dgSchedule.Hide();
+            lblEmployeeFN.Hide();
+            lblEmployeeLastName.Hide();
+            lblEmployeePosition.Hide();
+            lblEmployeeSocial.Hide();
+            dgEmployee.Hide();
+            btnEmployeePrint.Hide();
+            btnEmployeeSave.Hide();
+            tbEmployeeFirstName.Hide();
+            tbEmployeeLastName.Hide();
+            tbEmployeeSocial.Hide();
+            cbEmployeePosition.Hide();
+            btnEmployeeDelete.Hide();
+            cbCustomerInfoSelection.Hide();
+            cbCustomerInfoSelection2.Hide();
+            dgCustomerInfo.Hide();
+            btnCustomerInfoPrint.Hide();
+            btnCustomerInfoView.Hide();
+            chart1.Hide();
+            dgDayAMPM.Hide();
+            lblCheckInID.Hide();
+            tbCheckInID.Hide();
+            btnCheckInOut.Hide();
+            btnCheckInNewMember.Hide();
+            lblCheckInAddress.Hide();
+            lblCheckInAge.Hide();
+            lblCheckInFN.Hide();
+            lblCheckInID.Hide();
+            lblCheckInLN.Hide();
+            lblCheckInMembership.Hide();
+            lblCheckInPhone.Hide();
+            btnCheckInNewMember.Hide();
+            cbCheckInMembership.Hide();
+            tbCheckInAddress.Hide();
+            tbCheckInAge.Hide();
+            tbCheckInFN.Hide();
+            tbCheckInID.Hide();
+            tbCheckInLN.Hide();
+            tbCheckInPhoneNumber.Hide();
+            btnCheckInRegister.Hide();
+            lblCheckInMemberId.Hide();
+            tbCheckInMemberId.Hide();
+            cbManualEnterDay.Hide();
+            cbManualEnterHourAmPm.Hide();
+            tbManualEnterHour.Hide();
+            lblManualEnter.Hide();
+            lblManualEnterDay.Hide();
+            lblManualEnterHour.Hide();
+            btnManualEnter.Hide();
+            lblManualAttendanceAmount.Hide();
+            tbManualAttendanceAmount.Hide();
+            dgViewMembers.Hide();
+            btnViewMemberUpdate.Hide();
+            btnMemberDelete.Hide();
+            btnScheduleDelete.Hide();
+            lblUsername.Hide();
+            lblPassword.Hide();
+            tbUserName.Hide();
+            tbPassword.Hide();
+            btnLogin.Hide();
+            btnCheckInRegister.Hide();
+            dateTimePickerReservation.Hide();
+            btnReservationSearch.Hide();
+            lblReservationPeople.Hide();
+            lblReservationPurpose.Hide();
+            lblReservationTimeFinish.Hide();
+            lblReservationTimeStart.Hide();
+            tbReservationPeople.Hide();
+            tbReservationPurpose.Hide();
+            tbReservationTimeFinish.Hide();
+            tbReservationTimeStart.Hide();
+            cbReservationTimeFinish.Hide();
+            cbReservationTimeStart.Hide();
+            btnReservationEnter.Hide();
+            lblReservationOtherEvents.Hide();
+            lblReservationEventDate.Hide();
+            lblReservationEventDesc.Hide();
+            lblReservationEventPeople.Hide();
+            lblReservationEventTimeFinish.Hide();
+            lblReservationEventTimeStart.Hide();
+            lblEventDate.Hide();
+            lblEventDesc.Hide();
+            lblEventPeople.Hide();
+            lblEventTimeFinish.Hide();
+            lblEventTimeStart.Hide();
+            btnReservationDelete.Hide();
+
+            //Main Menu Items That Are Shown
+            lblStart.Show();
+            pbCustomerInfo.Show();
+            pbEmployee.Show();
+            pbNewSchedule.Show();
+            pbCheckIn.Show();
+            pbViewMembers.Show();
+        }
+        /// <summary>
+        /// Clears All TextBoxes
+        /// </summary>
+        public void ClearBoxes()
+        {
+            //Clear all text/combo boxes when called.
+            cbEmployeePosition.Text = "";
+            cbScheduleAm.Text = "";
+            cbScheduleDate.Text = "";
+            cbScheduleEmployee.Text = "";
+            cbSchedulePm.Text = "";
+            cbCheckInMembership.Text = "";
+            tbEmployeeFirstName.Text = "";
+            tbEmployeeLastName.Text = "";
+            tbEmployeeSocial.Text = "";
+            tbScheduleTF.Text = "";
+            tbScheduleTS.Text = "";
+            tbCheckInAddress.Text = "";
+            tbCheckInAge.Text = "";
+            tbCheckInFN.Text = "";
+            tbCheckInID.Text = "";
+            tbCheckInLN.Text = "";
+            tbCheckInPhoneNumber.Text = "";
+            tbCheckInMemberId.Text = "";
+            tbManualEnterHour.Text = "";
+            cbManualEnterDay.Text = "";
+            cbManualEnterHourAmPm.Text = "";
+            tbManualAttendanceAmount.Text = "";
+            tbUserName.Text = "";
+            tbPassword.Text = "";
+            tbReservationPeople.Text = "";
+            tbReservationPurpose.Text = "";
+            tbReservationTimeFinish.Text = "";
+            tbReservationTimeStart.Text = "";
+            cbReservationTimeFinish.Text = "";
+            cbReservationTimeStart.Text = "";
+
+        }
+        /// <summary>
+        /// Updates Reservation Text For The Certain Day
+        /// </summary>
+        public void updateReservation()
+        {
+            //Clears Text
+            lblEventDate.Text = "";
+            lblEventDesc.Text = "";
+            lblEventPeople.Text = "";
+            lblEventTimeFinish.Text = "";
+            lblEventTimeStart.Text = "";
+
+            //Gathers all Reservation data from Date
+            String SQL = "SELECT * FROM Reservation WHERE Date = '" + dateTimePickerReservation.Text + "'";
+            OleDbDataAdapter Adpt = new OleDbDataAdapter(SQL, con);
+            DataSet Info = new DataSet();
+            Adpt.Fill(Info);
+
+            //Adds Reservation Data Into Labels For Viewing
+            int i = 0;
+            foreach (DataRow dr in Info.Tables[0].Rows)
+            {
+                lblEventDate.Text += Info.Tables[0].Rows[i]["Date"].ToString() + "\n";
+                lblEventTimeStart.Text += Info.Tables[0].Rows[i]["TimeStart"].ToString() + "\n";
+                lblEventTimeFinish.Text += Info.Tables[0].Rows[i]["TimeFinish"].ToString() + "\n";
+                lblEventPeople.Text += Info.Tables[0].Rows[i]["People"].ToString() + "\n";
+                lblEventDesc.Text += Info.Tables[0].Rows[i]["Purpose"].ToString() + "\n";
+                i++;
+            }
+        }
+        /// <summary>
+        /// Updates Text For Help Text To Guide User Through Program
+        /// </summary>
+        public void updateHelp()
+        {
+            //Editing Help Label to change text on change of every tab
+            if(Help == -1 && !Login)
+            {
+                //Change Help Text
+                lblHelp.Text = "Enter Username and Password";
+            }
+            else if (Help == -1)
+            {
+                //Change Help Text
+                lblHelp.Text = "Click On a Tab To Execute Commands";
+            }
+            else if (Help == 2)
+            {
+                //Changes Help to Schedule Help Text
+                lblHelp.Text = "- Edit fields with Correct Info then Click Update and Schedule Will then Update."
+                      + "\n" + "- You Can Delete by Filling In Day and Employee in Which you want to Delete."
+                      + "\n" + "- You May Print by Clicking The Print Button.";
+            }
+            else if (Help == 3)
+            {
+                //Changes Help to  Employee Help Text
+                lblHelp.Text = "- Click on the far left box within Grid to autofill Text boxes or manually fill out text boxes" +
+                    "\n" + "Then Click Update button to Update"
+                    + "\n" + "- You may Delete by Filling out the Employee's Social then clicking Delete."
+                    + "\n" + "- You may also Print by clicking the print button.";
+            }
+            else if (Help == 4)
+            {
+                //Changes Help to Customer Info Help Text
+                lblHelp.Text = "- Select an item in the Combo Box to view that data, then Click View Info To view the selected data" +
+                    "\n" + "- Select an item in the 2nd Combo Box to view more data, then Click View Info To view the selected data" +
+                    "\n" + "- You may also Print by clicking the print button.";
+            }
+            else if (Help == 6)
+            {
+                //Changes Help to Check In Text
+                lblHelp.Text = " - Enter Member ID To Check In or Out";
+            }
+            else if (Help == 7)
+            {
+                //Changes Help to View Member Text
+                lblHelp.Text = "- Click the far left row in the grid to autofill text boxes" +
+                        "\n" + "Then Update text boxes and then click update, " +
+                        "\n" + "Or Manually Enter the Information.";
+            }
+            else if (Help == 8)
+            {
+                //Changes Help to New Member Text
+                lblHelp.Text = "- Fill out all Information then click the Create Button";
+            }
+            else if (Help == 9)
+            {
+                //Changes Help to Reservation Text
+                lblHelp.Text = "- Select a Date For the Reservation then click the Search Button";
+            }
+            else if (Help == 10)
+            {
+                //Changes Help to Reservation Text
+                lblHelp.Text = "- Fill Out Textboxes Then Click the Enter Button to Enter the Reservation" +
+                    "\n" + "- Delete Entry by Filling Fields with Same Information As Targeted Reservation Then Hit Delete Button";
+            }
+        }
+        private void tbPassword_TextChanged(object sender, EventArgs e)
+        {
+            //Sets Textbox to out print '*' to keep password a secret
+            tbPassword.PasswordChar = '*';
+            //Puts a Max Length on Password
+            tbPassword.MaxLength = 14;
+        }
+
+        //Changing Background Color For Mouse Hovering//
+        private void pbViewMembers_MouseEnter(object sender, EventArgs e)
+        {
+            //When Hovering Over Tab that isnt Grey, turn baby Blue and switch Cursor to Hand
+            if (pbViewMembers.BackColor != Color.FromArgb(160, 160, 160))
+            {
+                pbViewMembers.BackColor = Color.FromArgb(76, 143, 213);
+            }
+            this.Cursor = Cursors.Hand;
+
+        }
+
+        private void pbViewMembers_MouseLeave(object sender, EventArgs e)
+        {
+            //When Leaving Tab Switch Background to Transparent and Cursor to Default
+            if (pbViewMembers.BackColor != Color.FromArgb(160, 160, 160))
+            {
+                pbViewMembers.BackColor = Color.Transparent;
+            }
+            this.Cursor = Cursors.Default;
+
+        }
+
+        private void pbCheckIn_MouseEnter(object sender, EventArgs e)
+        {
+            //When Hovering Over Tab that isnt Grey, turn baby Blue and switch Cursor to Hand
+            if (pbCheckIn.BackColor != Color.FromArgb(160, 160, 160))
+            {
+                pbCheckIn.BackColor = Color.FromArgb(76, 143, 213);
+            }
+            this.Cursor = Cursors.Hand;
+        }
+
+        private void pbCheckIn_MouseLeave(object sender, EventArgs e)
+        {
+            //When Leaving Tab Switch Background to Transparent and Cursor to Default
+            if (pbCheckIn.BackColor != Color.FromArgb(160, 160, 160))
+            {
+                pbCheckIn.BackColor = Color.Transparent;
+            }
+            this.Cursor = Cursors.Default;
+        }
+
+        private void pbNewSchedule_MouseEnter(object sender, EventArgs e)
+        {
+            //When Hovering Over Tab that isnt Grey, turn baby Blue and switch Cursor to Hand
+            if (pbNewSchedule.BackColor != Color.FromArgb(160, 160, 160))
+            {
+                pbNewSchedule.BackColor = Color.FromArgb(76, 143, 213);
+            }
+            this.Cursor = Cursors.Hand;
+        }
+
+        private void pbNewSchedule_MouseLeave(object sender, EventArgs e)
+        {
+            //When Leaving Tab Switch Background to Transparent and Cursor to Default
+            if (pbNewSchedule.BackColor != Color.FromArgb(160, 160, 160))
+            {
+                pbNewSchedule.BackColor = Color.Transparent;
+            }
+            this.Cursor = Cursors.Default;
+        }
+
+        private void pbEmployee_MouseEnter(object sender, EventArgs e)
+        {
+            //When Hovering Over Tab that isnt Grey, turn baby Blue and switch Cursor to Hand
+            if (pbEmployee.BackColor != Color.FromArgb(160, 160, 160))
+            {
+                pbEmployee.BackColor = Color.FromArgb(76, 143, 213);
+            }
+            this.Cursor = Cursors.Hand;
+        }
+
+        private void pbEmployee_MouseLeave(object sender, EventArgs e)
+        {
+            //When Leaving Tab Switch Background to Transparent and Cursor to Default
+            if (pbEmployee.BackColor != Color.FromArgb(160, 160, 160))
+            {
+                pbEmployee.BackColor = Color.Transparent;
+            }
+            this.Cursor = Cursors.Default;
+        }
+
+        private void pbCustomerInfo_MouseEnter(object sender, EventArgs e)
+        {
+            //When Hovering Over Tab that isnt Grey, turn baby Blue and switch Cursor to Hand
+            if (pbCustomerInfo.BackColor != Color.FromArgb(160, 160, 160))
+            {
+                pbCustomerInfo.BackColor = Color.FromArgb(76, 143, 213);
+            }
+            this.Cursor = Cursors.Hand;
+        }
+
+        private void pbCustomerInfo_MouseLeave(object sender, EventArgs e)
+        {
+            //When Leaving Tab Switch Background to Transparent and Cursor to Default
+            if (pbCustomerInfo.BackColor != Color.FromArgb(160, 160, 160))
+            {
+                pbCustomerInfo.BackColor = Color.Transparent;
+            }
+            this.Cursor = Cursors.Default;
+        }
+
+        private void pbReservations_MouseEnter(object sender, EventArgs e)
+        {
+            //When Hovering Over Tab that isnt Grey, turn baby Blue and switch Cursor to Hand
+            if (pbReservations.BackColor != Color.FromArgb(160, 160, 160))
+            {
+                pbReservations.BackColor = Color.FromArgb(76, 143, 213);
+            }
+            this.Cursor = Cursors.Hand;
+        }
+
+        private void pbReservations_MouseLeave(object sender, EventArgs e)
+        {
+            //When Leaving Tab Switch Background to Transparent and Cursor to Default
+            if (pbReservations.BackColor != Color.FromArgb(160, 160, 160))
+            {
+                pbReservations.BackColor = Color.Transparent;
+            }
+            this.Cursor = Cursors.Default;
+        }
+
+        private void pbNewMembers_MouseEnter(object sender, EventArgs e)
+        {
+            //When Hovering Over Tab that isnt Grey, turn baby Blue and switch Cursor to Hand
+            if (pbNewMembers.BackColor != Color.FromArgb(160, 160, 160))
+            {
+                pbNewMembers.BackColor = Color.FromArgb(76, 143, 213);
+            }
+            this.Cursor = Cursors.Hand;
+        }
+
+        private void pbNewMembers_MouseLeave(object sender, EventArgs e)
+        {
+            //When Leaving Tab Switch Background to Transparent and Cursor to Default
+            if (pbNewMembers.BackColor != Color.FromArgb(160, 160, 160))
+            {
+                pbNewMembers.BackColor = Color.Transparent;
+            }
+            this.Cursor = Cursors.Default;
+        }
+
+        private void pbLogout_MouseEnter(object sender, EventArgs e)
+        {
+            //Switch Cursor To Hand
+            this.Cursor = Cursors.Hand;
+        }
+
+        private void pbLogout_MouseLeave(object sender, EventArgs e)
+        {
+            //Switch Cursor To Default
+            this.Cursor = Cursors.Default;
+        }
+
+    }
+}
