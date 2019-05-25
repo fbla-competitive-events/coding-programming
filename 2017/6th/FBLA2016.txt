@@ -1,0 +1,348 @@
+
+change the shift_no description
+
+
+FEC - Family ENtertainment Center
+
+/*
+
+develop a DB program to manage the general operations of a FEC. Give the FEC a name. The program must allow the user to complete at minimum
+the following tasks
+- enter/view/edit a list of employees
+- create/edit a weekly work schedule for employees
+- generate/print weekly schedule reports
+- enter attendence of customers
+- enter track generate and print reports showing customer attendence by time of day and day of week
+
+*/
+
+
+*******************************************************************************************************************************************************************
+
+Tables:
+
+Reference Data:
+event_type - Event Type definition/master table - define types of activities in the FEC, e.g. bowling, laser tag (columns: PK event_type, description)
+shift_type - lookup table for shift numbers - e.g. shift no 1 is from 9 am to 5pm, of 8 hours duration (columns: PK shift_no, description, number of hours)
+Dual - made to get list of days *using a query) for the customer attendence report by day of week
+
+Application Data:
+Emp - employee master table (Columns: Employee Name, Join Date, PK Emp_id)
+emp_schedule - employee schedule details table (Columns: emp_id, schedule date, shift number, number of hours, event type)
+	why did you choose shift no? Why not free form? 
+	answer: defining shifts provides some basic structure and is part of PK which will prevent duplicate entries
+		at the same time there is some flexibility as number of hours can be updated
+
+event_station - different stations where event/activities take place, e.g. bowling lanes 1,2,3 etc laser tag "arena" 1,2 etc
+	(columns: Event_type, station number)
+event_cust - event attendence by customers (summary of attendence only).
+customers - customer information (Name, Phone no, PK cust_id, loyalty amount)
+cust_activity - individual customer participation, shows amount spent by customers with date. There is also a loyalty points amount (calculated to be amount*.1) 
+	and a redemption amount, which is taken from accumulated loyalty amount, which can be entered in the form.
+	(columns: cust_id, date, event type, station_no, amount spent, loyalty amount, redeemed amount)
+
+
+Queries:
+Weekdays - a list of values to pick a "day of week" for customer attendence report
+event_cust_Query - used in the event_cust_query form to get records for a date from the event_cust table
+emp_schedule_rep -> query for the employee schedule report
+event_cust_rpt_qry -> query for customer attendence report
+
+Forms:
+MainMenu - calls all below forms
+
+Employee = emp data entry
+EmployeeSchedule = employee and schedule
+ -> subform: weekly_schedule -> query weeky_schedule
+ -> subform: shift_type_RO
+
+event_type - add event type and event stations for each
+ -> subform: event_station
+
+Event_cust_entry - event_cust entry form
+  -> subform: event_cust_query  -> Query: event_cust_query
+
+CustEventRptForm
+  -> report event_cust_rpt
+
+EmpSchedRptForm
+  -> report Emp_Schedule_report
+
+Reports:
+Emp_schedule_report -> calls query emp_schedule_rep
+event_cust_rpt -> calls query event_cust_rpt_qry
+
+
+
+### Forms Default Values, Drop Down combo box sources, Validations/Events:
+
+##EmpSchedule:
+GetSchedButton_click: validate StartDate not null before calling subForm WeeklySchedule
+startDate_AfterUpdate, EndDate_AfterUpdate: verify that it StartDate < EndDate
+
+##EmpSchedule.WeeklySchedule (subForm):
+LOV for shift_no and event_type from the shift_types and event_types tables
+Event Form_Error - capture error 3022 - dupkey on index error to print message 
+shift_no after update event: copy defaults hours to the emp_schedule.hours field
+
+##EmpSchedRptForm:
+ComboFirstName_after_update: copy last name to LastName field.
+>>>>>> add validation for start date <= EndDate
+
+##CustEventRptForm
+DayOfWeek Combo box Drop down: select from weekdays query. Copy the weekday number to the wkday_no field.
+
+form_open: Initialize StartDate to start of month, End Date to system date
+StartDate_AfterUpdate: set to start of month if set to NULL. 
+EndDate_AfterUpdate: Set to current Date if NULL
+FromHour_Afterupdate: if null, set to default value of 12 am. Set fromMin to minutes value (used for report where condition)
+ToHour_Afterupdate: if null, set to default value of 12 am. Set fromMin to minutes value (used for report where condition)
+RunRptButton_Click: close any open report and open new instance
+
+
+
+##EventCust_entry
+GetRecordsButton_Click - check that startdate is not null then call subForm re-query
+
+##SubForm EventCustQuery
+Event event_type afterUpdate: populate event station from combo box drop down
+
+
+
+Forms Detailed Design:
+
+MainMenu
+There are 3 sections in the Main Menu 
+1) Employee Functions - this has 3 buttons that call the
+   Employee Form" (form Employee), 
+  "Employee Schedule Form" (Form EmployeeSchedule), 
+  "Employee Schedule report" form (Form EmpSchedRptForm). 
+The on-click function of each button calls the respective form via an embedded macro
+
+2) Customer Attendance Functions - this has two buttons to call the "Customer Attendence" Form (Form Event_cust_entry)
+   and "Customer Attendence Report" Form (Form CustEventRptForm).
+The on-click function of each button calls the respective form via and embedded macro
+
+3) Master Data Functions - one button to call the "Event and Station Definition" form (form event_station)
+
+
+4) There is a Close Form button to close the main menu.
+
+The MainMenu form is defined as a pop-up (this is true for all forms)
+
+
+==============
+
+Form Employee ("Employee Data Entry")
+
+This is based on the Emp table and it has 4 fields (emp_id, emp_first_name, emp_last_name, jobdesc) corresponding to the table fields
+There are 4 buttons for "Add Record", "Save Record", "Undo Record", "Delete record", "Close Form" which perform the corresponding function
+	 - the on-click event defines the resepctive macros 
+
+
+===============
+
+Form EmployeeSchedule:
+Master-Detail form built on the Emp, Emp_Schedule tables. 
+The sub-form Weekly_Schedule is the detail record from Emp_Schedule for the EMployee open in the EMployee master form
+There is another form displayed - the Shift_RO form (Shift read-ONly) which shows the shift types available. This form is disabled for data entry in the properties.
+The GetSchedButton button is used to query and popiulate the sub-form - the on-click event code checks that the start date is not null 
+	- if it is null, it prints an error, else it populates the sub0-form
+
+Weekly_Schedule FOrm:
+Data source is weekly_schedule query which queries data for employee and date range selected in the main master form
+List Of Value is defined for shift_no column based on data from table shit_type. The after-update event populates the "hours" field from this LOV
+The EVent_type field has an LOV query on event_types table
+
+===============
+
+
+EmpSchedRptForm - Form to get input parameters for Employee Schedule Report
+The form gives the option enter an EMployee Name (optional) and a start and end date
+The Employee Name is a combo box, with the first name defining the query from emp table for the combo box. 
+	The after-update event on this field populates the last name and EMpId
+The RUnReport button calls the report "Emp_schedule_report" in the on-click event. Before that it validates that start date is <= end date.
+
+
+=========================
+
+event_cust_entry
+	- main form has an unbound field called startDate - this is the input for querying the sub-form which is based on a query
+	- The subForm is based on the query event_cust_query which gets the data from the event_cust table for the date value in the main form field startDate
+	- a getRecrods button in the main form executes the query for the sub form to display the existing data. 
+		The on-click event for the button verifies that a date is entered in the StarDate field
+	- The sub form is base don the query in event_cust table
+		- the event_type combo box is populate dby a query on event_type table. the second column of this select is populated into the 
+			station_no field in the after-update event for the event_type field
+
+
+
+============================
+
+CustEventRptForm - form to get the input parameters for Customer Event attendance report
+The form has fields to enter
+	- Day of Week: combo box with default value "ALL" (all days of the week) and prviing a drop down for weekdays
+		The data source for the cmbo box is from the weekdays query which shows all 7 days of the week and an option for 'ALL', along with a number
+		The weekdays query in turn is a select on the "dual" table which has 8 rows with values 0 to 8 in its only column - it uses  WeekdayName funtion 
+			to get the weekday name for 1 to 7
+		The after update event on the combo box populates a hidden field called wkday_no which is the numeric value for the weekday
+	- FromHour (labelled "From Time") field allows entry of a from time - default is 00:00. 
+		after update event validates that the value is not blank and not greater than "To Time") - in case of either condtion, it sets to default (00:00)
+		if all validations pass, it populates the minutes equivalent of the "From Time" into the (hidden) FromMin field
+	- ToHour (labelled "To Time") field allows entry of a to time - default is 23:59. 
+		after update event validates that the value is not blank and not less than "From Time") - in case of either condtion, it sets to default (23:59)
+		if all validations pass, it populates the minutes equivalent of the "To Time" into the (hidden) ToMin field
+	- StartDate - the field to specify start date for the report. Default value is start of the month
+		after update event has validation to prevent NULL values - reset to default value in case of NULL
+	- EndDate - the field for end date for the report. Default value is today's date
+		after update event has validation to prevent NULL values - reset to default value in case of NULL
+	- RunReport button is provided to call the report - the on-click event closes any existing open report and then calls the report
+
+======================================
+
+Event_types form: form to define event types and event stations
+	- this is a master detail form, master table being event types and detail being event stations
+	- there are buttons for add,save,next and previous record navigation
+
+
+
+
+
+**************************************************************************************************************************************************************
+
+
+
+
+Access:
+
+https://support.office.com/en-us/article/Create-a-form-that-contains-a-subform-a-one-to-many-form-ddf3822f-8aba-49cb-831a-1e74d6f5f06b
+https://bytes.com/topic/access/answers/830163-command-button-not-showing-sub-form-access-2007-a
+https://support.office.com/en-us/article/Use-parameters-in-queries-and-reports-8209eb5c-1589-42e2-9b20-4181f4c7a356
+https://support.microsoft.com/en-us/kb/210604  (date functions)
+
+http://www.fmsinc.com/microsoftaccess/errors/errornumber_description2007.html
+
+3022 -> duplicate key in index
+
+https://msdn.microsoft.com/en-us/library/office/ff836345.aspx   >>> catching error in event
+
+https://support.office.com/en-us/article/DateAdd-Function-63befdf6-1ffa-4357-9424-61e8c57afc19   >>> DateAdd function
+
+http://www.techrepublic.com/article/10-tricks-for-handling-null-values-in-microsoft-access/6125114/
+
+http://www.knowledgewave.com/blog/msoffice/access/create-an-interactive-access-form-to-filter-a-query-by-date-range-2.html
+
+
+SELECT event_cust.event_type, event_cust.station_no, event_cust.start_time, event_cust.end_time, event_cust.cust_count, DateValue(start_time) AS qdate
+FROM event_cust
+WHERE DateValue(start_time) >= [Forms]![Event_cust_entry]![Date1];
+
+
+SELECT emp_schedule.emp_id, emp_schedule.sched_date, emp_schedule.shift_no, emp_schedule.hours, emp_schedule.event_type, emp_schedule.comment
+FROM emp_schedule
+WHERE (((emp_schedule.[sched_date]) Between DateAdd("d",[Forms]![Employee2]![InputDate],-7) And DateAdd("d",[Forms]![Employee2]![InputDate],7)));
+
+
+
+Private Sub EndDate_AfterUpdate()
+    If Not IsNull(StartDate) Then
+       If (Endate < StartDate) Then
+            MsgBox ("EndDate cannot be less than Start Date E")
+       Else
+          Me.Weekly_schedule.Form.Requery
+       End If
+    End If
+End Sub
+
+Private Sub Form_Load()
+End Sub
+
+Private Sub GetSchedButton_Click()
+    If Not (IsNull(EndDate) Or IsNull(StartDate)) Then
+       If (EndDate >= StartDate) Then
+           Me.Weekly_schedule.Form.Requery
+       Else
+           MsgBox ("End Date cannot be less than Start Date")
+       End If
+    Else
+       MsgBox ("Both Start and End Date needed")
+    End If
+End Sub
+
+Private Sub StartDate_AfterUpdate()
+    If Not IsNull(EndDate) Then
+       If (EndDate >= StartDate) Then
+          Me.Weekly_schedule.Form.Requery
+       Else
+          MsgBox ("End Date cannot be less than Start Date")
+          Me.StartDate.Undo
+       End If
+    End If
+End Sub
+
+Private Sub StartDate_Change()
+    If Not IsNull(EndDate) Then
+       If (EndDate < StartDate) Then
+           MsgBox ("End Date cannot be less than StartDate (Ch)")
+           Me!StartDate.Undo
+       End If
+    End If
+End Sub
+
+
+
+
+
+
+
+    Dim StrRptVar As String
+    Dim WkDayStr As String
+    Dim HourStr As String
+    Dim DateStr As String
+    Dim doPrint As Integer
+    
+    doPrint = 0
+    StrRptVar = ""
+    WkDayStr = ""
+    HourStr = ""
+    DateStr = ""
+    If Not IsNull([Forms]![CustEventRptForm]![wkday]) Then
+        WkDayStr = "For " & [Forms]![CustEventRptForm]![wkday] & "s. "
+        doPrint = 1
+    End If
+        
+    RptParTxt = WkDayStr
+    
+
+
+
+
+
+
+SELECT event_cust.event_type, DateValue([event_cust].[start_time]) AS [start_time By Day], sum(event_cust.cust_count) AS cust_count
+FROM event_cust
+WHERE (  (start_time - int(start_time))*1440 > CInt([Forms]![CustEventRptForm]![FromMin])
+                  AND (start_time - int(start_time))*1440 < CInt([Forms]![CustEventRptForm]![ToMin])
+              ) 
+ AND
+         (  Weekday([start_time])=[Forms]![CustEventRptForm]![wkday_no] OR [Forms]![CustEventRptForm]![wkday_no] = 0
+         )
+ AND (
+                (start_time) >= CDate([Forms]![CustEventRptForm]![StartDate]) and (start_time) <= CDate([Forms]![CustEventRptForm]![EndDate])
+     )
+GROUP BY event_cust.event_type, DateValue([event_cust].[start_time])
+ORDER BY event_cust.event_type, DateValue([event_cust].[start_time]);
+
+
+
+
+
+    If redmpt_amt > [cust_activity].[Form]![loyalty_balance] Then
+        MsgBox ("Cannot redeem more than loyalty balance")
+        Me!redmpt_amt.Undo
+    End If
+
+
+[cust_activity].[Form]![loyalty_balance]
+
+
