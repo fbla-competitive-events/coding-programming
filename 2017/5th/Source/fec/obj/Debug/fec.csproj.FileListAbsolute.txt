@@ -1,0 +1,136 @@
+C:\Users\aange\documents\visual studio 2015\Projects\fec\fec\bin\Debug\System.Data.SQLite.dll
+C:\Users\aange\documents\visual studio 2015\Projects\fec\fec\bin\Debug\EnvDTE.dll
+C:\Users\aange\documents\visual studio 2015\Projects\fec\fec\bin\Debug\stdole.dll
+C:\Users\aange\documents\visual studio 2015\Projects\fec\fec\bin\Debug\System.Data.SQLite.xml
+C:\Users\aange\documents\visual studio 2015\Projects\fec\fec\bin\Debug\EnvDTE.xml
+C:\Users\aange\documents\visual studio 2015\Projects\fec\fec\obj\Debug\fec.AddCustomerForm.resources
+C:\Users\aange\documents\visual studio 2015\Projects\fec\fec\obj\Debug\fec.AddEmployeeForm.resources
+C:\Users\aange\documents\visual studio 2015\Projects\fec\fec\obj\Debug\fec.fec_Main.resources
+C:\Users\aange\documents\visual studio 2015\Projects\fec\fec\obj\Debug\fec.PrintForm.resources
+C:\Users\aange\documents\visual studio 2015\Projects\fec\fec\obj\Debug\fec.SplashScreenForm.resources
+C:\Users\aange\documents\visual studio 2015\Projects\fec\fec\obj\Debug\fec.Properties.Resources.resources
+C:\Users\aange\documents\visual studio 2015\Projects\fec\fec\obj\Debug\fec.csproj.GenerateResource.Cache
+C:\Users\aange\documents\visual studio 2015\Projects\fec\fec\bin\Debug\SmileFEC.exe.config
+C:\Users\aange\documents\visual studio 2015\Projects\fec\fec\bin\Debug\SmileFEC.exe.manifest
+C:\Users\aange\documents\visual studio 2015\Projects\fec\fec\bin\Debug\SmileFEC.application
+C:\Users\aange\documents\visual studio 2015\Projects\fec\fec\bin\Debug\SmileFEC.exe
+C:\Users\aange\documents\visual studio 2015\Projects\fec\fec\bin\Debug\SmileFEC.pdb
+C:\Users\aange\documents\visual studio 2015\Projects\fec\fec\obj\Debug\SmileFEC.TrustInfo.xml
+C:\Users\aange\documents\visual studio 2015\Projects\fec\fec\obj\Debug\SmileFEC.exe.manifest
+C:\Users\aange\documents\visual studio 2015\Projects\fec\fec\obj\Debug\SmileFEC.application
+C:\Users\aange\documents\visual studio 2015\Projects\fec\fec\obj\Debug\SmileFEC.exe
+C:\Users\aange\documents\visual studio 2015\Projects\fec\fec\obj\Debug\SmileFEC.pdb
+C:\Users\aange\documents\visual studio 2015\Projects\fec\fec\obj\Debug\fec.SettingsForm.resources
+D:\BACKUP\FEC\fec\fec\obj\Debug\fec.csprojResolveAssemblyReference.cache
+D:\BACKUP\FEC\fec\fec\obj\Debug\fec.AddCustomerForm.resources
+D:\BACKUP\FEC\fec\fec\obj\Debug\fec.AddEmployeeForm.resources
+D:\BACKUP\FEC\fec\fec\obj\Debug\fec.fec_Main.resources
+D:\BACKUP\FEC\fec\fec\obj\Debug\fec.PrintForm.resources
+D:\BACKUP\FEC\fec\fec\obj\Debug\fec.SettingsForm.resources
+D:\BACKUP\FEC\fec\fec\obj\Debug\fec.SplashScreenForm.resources
+D:\BACKUP\FEC\fec\fec\obj\Debug\fec.Properties.Resources.resources
+D:\BACKUP\FEC\fec\fec\obj\Debug\fec.csproj.GenerateResource.Cache
+D:\BACKUP\FEC\fec\fec\obj\Debug\SmileFEC.exe
+D:\BACKUP\FEC\fec\fec\obj\Debug\SmileFEC.pdb
+D:\BACKUP\FEC\fec\fec\bin\Debug\SmileFEC.exe.config
+D:\BACKUP\FEC\fec\fec\bin\Debug\SmileFEC.exe.manifest
+D:\BACKUP\FEC\fec\fec\bin\Debug\SmileFEC.application
+D:\BACKUP\FEC\fec\fec\bin\Debug\SmileFEC.exe
+D:\BACKUP\FEC\fec\fec\bin\Debug\SmileFEC.pdb
+D:\BACKUP\FEC\fec\fec\bin\Debug\Syncfusion.Grid.Base.dll
+D:\BACKUP\FEC\fec\fec\bin\Debug\Syncfusion.Grid.Grouping.Base.dll
+D:\BACKUP\FEC\fec\fec\bin\Debug\Syncfusion.Grid.Grouping.Windows.dll
+D:\BACKUP\FEC\fec\fec\bin\Debug\Syncfusion.Grid.Windows.dll
+D:\BACKUP\FEC\fec\fec\bin\Debug\Syncfusion.GridConverter.Windows.dll
+D:\BACKUP\FEC\fec\fec\bin\Debug\Syncfusion.GridHelperClasses.Windows.dll
+D:\BACKUP\FEC\fec\fec\bin\Debug\Syncfusion.Grouping.Base.dll
+D:\BACKUP\FEC\fec\fec\bin\Debug\Syncfusion.Shared.Base.dll
+D:\BACKUP\FEC\fec\fec\bin\Debug\Syncfusion.Shared.Windows.dll
+D:\BACKUP\FEC\fec\fec\bin\Debug\Syncfusion.Tools.Base.dll
+D:\BACKUP\FEC\fec\fec\bin\Debug\Syncfusion.Tools.Windows.dll
+D:\BACKUP\FEC\fec\fec\bin\Debug\System.Data.SQLite.dll
+D:\BACKUP\FEC\fec\fec\bin\Debug\EnvDTE.dll
+D:\BACKUP\FEC\fec\fec\bin\Debug\stdole.dll
+D:\BACKUP\FEC\fec\fec\bin\Debug\System.Data.SQLite.xml
+D:\BACKUP\FEC\fec\fec\bin\Debug\EnvDTE.xml
+D:\BACKUP\FEC\fec\fec\obj\Debug\SmileFEC.TrustInfo.xml
+D:\BACKUP\FEC\fec\fec\obj\Debug\SmileFEC.exe.manifest
+D:\BACKUP\FEC\fec\fec\obj\Debug\SmileFEC.application
+C:\Users\aange\Desktop\Smile FEC\Source\fec\bin\Debug\SmileFEC.exe.config
+C:\Users\aange\Desktop\Smile FEC\Source\fec\bin\Debug\SmileFEC.exe.manifest
+C:\Users\aange\Desktop\Smile FEC\Source\fec\bin\Debug\SmileFEC.application
+C:\Users\aange\Desktop\Smile FEC\Source\fec\bin\Debug\SmileFEC.exe
+C:\Users\aange\Desktop\Smile FEC\Source\fec\bin\Debug\SmileFEC.pdb
+C:\Users\aange\Desktop\Smile FEC\Source\fec\bin\Debug\Syncfusion.Grid.Base.dll
+C:\Users\aange\Desktop\Smile FEC\Source\fec\bin\Debug\Syncfusion.Grid.Grouping.Base.dll
+C:\Users\aange\Desktop\Smile FEC\Source\fec\bin\Debug\Syncfusion.Grid.Grouping.Windows.dll
+C:\Users\aange\Desktop\Smile FEC\Source\fec\bin\Debug\Syncfusion.Grid.Windows.dll
+C:\Users\aange\Desktop\Smile FEC\Source\fec\bin\Debug\Syncfusion.GridConverter.Windows.dll
+C:\Users\aange\Desktop\Smile FEC\Source\fec\bin\Debug\Syncfusion.GridHelperClasses.Windows.dll
+C:\Users\aange\Desktop\Smile FEC\Source\fec\bin\Debug\Syncfusion.Grouping.Base.dll
+C:\Users\aange\Desktop\Smile FEC\Source\fec\bin\Debug\Syncfusion.Shared.Base.dll
+C:\Users\aange\Desktop\Smile FEC\Source\fec\bin\Debug\Syncfusion.Shared.Windows.dll
+C:\Users\aange\Desktop\Smile FEC\Source\fec\bin\Debug\Syncfusion.Tools.Base.dll
+C:\Users\aange\Desktop\Smile FEC\Source\fec\bin\Debug\Syncfusion.Tools.Windows.dll
+C:\Users\aange\Desktop\Smile FEC\Source\fec\bin\Debug\System.Data.SQLite.dll
+C:\Users\aange\Desktop\Smile FEC\Source\fec\bin\Debug\EnvDTE.dll
+C:\Users\aange\Desktop\Smile FEC\Source\fec\bin\Debug\stdole.dll
+C:\Users\aange\Desktop\Smile FEC\Source\fec\bin\Debug\System.Data.SQLite.xml
+C:\Users\aange\Desktop\Smile FEC\Source\fec\bin\Debug\EnvDTE.xml
+C:\Users\aange\Desktop\Smile FEC\Source\fec\obj\Debug\fec.csprojResolveAssemblyReference.cache
+C:\Users\aange\Desktop\Smile FEC\Source\fec\obj\Debug\fec.AddCustomerForm.resources
+C:\Users\aange\Desktop\Smile FEC\Source\fec\obj\Debug\fec.AddEmployeeForm.resources
+C:\Users\aange\Desktop\Smile FEC\Source\fec\obj\Debug\fec.TableResetForm.resources
+C:\Users\aange\Desktop\Smile FEC\Source\fec\obj\Debug\fec.fec_Main.resources
+C:\Users\aange\Desktop\Smile FEC\Source\fec\obj\Debug\fec.PrintForm.resources
+C:\Users\aange\Desktop\Smile FEC\Source\fec\obj\Debug\fec.SettingsForm.resources
+C:\Users\aange\Desktop\Smile FEC\Source\fec\obj\Debug\fec.SplashScreenForm.resources
+C:\Users\aange\Desktop\Smile FEC\Source\fec\obj\Debug\fec.Properties.Resources.resources
+C:\Users\aange\Desktop\Smile FEC\Source\fec\obj\Debug\fec.csproj.GenerateResource.Cache
+C:\Users\aange\Desktop\Smile FEC\Source\fec\obj\Debug\SmileFEC.TrustInfo.xml
+C:\Users\aange\Desktop\Smile FEC\Source\fec\obj\Debug\SmileFEC.exe.manifest
+C:\Users\aange\Desktop\Smile FEC\Source\fec\obj\Debug\SmileFEC.application
+C:\Users\aange\Desktop\Smile FEC\Source\fec\obj\Debug\SmileFEC.exe
+C:\Users\aange\Desktop\Smile FEC\Source\fec\obj\Debug\SmileFEC.pdb
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\bin\Debug\SmileFEC.exe.config
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\bin\Debug\SmileFEC.exe.manifest
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\bin\Debug\SmileFEC.application
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\bin\Debug\SmileFEC.exe
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\bin\Debug\SmileFEC.pdb
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\bin\Debug\Syncfusion.Grid.Base.dll
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\bin\Debug\Syncfusion.Grid.Grouping.Base.dll
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\bin\Debug\Syncfusion.Grid.Grouping.Windows.dll
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\bin\Debug\Syncfusion.Grid.Windows.dll
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\bin\Debug\Syncfusion.GridConverter.Windows.dll
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\bin\Debug\Syncfusion.GridHelperClasses.Windows.dll
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\bin\Debug\Syncfusion.Grouping.Base.dll
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\bin\Debug\Syncfusion.Shared.Base.dll
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\bin\Debug\Syncfusion.Shared.Windows.dll
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\bin\Debug\Syncfusion.Tools.Base.dll
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\bin\Debug\Syncfusion.Tools.Windows.dll
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\bin\Debug\System.Data.SQLite.dll
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\bin\Debug\EnvDTE.dll
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\bin\Debug\stdole.dll
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\bin\Debug\System.Data.SQLite.xml
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\bin\Debug\EnvDTE.xml
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\obj\Debug\fec.AddCustomerForm.resources
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\obj\Debug\fec.AddEmployeeForm.resources
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\obj\Debug\fec.EncryptingDatabaseForm.resources
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\obj\Debug\fec.EnterPasswordForm.resources
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\obj\Debug\fec.DatabaseSecurityForm.resources
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\obj\Debug\fec.SetPasswordForm.resources
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\obj\Debug\fec.TableResetForm.resources
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\obj\Debug\fec.fec_Main.resources
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\obj\Debug\fec.PrintForm.resources
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\obj\Debug\fec.SettingsForm.resources
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\obj\Debug\fec.SplashScreenForm.resources
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\obj\Debug\fec.Properties.Resources.resources
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\obj\Debug\fec.csproj.GenerateResource.Cache
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\obj\Debug\SmileFEC.TrustInfo.xml
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\obj\Debug\SmileFEC.exe.manifest
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\obj\Debug\SmileFEC.application
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\obj\Debug\SmileFEC.exe
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\obj\Debug\SmileFEC.pdb
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\obj\Debug\fec.ConfirmPasswordForm.resources
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\obj\Debug\fec.ChangePasswordForm.resources
+C:\Users\aange\Documents\Visual Studio 2017\Projects\fec\fec\obj\Debug\fec.csprojResolveAssemblyReference.cache

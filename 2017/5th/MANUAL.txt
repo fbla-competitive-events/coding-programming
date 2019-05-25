@@ -1,0 +1,111 @@
+
+================
+ADDING EMPLOYEES
+================
+To add a new Employee to the database simply click the button with the person wearing a tie on the right and fill in the form that is opened.
+
+================
+ADDING CUSTOMERS 
+================
+To add a new Customer to the database click the second button on the right.
+
+====================
+EDITING ENTRY FIELDS
+====================
+To edit entry fields, click on them on the grid and just change their values.
+For some fields there are dropdown boxes where you select one of the listed values.
+
+Note that ID fields are read-only and cannot be edited. In addition, the NAME fields on the Employee Schedule and Customer Attendance tables are read-only. You can only change a name by editing the appropriate Employee and Customer entry respectively.
+
+================
+REMOVING ENTRIES
+================
+To remove an entry simply select it on the grid and click the trash can button. 
+Note that Employee Schedule and Customer Attendance entries cannot be deleted directly. To remove them, delete the appropriate Employee and Customer entries respectively.
+
+
+Note that there is no "Save" button. All values are instantly and automatically updated in the database whenever an operation (such as editing a value or deleting an entry) is performed.
+
+=====================
+SEARCHING FOR ENTRIES
+=====================
+The application has an extensive entry search system. Fuzzy searching is utilized, so you can search for exact or partial matches.
+
+To search a value, select a search range from the first combo box and a search category from the second combo box.
+
+The search range is in which tables to search in. You can select either an individual table (such as Employees or Customer Attendance) or you can search in all tables.
+The search category is in which column to search in. The columns available depend on the search range.
+NOTE: If you select either the Employees or the Customers table then the searching will only occur in these two tables. The excluded table will display all entries.
+
+Also note that not all search categories can be applied to all tables. For example if you search for an employee by phone, then no value will appear under the Employee Schedule
+as that table does not contain a phone column. You can do a second search by name or id in this case to find the related employee schedule.
+
+After choosing these two parameters, simply enter the value you want to search in the search box and click the "Search" button or press "Enter".
+
+To end a search just clear the search box.
+
+================
+PRINTING REPORTS
+================
+To print a report click the printer button on the top-left. A dialog will appear where you have to select the table you want to print. After selecting it, click "Print". Another dialog will appear where you can choose printing settings (printer, landscape or portrait, color or black, page size etc). Click "Print" when you have chosen your settings. Printing will now commence.
+
+If a table is too large to fit in one page, the application will split it across multiple pages and will also add page numbers for convenience.
+
+Note that printing settings persist across printing sessions.
+
+====================
+DATABASE MAINTENANCE
+====================
+The application contains a "Compact Database" utility. You can access it by clicking the gear icon on the top-left.
+
+This utility optimizes and defragments the database so as to use minimum disk space and to increase its performance. It is a good idea to run this utility on a regular basis to ensure maximum database performance.
+
+===========
+TABLE RESET
+===========
+Table Reset is a utility that allows you to reset a table to neutral values.
+
+This is particularly useful when starting a new week and need for example to reset customer attendances or employee schedules.
+
+Note that the reset only affects employee schedules and customer attendances.
+
+===================
+DATABASE ENCRYPTION
+===================
+You can optionally enable encryption for a database file by going to Database Security under Settings & Database Maintenance.
+
+This is the security specification the application utilizes:
+	-- Encryption Algorithm: AES-256
+	-- Password Verification Algorithm: HMAC-SHA-512
+	-- Encrypted Database Integrity Algorithm: HMAC-SHA-256
+
+Encryption also includes automatic integrity validation, to ensure that the encrypted database file is authentic (has not been externally modified/corrupted).
+
+To use encryption you have to set a database password. You will have to enter the password every time you open the encrypted database.
+NOTE: If you lose the password then the database cannot ever be decrypted. For this reason it is STRONGLY recommended that you backup the database file before
+enabling encryption.
+
+Also note that you can disable encryption at any point if no longer desired and you can also change a database password, by going to Database Security.
+
+Keep in mind that the database password you set should be strong in order to counter brute-force attacks. 
+The application utilizes key stretching to make brute-force attacks more difficult, but this does not replace a strong password.
+For maximum security, it is recommended that the password is at least 10 characters long, has both capital
+and lowercase letters, numbers, has at least 1 special symbol, and has no repetitive sequences.
+The combination of a strong password together with key stretching make brute-force attacks infeasible.
+
+==================
+GENERAL USAGE TIPS
+==================
+• The application has an extensive tooltip system. Hovering over most elements will display information about what they do.
+
+• You can sort columns in the grid by clicking the header of the column you need to be sorted. Sorting can be ascending or descending.
+
+• You can manually resize columns by positioning the cursor at the lines that separate column headers and dragging in the appropriate direction.
+
+• You can collapse and expand the tables in the grid.
+
+• The forms for adding new employees and customers have extensive automatic formatting. For example, you don't have to capitalize names as this is done automatically after the form is submitted.
+
+• Make sure to backup the database file before enabling encryption.
+
+• Make sure to set a strong password for encryption. For maximum security, it is recommended that the password is at least 10 characters long, has both capital and lowercase letters, numbers, has at least 1 special symbol, and has no repetitive sequences.

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Employees>
+  <Employee>
+    <Name>Juan Martinez</Name>
+    <Job>Reception</Job>
+    <Address>7262 West Road Union, VA</Address>
+    <Phone>+1 757-893-7389</Phone>
+  </Employee>
+  <Employee>
+    <Name>Andrea Zourou</Name>
+    <Job>Biologist</Job>
+    <Address>8278 Unknown Road, VA</Address>
+    <Phone>+1 757-893-7314</Phone>
+  </Employee>
+  <Employee>
+    <Name>Angelos Angelopoulos</Name>
+    <Job>CEO/Lead Software Engineer</Job>
+    <Address>3921 Petyton Way, VA</Address>
+    <Phone>+1 757-893-7301</Phone>
+  </Employee>
+  <Employee>
+    <Name>Stratos Zouros</Name>
+    <Job>Beast Handling</Job>
+    <Address>8278 Unknown Road, VA</Address>
+    <Phone>+1 757-9392-9319 [WRONG]</Phone>
+  </Employee>
+</Employees>

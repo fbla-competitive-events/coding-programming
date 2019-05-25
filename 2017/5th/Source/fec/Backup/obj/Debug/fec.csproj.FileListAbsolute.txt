@@ -1,0 +1,4 @@
+C:\Users\aange\Documents\Visual Studio 2015\Projects\fec\fec\obj\Debug\fec.AddEmployeeForm.resources
+C:\Users\aange\Documents\Visual Studio 2015\Projects\fec\fec\obj\Debug\fec.fec_Main.resources
+C:\Users\aange\Documents\Visual Studio 2015\Projects\fec\fec\obj\Debug\fec.Properties.Resources.resources
+C:\Users\aange\Documents\Visual Studio 2015\Projects\fec\fec\obj\Debug\fec.csproj.GenerateResource.Cache

@@ -1,0 +1,9 @@
+Date Time : 8/1/2017 8:16:11 PM
+
+Error Details : Value cannot be null.
+Parameter name: oldValue
+
+Stack details :    at System.String.Replace(String oldValue, String newValue)
+   at SyncfusionAssemblyReferenceUI.SyncfusionAssemblyReferenceVM.Migrate(String filePath, String version)
+
+*****************************************************************
