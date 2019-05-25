@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<!-- 
+	Author: Aatif Jiwani
+	Version: 3.0
+	The following code defines the components and its styling characteristics for the Admin Login window
+	The code structure is the same as an HTML document
+	
+	Code was generated with Oracle's JavaFX Scene Builder
+	No pre-defined template was used
+	
+	!! IMPORTANT
+	All naming conventions for the JavaFX components and their purpose are self-explainable. 
+
+ -->
+
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fep.control.AdminLoginController">
+   <children>
+      <Label layoutX="54.0" layoutY="50.0" text="Enter Admin Password" textFill="#b90000">
+         <font>
+            <Font name="Trebuchet MS Bold" size="28.0" />
+         </font></Label>
+      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="185.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="images/fire_small.png" />
+         </image>
+      </ImageView>
+      <JFXButton buttonType="RAISED" layoutX="101.0" layoutY="254.0" onAction="#btnMenu" prefWidth="85.0" ripplerFill="WHITE" style="-fx-background-color: #b90000;" text="Main Menu" textFill="WHITE">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="216.0" layoutY="254.0" onAction="#btnLogin" prefWidth="85.0" ripplerFill="WHITE" style="-fx-background-color: #b90000;" text="Login" textFill="WHITE">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="161.0" layoutY="84.0" text="Status:">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="status" layoutX="217.0" layoutY="84.0" text="N/A">
+         <font>
+            <Font name="Trebuchet MS" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="82.0" layoutY="127.0" text="Enter Manager ID:">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="45.0" layoutY="162.0" text="Enter Admin Username:">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="50.0" layoutY="197.0" text="Enter Admin Password:">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="manager" focusColor="#b90000" layoutX="205.0" layoutY="123.0" />
+      <JFXTextField fx:id="username" focusColor="#b90000" layoutX="205.0" layoutY="158.0" />
+      <JFXPasswordField fx:id="password" focusColor="#b90000" layoutX="205.0" layoutY="193.0" />
+   </children>
+</AnchorPane>

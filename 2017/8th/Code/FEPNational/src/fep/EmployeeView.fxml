@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<!-- 
+	Author: Aatif Jiwani
+	Version: 3.0
+	The following code defines the components and its styling characteristics for the View Employees window
+	The code structure is the same as an HTML document
+	
+	Code was generated with Oracle's JavaFX Scene Builder
+	No pre-defined template was used
+	
+	!! IMPORTANT
+	All naming conventions for the JavaFX components and their purpose are self-explainable. 
+
+ -->
+
+<AnchorPane prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fep.control.ViewEmployeeController">
+   <children>
+      <Label layoutX="289.0" layoutY="55.0" prefWidth="322.0" text="View Current Employees" textFill="#b90000">
+         <font>
+            <Font name="Trebuchet MS Bold" size="28.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="434.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="images/fire_small.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tableEmployee" layoutX="17.0" layoutY="143.0" prefHeight="351.0" prefWidth="861.0">
+        <columns>
+          <TableColumn fx:id="name" prefWidth="95.0" text="Name" />
+          <TableColumn fx:id="id" prefWidth="57.0" text="ID" />
+            <TableColumn fx:id="position" prefWidth="95.0" text="Position" />
+            <TableColumn fx:id="partFull" prefWidth="79.0" text="Part/Full" />
+            <TableColumn fx:id="address" prefWidth="155.0" text="Address" />
+            <TableColumn fx:id="city" prefWidth="119.0" text="City" />
+            <TableColumn fx:id="state" prefWidth="41.0" text="State" />
+            <TableColumn fx:id="postal" prefWidth="55.0" text="Postal" />
+            <TableColumn fx:id="birthdate" prefWidth="79.0" text="Birthdate" />
+            <TableColumn fx:id="hiredate" prefWidth="87.0" text="Hire Date" />
+        </columns>
+      </TableView>
+      <Label layoutX="266.0" layoutY="106.0" text="Filter by Name (Last, First):">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="filterField" focusColor="#b90000" layoutX="444.0" layoutY="102.0" onKeyPressed="#filterReleased" prefHeight="25.0" prefWidth="185.0" promptText="Last, First" />
+      <JFXButton buttonType="RAISED" layoutX="344.0" layoutY="510.0" onAction="#btnMenu" prefHeight="25.0" prefWidth="85.0" ripplerFill="WHITE" style="-fx-background-color: #b90000;" text="Main Menu" textFill="WHITE">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="466.0" layoutY="510.0" onAction="#btnPrint" prefHeight="25.0" prefWidth="85.0" ripplerFill="WHITE" style="-fx-background-color: #b90000;" text="Print" textFill="WHITE">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <Label fx:id="print" layoutX="54.0" layoutY="135.0" text="Please wait. Scaling of table will occur.">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="651.0" layoutY="28.0" text="Status:">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="status" layoutX="703.0" layoutY="28.0" text="N/A">
+         <font>
+            <Font name="Trebuchet MS" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="570.0" layoutY="506.0" text="Do not click Print unless you want to print.">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="570.0" layoutY="524.0" text="Once pressed, printer will auto-create job.">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="status1" layoutX="672.0" layoutY="44.0" text="Print in Landscape Mode">
+         <font>
+            <Font name="Trebuchet MS" size="13.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="10.0" fitWidth="10.0" layoutX="651.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="images/caution_logo.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

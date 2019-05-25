@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<!-- 
+	Author: Aatif Jiwani
+	Version: 3.0
+	The following code defines the components and its styling characteristics for the Main Menu window
+	The code structure is the same as an HTML document
+	
+	Code was generated with Oracle's JavaFX Scene Builder
+	No pre-defined template was used
+	
+	!! IMPORTANT
+	All naming conventions for the JavaFX components and their purpose are self-explainable. 
+
+ -->
+
+<AnchorPane prefHeight="400.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fep.control.MenuController">
+   <children>
+      <Label layoutX="205.0" layoutY="51.0" text="Main Menu" textFill="#b90000">
+         <font>
+            <Font name="Trebuchet MS Bold" size="28.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="262.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="images/fire_small.png" />
+         </image></ImageView>
+      <JFXButton buttonType="RAISED" layoutX="179.0" layoutY="351.0" onAction="#btnExit" prefHeight="26.0" prefWidth="80.0" ripplerFill="WHITE" style="-fx-background-color: #b90000;" text="Exit" textFill="WHITE">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="50.0" layoutY="85.0" onAction="#btnViewEmployee" prefHeight="25.0" prefWidth="170.0" ripplerFill="WHITE" style="-fx-background-color: #c2c2c2;" text="View Current Employees">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="50.0" layoutY="120.0" onAction="#btnViewSchedule" prefHeight="25.0" prefWidth="170.0" ripplerFill="WHITE" style="-fx-background-color: #c2c2c2;" text="View Schedule">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="340.0" layoutY="85.0" onAction="#btnAddEmployee" prefHeight="25.0" prefWidth="170.0" ripplerFill="WHITE" style="-fx-background-color: #c2c2c2;" text="Add Employees">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="340.0" layoutY="120.0" onAction="#btnEditEmployee" prefHeight="25.0" prefWidth="170.0" ripplerFill="WHITE" style="-fx-background-color: #c2c2c2;" text="Edit Employees">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="50.0" layoutY="172.0" onAction="#btnViewAttendance" prefHeight="25.0" prefWidth="170.0" ripplerFill="WHITE" style="-fx-background-color: #c2c2c2;" text="View Weekly Attendance">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="50.0" layoutY="207.0" onAction="#btnEnterAttend" prefHeight="25.0" prefWidth="170.0" ripplerFill="WHITE" style="-fx-background-color: #c2c2c2;" text="Enter Weekly Attendance">
+         <font>
+            <Font name="Trebuchet MS Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="340.0" layoutY="172.0" onAction="#btnCreateSchedule" prefHeight="25.0" prefWidth="170.0" ripplerFill="WHITE" style="-fx-background-color: #c2c2c2;" text="Create Schedule">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="340.0" layoutY="207.0" onAction="#btnUpdateSchedule" prefHeight="25.0" prefWidth="170.0" ripplerFill="WHITE" style="-fx-background-color: #c2c2c2;" text="Edit Schedule">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="40.0" layoutY="259.0" onAction="#btnViewCustomer" prefHeight="25.0" prefWidth="190.0" ripplerFill="WHITE" style="-fx-background-color: #c2c2c2;" text="View Customer Attendance">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="330.0" layoutY="259.0" onAction="#btnEditCustomer" prefHeight="25.0" prefWidth="190.0" ripplerFill="WHITE" style="-fx-background-color: #c2c2c2;" text="Enter Customer Attendance">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="291.0" layoutY="351.0" onAction="#btnSettings" prefHeight="26.0" prefWidth="80.0" ripplerFill="WHITE" style="-fx-background-color: #b90000;" text="Settings" textFill="WHITE">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="446.0" layoutY="14.0" onAction="#btnInstruction" prefWidth="90.0" ripplerFill="WHITE" style="-fx-background-color: #00c8e2;" text="Instructions">
+         <font>
+            <Font name="Trebuchet MS Bold" size="10.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="14.0" layoutY="14.0" onAction="#btnDocument" prefWidth="90.0" ripplerFill="WHITE" style="-fx-background-color: #00c8e2;" text="Documentation">
+         <font>
+            <Font name="Trebuchet MS Bold" size="10.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="353.0" layoutY="306.0" onAction="#btnAddMember" prefHeight="25.0" prefWidth="110.0" ripplerFill="WHITE" style="-fx-background-color: #c2c2c2;" text="Add Member">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="221.0" layoutY="306.0" onAction="#btnEditMember" prefHeight="25.0" prefWidth="110.0" ripplerFill="WHITE" style="-fx-background-color: #c2c2c2;" text="Edit Member">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="87.0" layoutY="306.0" onAction="#btnViewMember" prefHeight="25.0" prefWidth="110.0" ripplerFill="WHITE" style="-fx-background-color: #c2c2c2;" text="View Members">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

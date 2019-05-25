@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<!-- 
+	Author: Aatif Jiwani
+	Version: 3.0
+	The following code defines the components and its styling characteristics for the first greeting window
+	The code structure is the same as an HTML document
+	
+	Code was generated with Oracle's JavaFX Scene Builder
+	No pre-defined template was used
+	
+	!! IMPORTANT
+	All naming conventions for the JavaFX components and their purpose are self-explainable. 
+
+ -->
+
+<AnchorPane prefHeight="300.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fep.control.MainController">
+   <children>
+      <ImageView fitHeight="76.0" fitWidth="76.0" layoutX="195.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="/images/fire.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="84.0" layoutY="43.0" text="Fire Entertainment Plaza" textFill="#b90000">
+         <font>
+            <Font name="Trebuchet MS Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="166.0" layoutY="72.0" text="Web DataBase" textFill="#b90000">
+         <font>
+            <Font name="Trebuchet MS Bold" size="18.0" />
+         </font>
+      </Label>
+      <JFXButton buttonType="RAISED" layoutX="189.0" layoutY="212.0" onAction="#btnContinue" ripplerFill="WHITE" style="-fx-background-color: #b90000;" text="Continue" textFill="WHITE">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font></JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="192.0" layoutY="251.0" onAction="#btnSettings" ripplerFill="WHITE" style="-fx-background-color: #b90000;" text="Settings" textFill="WHITE">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="352.0" layoutY="9.0" onAction="#btnInstruction" prefWidth="90.0" ripplerFill="WHITE" style="-fx-background-color: #00c8e2;" text="Instructions">
+         <font>
+            <Font name="Trebuchet MS Bold" size="10.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="14.0" layoutY="9.0" onAction="#btnDocument" prefWidth="90.0" ripplerFill="WHITE" style="-fx-background-color: #00c8e2;" text="Documentation">
+         <font>
+            <Font name="Trebuchet MS Bold" size="10.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="155.0" layoutY="12.0" text="Status:">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="status" layoutX="200.0" layoutY="12.0" text="N/A">
+         <font>
+            <Font name="Trebuchet MS" size="13.0" />
+         </font>
+      </Label>
+
+   </children>
+</AnchorPane>

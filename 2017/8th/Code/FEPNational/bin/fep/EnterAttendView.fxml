@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<!-- 
+	Author: Aatif Jiwani
+	Version: 3.0
+	The following code defines the components and its styling characteristics for the Manual Enter Weekly Attendance window
+	The code structure is the same as an HTML document
+	
+	Code was generated with Oracle's JavaFX Scene Builder
+	No pre-defined template was used
+	
+	!! IMPORTANT
+	All naming conventions for the JavaFX components and their purpose are self-explainable. 
+
+ -->
+
+<AnchorPane prefHeight="550.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fep.control.EnterAttendController">
+   <children>
+      <Label layoutX="158.0" layoutY="57.0" text="Enter Weekly Attendance" textFill="#b90000">
+         <font>
+            <Font name="Trebuchet MS Bold" size="28.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="309.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="images/fire_small.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="99.0" layoutY="103.0" text="Year">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="year" layoutX="132.0" layoutY="98.0" onAction="#comboYearchange" prefHeight="27.0" prefWidth="102.0" />
+      <Label layoutX="247.0" layoutY="103.0" text="Week # of the Year">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <JFXButton buttonType="RAISED" layoutX="487.0" layoutY="98.0" onAction="#btnSearch" ripplerFill="WHITE" style="-fx-background-color: #b90000;" text="Search" textFill="WHITE">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="34.0" layoutY="140.0" text="Employee">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="employee" layoutX="99.0" layoutY="135.0" onAction="#comboEmployeeChange" prefHeight="27.0" prefWidth="200.0" />
+      <Label layoutX="311.0" layoutY="141.0" text="Position:">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="position" layoutX="367.0" layoutY="141.0" text=" N/A">
+         <font>
+            <Font name="Trebuchet MS" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="491.0" layoutY="141.0" text="Part/Full:">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="partFull" layoutX="550.0" layoutY="141.0" text=" N/A">
+         <font>
+            <Font name="Trebuchet MS" size="13.0" />
+         </font>
+      </Label>
+      <JFXButton buttonType="RAISED" layoutX="270.0" layoutY="503.0" onAction="#btnUpdate" prefHeight="25.0" prefWidth="105.0" ripplerFill="WHITE" style="-fx-background-color: #b90000;" text="Update" textFill="WHITE">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="416.0" layoutY="503.0" onAction="#btnReset" prefHeight="25.0" prefWidth="105.0" ripplerFill="WHITE" style="-fx-background-color: #b90000;" text="Reset" textFill="WHITE">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="123.0" layoutY="503.0" onAction="#btnMenu" prefHeight="25.0" prefWidth="105.0" ripplerFill="WHITE" style="-fx-background-color: #b90000;" text="Main Menu" textFill="WHITE">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="75.0" layoutY="175.0" text="Sunday:">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="74.0" layoutY="210.0" text="Monday:">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="70.0" layoutY="245.0" text="Tuesday:">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="51.0" layoutY="280.0" text="Wednesday:">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="63.0" layoutY="315.0" text="Thursday:">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="80.0" layoutY="350.0" text="Friday:">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="65.0" layoutY="385.0" text="Saturday:">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="141.0" layoutY="175.0" text="FROM">
+         <font>
+            <Font name="Trebuchet MS" size="13.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="sunFrom" layoutX="181.0" layoutY="170.0" prefHeight="27.0" prefWidth="74.0" />
+      <ComboBox fx:id="sunAM" layoutX="262.0" layoutY="170.0" prefHeight="27.0" prefWidth="74.0" />
+      <Label layoutX="373.0" layoutY="175.0" text="TO">
+         <font>
+            <Font name="Trebuchet MS" size="13.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="sunTo" layoutX="398.0" layoutY="170.0" prefHeight="27.0" prefWidth="74.0" />
+      <ComboBox fx:id="sunPM" layoutX="479.0" layoutY="170.0" prefHeight="27.0" prefWidth="74.0" />
+      <Label layoutX="141.0" layoutY="210.0" text="FROM">
+         <font>
+            <Font name="Trebuchet MS" size="13.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="monFrom" layoutX="181.0" layoutY="205.0" prefHeight="27.0" prefWidth="74.0" />
+      <ComboBox fx:id="monAM" layoutX="262.0" layoutY="205.0" prefHeight="27.0" prefWidth="74.0" />
+      <Label layoutX="373.0" layoutY="210.0" text="TO">
+         <font>
+            <Font name="Trebuchet MS" size="13.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="monTo" layoutX="398.0" layoutY="205.0" prefHeight="27.0" prefWidth="74.0" />
+      <ComboBox fx:id="monPM" layoutX="479.0" layoutY="205.0" prefHeight="27.0" prefWidth="74.0" />
+      <Label layoutX="141.0" layoutY="245.0" text="FROM">
+         <font>
+            <Font name="Trebuchet MS" size="13.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="tueFrom" layoutX="181.0" layoutY="240.0" prefHeight="27.0" prefWidth="74.0" />
+      <ComboBox fx:id="tueAM" layoutX="262.0" layoutY="240.0" prefHeight="27.0" prefWidth="74.0" />
+      <Label layoutX="373.0" layoutY="245.0" text="TO">
+         <font>
+            <Font name="Trebuchet MS" size="13.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="tueTo" layoutX="398.0" layoutY="240.0" prefHeight="27.0" prefWidth="74.0" />
+      <ComboBox fx:id="tuePM" layoutX="479.0" layoutY="240.0" prefHeight="27.0" prefWidth="74.0" />
+      <Label layoutX="141.0" layoutY="280.0" text="FROM">
+         <font>
+            <Font name="Trebuchet MS" size="13.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="wedFrom" layoutX="181.0" layoutY="275.0" prefHeight="27.0" prefWidth="74.0" />
+      <ComboBox fx:id="wedAM" layoutX="262.0" layoutY="275.0" prefHeight="27.0" prefWidth="74.0" />
+      <Label layoutX="373.0" layoutY="280.0" text="TO">
+         <font>
+            <Font name="Trebuchet MS" size="13.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="wedTo" layoutX="398.0" layoutY="275.0" prefHeight="27.0" prefWidth="74.0" />
+      <ComboBox fx:id="wedPM" layoutX="479.0" layoutY="275.0" prefHeight="27.0" prefWidth="74.0" />
+      <Label layoutX="141.0" layoutY="315.0" text="FROM">
+         <font>
+            <Font name="Trebuchet MS" size="13.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="thuFrom" layoutX="181.0" layoutY="310.0" prefHeight="27.0" prefWidth="74.0" />
+      <ComboBox fx:id="thuAM" layoutX="262.0" layoutY="310.0" prefHeight="27.0" prefWidth="74.0" />
+      <Label layoutX="373.0" layoutY="315.0" text="TO">
+         <font>
+            <Font name="Trebuchet MS" size="13.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="thuTo" layoutX="398.0" layoutY="310.0" prefHeight="27.0" prefWidth="74.0" />
+      <ComboBox fx:id="thuPM" layoutX="479.0" layoutY="310.0" prefHeight="27.0" prefWidth="74.0" />
+      <Label layoutX="141.0" layoutY="350.0" text="FROM">
+         <font>
+            <Font name="Trebuchet MS" size="13.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="friFrom" layoutX="181.0" layoutY="345.0" prefHeight="27.0" prefWidth="74.0" />
+      <ComboBox fx:id="friAM" layoutX="262.0" layoutY="345.0" prefHeight="27.0" prefWidth="74.0" />
+      <Label layoutX="373.0" layoutY="350.0" text="TO">
+         <font>
+            <Font name="Trebuchet MS" size="13.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="friTo" layoutX="398.0" layoutY="345.0" prefHeight="27.0" prefWidth="74.0" />
+      <ComboBox fx:id="friPM" layoutX="479.0" layoutY="345.0" prefHeight="27.0" prefWidth="74.0" />
+      <Label layoutX="141.0" layoutY="385.0" text="FROM">
+         <font>
+            <Font name="Trebuchet MS" size="13.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="satFrom" layoutX="181.0" layoutY="380.0" prefHeight="27.0" prefWidth="74.0" />
+      <ComboBox fx:id="satAM" layoutX="262.0" layoutY="380.0" prefHeight="27.0" prefWidth="74.0" />
+      <Label layoutX="373.0" layoutY="385.0" text="TO">
+         <font>
+            <Font name="Trebuchet MS" size="13.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="satTo" layoutX="398.0" layoutY="380.0" prefHeight="27.0" prefWidth="74.0" />
+      <ComboBox fx:id="satPM" layoutX="479.0" layoutY="380.0" prefHeight="27.0" prefWidth="74.0" />
+      <Label layoutX="135.0" layoutY="425.0" text="Week Starting Date (MM/DD/YYYY):">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="141.0" layoutY="455.0" text="Week Ending Date (MM/DD/YYYY):">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="weekNumber" layoutX="370.0" layoutY="98.0" prefHeight="27.0" prefWidth="102.0" />
+      <Label layoutX="451.0" layoutY="25.0" text="Status:">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="status" layoutX="500.0" layoutY="25.0" text="N/A">
+         <font>
+            <Font name="Trebuchet MS" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="weekStart" layoutX="359.0" layoutY="425.0" text="N/A">
+         <font>
+            <Font name="Trebuchet MS" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="weekEnd" layoutX="359.0" layoutY="455.0" text="N/A">
+         <font>
+            <Font name="Trebuchet MS" size="13.0" />
+         </font>
+      </Label>
+      <JFXButton buttonType="RAISED" layoutX="30.0" layoutY="20.0" onAction="#btnAuto" prefHeight="26.0" prefWidth="145.0" ripplerFill="WHITE" style="-fx-background-color: #b90000;" text="Auto Clock ON/OF" textFill="WHITE">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

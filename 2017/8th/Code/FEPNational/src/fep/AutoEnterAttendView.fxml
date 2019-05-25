@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<!-- 
+	Author: Aatif Jiwani
+	Version: 3.0
+	The following code defines the components and its styling characteristics for the Main Enter Weekly Attendance window
+	The code structure is the same as an HTML document
+	
+	Code was generated with Oracle's JavaFX Scene Builder
+	No pre-defined template was used
+	
+	!! IMPORTANT
+	All naming conventions for the JavaFX components and their purpose are self-explainable. 
+
+ -->
+
+
+<AnchorPane prefHeight="550.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fep.control.AutoEnterAttendController">
+   <children>
+      <Label layoutX="168.0" layoutY="67.0" text="Enter Weekly Attendance" textFill="#b90000">
+         <font>
+            <Font name="Trebuchet MS Bold" size="28.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="319.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="images/fire_small.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="109.0" layoutY="113.0" text="Year">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="year" layoutX="142.0" layoutY="108.0" onAction="#comboYearChange" prefHeight="27.0" prefWidth="102.0" />
+      <Label layoutX="257.0" layoutY="113.0" text="Week # of the Year">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <JFXButton buttonType="RAISED" layoutX="497.0" layoutY="108.0" onAction="#btnSearch" ripplerFill="WHITE" style="-fx-background-color: #b90000;" text="Search" textFill="WHITE">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="44.0" layoutY="150.0" text="Employee">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="employee" layoutX="109.0" layoutY="145.0" onAction="#comboEmployeeChange" prefHeight="27.0" prefWidth="200.0" />
+      <Label layoutX="321.0" layoutY="151.0" text="Position:">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="position" layoutX="377.0" layoutY="151.0" text=" N/A">
+         <font>
+            <Font name="Trebuchet MS" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="501.0" layoutY="151.0" text="Part/Full:">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="partFull" layoutX="560.0" layoutY="151.0" text=" N/A">
+         <font>
+            <Font name="Trebuchet MS" size="13.0" />
+         </font>
+      </Label>
+      <JFXButton buttonType="RAISED" layoutX="283.0" layoutY="507.0" onAction="#btnMenu" prefHeight="25.0" prefWidth="105.0" ripplerFill="WHITE" style="-fx-background-color: #b90000;" text="Main Menu" textFill="WHITE">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="202.0" layoutY="183.0" text="Week Starting Date (MM/DD/YYYY):">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="208.0" layoutY="213.0" text="Week Ending Date (MM/DD/YYYY):">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="weekNumber" layoutX="380.0" layoutY="108.0" prefHeight="27.0" prefWidth="102.0" />
+      <Label layoutX="461.0" layoutY="35.0" text="Status:">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="status" layoutX="510.0" layoutY="35.0" text="N/A">
+         <font>
+            <Font name="Trebuchet MS" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="weekStart" layoutX="426.0" layoutY="183.0" text="N/A">
+         <font>
+            <Font name="Trebuchet MS" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="weekEnd" layoutX="426.0" layoutY="213.0" text="N/A">
+         <font>
+            <Font name="Trebuchet MS" size="13.0" />
+         </font>
+      </Label>
+      <JFXButton buttonType="RAISED" layoutX="25.0" layoutY="30.0" onAction="#btnManual" prefHeight="26.0" prefWidth="158.0" ripplerFill="WHITE" style="-fx-background-color: #b90000;" text="Enter Manually" textFill="WHITE">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="150.0" layoutY="249.0" onAction="#btnClockOn" prefHeight="26.0" prefWidth="158.0" ripplerFill="WHITE" style="-fx-background-color: #b90000;" text="Clock ON" textFill="WHITE">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="356.0" layoutY="249.0" onAction="#btnClockOf" prefHeight="26.0" prefWidth="158.0" ripplerFill="WHITE" style="-fx-background-color: #b90000;" text="Clock OFF" textFill="WHITE">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="269.0" layoutY="292.0" text="Attendance Activity:">
+         <font>
+            <Font name="Trebuchet MS Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="activity" alignment="TOP_CENTER" layoutX="40.0" layoutY="314.0" maxHeight="175.0" maxWidth="570.0" prefHeight="173.0" prefWidth="568.0" text=" N/A" textAlignment="CENTER">
+         <font>
+            <Font name="Trebuchet MS" size="13.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
