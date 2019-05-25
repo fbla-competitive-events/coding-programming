@@ -1,0 +1,72 @@
+Metadata-Version: 1.1
+Name: pygtail
+Version: 0.7.0
+Summary: Reads log file lines that have not been read.
+Home-page: http://github.com/bgreenlee/pygtail
+Author: Brad Greenlee
+Author-email: brad@footle.org
+License: GPL v2
+Description: pygtail
+        =======
+        
+        A python "port" of `logcheck's logtail2 <http://logcheck.org>`__.
+        
+        Pygtail reads log file lines that have not been read. It will even
+        handle log files that have been rotated.
+        
+        Usage
+        -----
+        
+        From the command line:
+        
+        ::
+        
+            Usage: pygtail.py [options] logfile
+        
+            Print log file lines that have not been read.
+        
+            Options:
+              -h, --help            show this help message and exit
+              -o OFFSET_FILE, --offset-file=OFFSET_FILE
+                                    File to which offset data is written (default:
+                                    <logfile>.offset).
+              -p, --paranoid        Update the offset file every time we read a line
+                                    (as opposed to only when we reach the end of the
+                                    file).
+              -n N, --every-n=N     Update the offset file every N'th time we read a
+                                    line (as opposed to only when we reach the end of
+                                    the file).
+              --no-copytruncate     Don't support copytruncate-style log rotation.
+                                    Instead, if the log file shrinks, print a warning.
+        
+        In your code:
+        
+        .. code:: python
+        
+            from pygtail import Pygtail
+        
+            for line in Pygtail("some.log"):
+                sys.stdout.write(line)
+        
+        Build status
+        ------------
+        
+        |Build Status|
+        
+        .. |Build Status| image:: https://secure.travis-ci.org/bgreenlee/pygtail.png
+           :target: http://travis-ci.org/bgreenlee/pygtail
+        
+Keywords: logging,tail,logtail2
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: System :: Logging
