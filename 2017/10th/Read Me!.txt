@@ -1,0 +1,23 @@
+This folder contains Colin Sanders's submission of the Coding & Programming event for the FBLA Nationals Conference. 
+
+Contents:
+Source Code folder straight from Eclipse, including the libraries and resources.
+Source Code folder containing XPS files, for easy readability on all computers.
+This read-me, for instructions. 
+One Executable, the actual program. 
+
+Instructions:
+Double click to run the executable. If the program takes a second to load completely, it is because it is connecting to a remote server. 
+
+In order to test the employee function, go to the login screen and do: 
+Username: employee_1
+Password: password
+
+In order to test the administrator function, go to the login screen and do: 
+Username: admin
+Password: password
+
+Sources: 
+Icons made by http://www.freepik.com from Flaticon is licensed by Creative Commons BY 3.0, not created by me. 
+All information was found from the Java documentation, the SQL documentation, Stack Overflow, W3Schools.com, and YouTube.
+The data server is currently being hosted by limitunknown.com, shoutouts to them. 
