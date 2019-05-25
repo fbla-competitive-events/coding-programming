@@ -1,0 +1,98 @@
+C:\Users\ejz19\Desktop\Github\Entertainment Elevated\Entertainment Elevanted\bin\Debug\Entertainment Elevated.exe.config
+C:\Users\ejz19\Desktop\Github\Entertainment Elevated\Entertainment Elevanted\obj\Debug\Entertainment Elevated.exe
+C:\Users\ejz19\Desktop\Github\Entertainment Elevated\Entertainment Elevanted\obj\Debug\Entertainment Elevated.pdb
+C:\Users\ejz19\Desktop\Github\Entertainment Elevated\Entertainment Elevated\bin\Debug\Entertainment Elevnted.exe.config
+C:\Users\ejz19\Desktop\Github\Entertainment Elevated\Entertainment Elevated\obj\Debug\Entertainment Elevated.exe
+C:\Users\ejz19\Desktop\Github\Entertainment Elevated\Entertainment Elevated\obj\Debug\Entertainment Elevated.pdb
+C:\Users\1012746\Desktop\Entertainment-Elevated-master\Entertainment-Elevated-master\Entertainment Elevated\bin\Debug\Entertainment Elevanted.exe.config
+C:\Users\1012746\Desktop\Entertainment-Elevated-master\Entertainment-Elevated-master\Entertainment Elevated\obj\Debug\Entertainment Elevanted.exe
+C:\Users\1012746\Desktop\Entertainment-Elevated-master\Entertainment-Elevated-master\Entertainment Elevated\obj\Debug\Entertainment Elevanted.pdb
+C:\Users\1012746\Desktop\Entertainment-Elevated-master\Entertainment-Elevated-master\Entertainment Elevated\bin\Debug\Entertainment Elevanted.exe
+C:\Users\1012746\Desktop\Entertainment-Elevated-master\Entertainment-Elevated-master\Entertainment Elevated\bin\Debug\Entertainment Elevanted.pdb
+C:\Users\1012746\Desktop\Entertainment-Elevated-master\Entertainment-Elevated-master\Entertainment Elevated\obj\Debug\Entertainment Elevated.csprojResolveAssemblyReference.cache
+C:\Users\1012746\Desktop\Entertainment-Elevated-master\Entertainment-Elevated-master\Entertainment Elevated\obj\Debug\Entertainment_Elevanted.EmployeeForm.resources
+C:\Users\1012746\Desktop\Entertainment-Elevated-master\Entertainment-Elevated-master\Entertainment Elevated\obj\Debug\Entertainment_Elevanted.MainForm.resources
+C:\Users\1012746\Desktop\Entertainment-Elevated-master\Entertainment-Elevated-master\Entertainment Elevated\obj\Debug\Entertainment_Elevanted.Properties.Resources.resources
+C:\Users\1012746\Desktop\Entertainment-Elevated-master\Entertainment-Elevated-master\Entertainment Elevated\obj\Debug\Entertainment Elevated.csproj.GenerateResource.Cache
+C:\Users\1012746\Desktop\Entertainment-Elevated-master\Entertainment-Elevated-master\Entertainment Elevated\obj\Debug\Entertainment_Elevanted.ScheduleForm.resources
+C:\Users\1012746\Desktop\Entertainment-Elevated-master\Entertainment-Elevated-master\Entertainment Elevated\obj\Debug\Entertainment_Elevanted.CustomerForm.resources
+C:\Users\1012746\Desktop\Entertainment Elevated\Entertainment Elevated\obj\Debug\Entertainment Elevated.csprojResolveAssemblyReference.cache
+C:\Users\1012746\Desktop\Entertainment Elevated\Entertainment Elevated\obj\Debug\Entertainment Elevated.csproj.GenerateResource.Cache
+C:\Users\1012746\Desktop\Entertainment Elevated\Entertainment Elevated\bin\Debug\Entertainment Elevated.exe.config
+C:\Users\1012746\Desktop\Entertainment Elevated\Entertainment Elevated\obj\Debug\Entertainment Elevated.exe
+C:\Users\1012746\Desktop\Entertainment Elevated\Entertainment Elevated\obj\Debug\Entertainment Elevated.pdb
+C:\Users\1012746\Desktop\Entertainment Elevated\Entertainment Elevated\bin\Debug\Entertainment Elevated.exe
+C:\Users\1012746\Desktop\Entertainment Elevated\Entertainment Elevated\bin\Debug\Entertainment Elevated.pdb
+C:\Users\1012746\Desktop\Entertainment Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.Properties.Resources.resources
+C:\Users\1012746\Desktop\Entertainment Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.CustomerForm.resources
+C:\Users\1012746\Desktop\Entertainment Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.EmployeeForm.resources
+C:\Users\1012746\Desktop\Entertainment Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.MainForm.resources
+C:\Users\1012746\Desktop\Entertainment Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.ScheduleForm.resources
+C:\Users\1012746\Desktop\Entertainment Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.GeneralForm.resources
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\bin\Debug\Entertainment Elevated.exe.config
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\bin\Debug\Entertainment Elevated.exe
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\bin\Debug\Entertainment Elevated.pdb
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.CustomerForm.resources
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.EmployeeForm.resources
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.GeneralForm.resources
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.Properties.Resources.resources
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.ScheduleForm.resources
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment Elevated.csproj.GenerateResource.Cache
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment Elevated.exe
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment Elevated.pdb
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.AddEmployeeForm.resources
+C:\Users\1012746\Desktop\Entertainment Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.AddEmployeeForm.resources
+C:\Users\1012746\Desktop\Entertainment-Elevated\Entertainment Elevated\bin\Debug\Entertainment Elevated.exe.config
+C:\Users\1012746\Desktop\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment Elevated.exe
+C:\Users\1012746\Desktop\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment Elevated.pdb
+C:\Users\1012746\Desktop\Entertainment-Elevated\Entertainment Elevated\bin\Debug\Entertainment Elevated.exe
+C:\Users\1012746\Desktop\Entertainment-Elevated\Entertainment Elevated\bin\Debug\Entertainment Elevated.pdb
+C:\Users\1012746\Desktop\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment Elevated.csprojResolveAssemblyReference.cache
+C:\Users\1012746\Desktop\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.AddEmployeeForm.resources
+C:\Users\1012746\Desktop\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.CustomerForm.resources
+C:\Users\1012746\Desktop\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.EmployeeForm.resources
+C:\Users\1012746\Desktop\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.GeneralForm.resources
+C:\Users\1012746\Desktop\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.MainForm.resources
+C:\Users\1012746\Desktop\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.Properties.Resources.resources
+C:\Users\1012746\Desktop\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.ScheduleForm.resources
+C:\Users\1012746\Desktop\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment Elevated.csproj.GenerateResource.Cache
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.AddCustomerForm.resources
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\Entertainment Elevated\bin\Debug\Entertainment Elevated.exe.config
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\Entertainment Elevated\obj\Debug\Entertainment Elevated.exe
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\Entertainment Elevated\obj\Debug\Entertainment Elevated.pdb
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\Entertainment Elevated\bin\Debug\Entertainment Elevated.exe
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\Entertainment Elevated\bin\Debug\Entertainment Elevated.pdb
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\Entertainment Elevated\obj\Debug\Entertainment Elevated.csprojResolveAssemblyReference.cache
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.AddCustomerForm.resources
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.AddEmployeeForm.resources
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.CustomerForm.resources
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.EmployeeForm.resources
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.GeneralForm.resources
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.MainForm.resources
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.Properties.Resources.resources
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.ScheduleForm.resources
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\Entertainment Elevated\obj\Debug\Entertainment Elevated.csproj.GenerateResource.Cache
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.CustomerDataForm.resources
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment Elevated.csprojResolveAssemblyReference.cache
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.DeleteEmployeeForm.resources
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.HelpForm.resources
+C:\Users\ejz19\Desktop\Entertainment-Elevated\Entertainment Elevated\bin\Debug\Entertainment Elevated.exe.config
+C:\Users\ejz19\Desktop\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment Elevated.exe
+C:\Users\ejz19\Desktop\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment Elevated.pdb
+C:\Users\ejz19\Desktop\Entertainment-Elevated\Entertainment Elevated\bin\Debug\Entertainment Elevated.exe
+C:\Users\ejz19\Desktop\Entertainment-Elevated\Entertainment Elevated\bin\Debug\Entertainment Elevated.pdb
+C:\Users\ejz19\Desktop\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment Elevated.csprojResolveAssemblyReference.cache
+C:\Users\ejz19\Desktop\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.AddCustomerForm.resources
+C:\Users\ejz19\Desktop\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.AddEmployeeForm.resources
+C:\Users\ejz19\Desktop\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.CustomerDataForm.resources
+C:\Users\ejz19\Desktop\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.CustomerForm.resources
+C:\Users\ejz19\Desktop\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.DeleteEmployeeForm.resources
+C:\Users\ejz19\Desktop\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.EmployeeForm.resources
+C:\Users\ejz19\Desktop\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.GeneralForm.resources
+C:\Users\ejz19\Desktop\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.HelpForm.resources
+C:\Users\ejz19\Desktop\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.MainForm.resources
+C:\Users\ejz19\Desktop\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.Properties.Resources.resources
+C:\Users\ejz19\Desktop\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.ScheduleForm.resources
+C:\Users\ejz19\Desktop\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment Elevated.csproj.GenerateResource.Cache
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.CustomerDataForm.resources
+C:\Users\ejz19\Desktop\Github\Entertainment-Elevated\Entertainment Elevated\obj\Debug\Entertainment_Elevated.MenuForm.resources

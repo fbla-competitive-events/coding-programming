@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<ArrayOfEmployee xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Employee>
+    <FirstName>Eric</FirstName>
+    <LastName>Zhu</LastName>
+    <Email>ejz1999@yahoo.com</Email>
+    <PhoneNumber>(425) 443-6373</PhoneNumber>
+    <Position>Boss</Position>
+    <Payrate>10.50</Payrate>
+    <Shifts>
+      <Shift>
+        <StartTime>2017-05-06T09:00:00</StartTime>
+        <EndTime>2017-05-06T17:00:00</EndTime>
+      </Shift>
+      <Shift>
+        <StartTime>2017-05-05T09:00:00</StartTime>
+        <EndTime>2017-05-05T17:00:00</EndTime>
+      </Shift>
+      <Shift>
+        <StartTime>2017-05-07T09:00:00</StartTime>
+        <EndTime>2017-05-07T17:00:00</EndTime>
+      </Shift>
+      <Shift>
+        <StartTime>2017-05-08T09:21:00</StartTime>
+        <EndTime>2017-05-08T17:12:00</EndTime>
+      </Shift>
+      <Shift>
+        <StartTime>2017-05-09T09:00:00</StartTime>
+        <EndTime>2017-05-09T15:00:00</EndTime>
+      </Shift>
+      <Shift>
+        <StartTime>2017-05-04T09:00:00</StartTime>
+        <EndTime>2017-05-04T17:00:00</EndTime>
+      </Shift>
+      <Shift>
+        <StartTime>0001-01-01T00:00:00</StartTime>
+        <EndTime>0001-01-01T00:00:00</EndTime>
+      </Shift>
+    </Shifts>
+  </Employee>
+</ArrayOfEmployee>
