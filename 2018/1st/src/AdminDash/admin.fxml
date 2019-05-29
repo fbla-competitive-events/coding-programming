@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="ar" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminDash.AdminController">
+   <children>
+      <TabPane prefHeight="721.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Users">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox layoutX="280.0" prefHeight="682.0" prefWidth="994.0">
+                           <children>
+                               <HBox alignment="CENTER" prefHeight="59.0" prefWidth="994.0">
+                                 <children>
+                                    <Label text="Search:">
+                                       <HBox.margin>
+                                          <Insets right="20.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField fx:id="searchbox" onAction="#addUserToSearch" onKeyPressed="#addUserToSearch" prefHeight="31.0" prefWidth="371.0" />
+                                    <Button mnemonicParsing="false" onAction="#userPrint" text="Print Table">
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children></HBox>
+                              <TableView fx:id="usertable" editable="true" prefHeight="572.0" prefWidth="994.0" tableMenuButtonVisible="true">
+                                <columns>
+                                  <TableColumn fx:id="fnamecol" prefWidth="122.0" text="First Name" />
+                                  <TableColumn fx:id="lnamecol" prefWidth="123.0" text="Last Name" />
+                                    <TableColumn fx:id="idcol" minWidth="0.0" prefWidth="88.0" text="ID" visible="false" />
+                                    <TableColumn fx:id="homeroomcol" prefWidth="101.0" text="Homeroom" />
+                                    <TableColumn fx:id="usernamecol" minWidth="7.0" prefWidth="114.0" text="Username" visible="false" />
+                                    <TableColumn fx:id="passwordcol" minWidth="0.0" prefWidth="117.0" text="Password" visible="false" />
+                                    <TableColumn fx:id="usertypecol" prefWidth="83.0" text="User Type" visible="false" />
+                                    <TableColumn fx:id="finescol" prefWidth="67.0" text="Fines" visible="false" />
+                                    <TableColumn fx:id="bookscol" prefWidth="352.0" text="Books" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="683.0" prefWidth="280.0">
+                           <children>
+                              <TabPane prefHeight="639.0" prefWidth="280.0" tabClosingPolicy="UNAVAILABLE">
+                                <tabs>
+                                  <Tab text="Add User">
+                                    <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                             <children>
+                                                <VBox alignment="TOP_CENTER" layoutX="1.0" layoutY="-2.0" prefHeight="519.0" prefWidth="278.0">
+                                                   <children>
+                                                      <TextField fx:id="firstname" alignment="TOP_CENTER" promptText="First Name">
+                                                         <VBox.margin>
+                                                            <Insets left="15.0" right="15.0" top="15.0" />
+                                                         </VBox.margin>
+                                                      </TextField>
+                                                      <TextField fx:id="lastname" alignment="TOP_CENTER" promptText="Last Name">
+                                                         <VBox.margin>
+                                                            <Insets left="15.0" right="15.0" top="15.0" />
+                                                         </VBox.margin>
+                                                      </TextField>
+                                                      <TextField fx:id="ID" alignment="TOP_CENTER" promptText="ID">
+                                                         <VBox.margin>
+                                                            <Insets left="15.0" right="15.0" top="15.0" />
+                                                         </VBox.margin>
+                                                      </TextField>
+                                                      <TextField fx:id="user" alignment="TOP_CENTER" promptText="Username">
+                                                         <VBox.margin>
+                                                            <Insets left="15.0" right="15.0" top="15.0" />
+                                                         </VBox.margin>
+                                                      </TextField>
+                                                      <TextField fx:id="pw" alignment="TOP_CENTER" promptText="Password">
+                                                         <VBox.margin>
+                                                            <Insets left="15.0" right="15.0" top="15.0" />
+                                                         </VBox.margin>
+                                                      </TextField>
+                                                      <TextField fx:id="homeroomfield" alignment="TOP_CENTER" layoutX="25.0" layoutY="209.0" promptText="Homeroom Teacher">
+                                                         <VBox.margin>
+                                                            <Insets left="15.0" right="15.0" top="15.0" />
+                                                         </VBox.margin>
+                                                      </TextField>
+                                                      <ComboBox fx:id="combobox" prefHeight="31.0" prefWidth="172.0" promptText="Admin/Student">
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </ComboBox>
+                                                      <Button alignment="TOP_CENTER" mnemonicParsing="false" onAction="#addStudent" prefHeight="31.0" prefWidth="184.0" text="Add User">
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </Button>
+                                                      <Button mnemonicParsing="false" onAction="#loadUserData" text="Update Table">
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </Button>
+                                                      <Label fx:id="adduserlabel">
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </AnchorPane>
+                                    </content>
+                                  </Tab>
+                                  <Tab text="Remove User">
+                                    <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                             <children>
+                                                <VBox alignment="TOP_CENTER" prefHeight="517.0" prefWidth="282.0">
+                                                   <children>
+                                                      <TextField fx:id="removeuserfield" alignment="TOP_CENTER" promptText="User ID">
+                                                         <VBox.margin>
+                                                            <Insets left="15.0" right="15.0" top="15.0" />
+                                                         </VBox.margin>
+                                                      </TextField>
+                                                      <Button fx:id="removeuserbutton" mnemonicParsing="false" onAction="#removeUser" text="Remove User">
+                                                         <VBox.margin>
+                                                            <Insets left="15.0" right="15.0" top="15.0" />
+                                                         </VBox.margin>
+                                                      </Button>
+                                                   </children>
+                                                </VBox>
+                                             </children></AnchorPane>
+                                    </content>
+                                  </Tab>
+                                    <Tab text="Change User Info">
+                                       <content>
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                             <children>
+                                                <VBox alignment="TOP_CENTER" layoutX="-2.0" layoutY="-1.0" prefHeight="597.0" prefWidth="284.0">
+                                                   <children>
+                                                      <TextField fx:id="userchangefield" alignment="TOP_CENTER" promptText="User ID">
+                                                         <VBox.margin>
+                                                            <Insets left="15.0" right="15.0" top="15.0" />
+                                                         </VBox.margin>
+                                                      </TextField>
+                                                      <Button fx:id="changeuserbutton" mnemonicParsing="false" onAction="#changeUser" text="Change User">
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </Button>
+                                                      <Label fx:id="userchangelabel">
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <VBox fx:id="visible1" alignment="TOP_CENTER" prefHeight="490.0" prefWidth="284.0" visible="false">
+                                                         <children>
+                                                            <TextField fx:id="changefn" promptText="First Name">
+                                                               <VBox.margin>
+                                                                  <Insets left="15.0" right="15.0" />
+                                                               </VBox.margin>
+                                                            </TextField>
+                                                            <TextField fx:id="changeln" promptText="Last Name">
+                                                               <VBox.margin>
+                                                                  <Insets left="15.0" right="15.0" top="15.0" />
+                                                               </VBox.margin>
+                                                            </TextField>
+                                                            <TextField fx:id="changeun" promptText="Username">
+                                                               <VBox.margin>
+                                                                  <Insets left="15.0" right="15.0" top="15.0" />
+                                                               </VBox.margin>
+                                                            </TextField>
+                                                            <TextField fx:id="changepw" promptText="Password">
+                                                               <VBox.margin>
+                                                                  <Insets left="15.0" right="15.0" top="15.0" />
+                                                               </VBox.margin>
+                                                            </TextField>
+                                                            <TextField fx:id="changeut" promptText="Usertype">
+                                                               <VBox.margin>
+                                                                  <Insets left="15.0" right="15.0" top="15.0" />
+                                                               </VBox.margin>
+                                                            </TextField>
+                                                            <TextField fx:id="changehr" promptText="Homeroom">
+                                                               <VBox.margin>
+                                                                  <Insets left="15.0" right="15.0" top="15.0" />
+                                                               </VBox.margin>
+                                                            </TextField>
+                                                            <TextArea fx:id="changeusercom" prefHeight="151.0" prefWidth="233.0" promptText="Comments/Tags">
+                                                               <VBox.margin>
+                                                                  <Insets left="15.0" right="15.0" top="15.0" />
+                                                               </VBox.margin>
+                                                            </TextArea>
+                                                            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <Button mnemonicParsing="false" onAction="#finalizeChange" text="Finalize">
+                                                                     <HBox.margin>
+                                                                        <Insets left="10.0" right="10.0" />
+                                                                     </HBox.margin>
+                                                                  </Button>
+                                                                  <Button mnemonicParsing="false" text="Stop">
+                                                                     <HBox.margin>
+                                                                        <Insets left="10.0" right="10.0" />
+                                                                     </HBox.margin>
+                                                                  </Button>
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </VBox>
+                                             </children></AnchorPane>
+                                       </content>
+                                    </Tab>
+                                </tabs>
+                              </TabPane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Library">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="683.0" prefWidth="280.0">
+                           <children>
+                              <TabPane prefHeight="697.0" prefWidth="280.0" tabClosingPolicy="UNAVAILABLE">
+                                <tabs>
+                                  <Tab text="Add Book">
+                                    <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                             <children>
+                                                <VBox alignment="TOP_CENTER" layoutY="-8.0" prefHeight="651.0" prefWidth="283.0">
+                                                   <children>
+                                                      <TextField fx:id="titlefield" promptText="Title">
+                                                         <VBox.margin>
+                                                            <Insets left="15.0" right="15.0" top="15.0" />
+                                                         </VBox.margin>
+                                                      </TextField>
+                                                      <TextField fx:id="authorfield" promptText="Author">
+                                                         <VBox.margin>
+                                                            <Insets left="15.0" right="15.0" top="15.0" />
+                                                         </VBox.margin>
+                                                      </TextField>
+                                                      <TextField fx:id="serialfield" promptText="Serial">
+                                                         <VBox.margin>
+                                                            <Insets left="15.0" right="15.0" top="15.0" />
+                                                         </VBox.margin>
+                                                      </TextField>
+                                                      <TextArea fx:id="commentsarea" prefHeight="200.0" prefWidth="200.0" promptText="Comments/Hour">
+                                                         <VBox.margin>
+                                                            <Insets left="15.0" right="15.0" top="15.0" />
+                                                         </VBox.margin>
+                                                      </TextArea>
+                                                      <Button mnemonicParsing="false" onAction="#addBook" text="Add Book">
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </Button>
+                                                      <Label fx:id="addbooklabel">
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                             </children></AnchorPane>
+                                    </content>
+                                  </Tab>
+                                  <Tab text="Remove Book">
+                                    <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                             <children>
+                                                <VBox alignment="TOP_CENTER" prefHeight="639.0" prefWidth="280.0">
+                                                   <children>
+                                                      <TextField fx:id="removebookfield" promptText="Book Serial">
+                                                         <VBox.margin>
+                                                            <Insets left="15.0" right="15.0" top="15.0" />
+                                                         </VBox.margin>
+                                                      </TextField>
+                                                      <Button mnemonicParsing="false" onAction="#removeBook" text="Remove Book">
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </Button>
+                                                   </children>
+                                                </VBox>
+                                             </children></AnchorPane>
+                                    </content>
+                                  </Tab>
+                                    <Tab text="Checkout/Check-in">
+                                       <content>
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                             <children>
+                                                <VBox alignment="TOP_CENTER" prefHeight="639.0" prefWidth="280.0">
+                                                   <children>
+                                                      <TextField fx:id="checkoutserial" promptText="Book Serial">
+                                                         <VBox.margin>
+                                                            <Insets left="15.0" right="15.0" top="15.0" />
+                                                         </VBox.margin>
+                                                      </TextField>
+                                                      <TextField fx:id="checkoutid" promptText="User ID">
+                                                         <VBox.margin>
+                                                            <Insets left="15.0" right="15.0" top="15.0" />
+                                                         </VBox.margin>
+                                                      </TextField>
+                                                      <Button mnemonicParsing="false" onAction="#checkout" text="Checkout">
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </Button>
+                                                      <Label fx:id="checkoutlabel">
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <HBox alignment="TOP_CENTER" prefHeight="34.0" prefWidth="280.0">
+                                                         <children>
+                                                            <Button fx:id="confirmbutton" mnemonicParsing="false" onAction="#chooseContinue" text="Confirm" visible="false" />
+                                                            <Button fx:id="cancelbutton" mnemonicParsing="false" onAction="#cancel" text="Cancel" visible="false">
+                                                               <HBox.margin>
+                                                                  <Insets left="15.0" />
+                                                               </HBox.margin>
+                                                            </Button>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <TextField fx:id="checkinserial" promptText="Book Serial">
+                                                         <VBox.margin>
+                                                            <Insets left="15.0" right="15.0" top="100.0" />
+                                                         </VBox.margin>
+                                                      </TextField>
+                                                      <Button mnemonicParsing="false" onAction="#checkin" text="Check-in">
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </Button>
+                                                      <Label fx:id="checkinlabel">
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </Tab>
+                                    <Tab text="Change Comments">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                             <children>
+                                                <VBox alignment="TOP_CENTER" layoutX="-1.0" layoutY="-2.0" prefHeight="645.0" prefWidth="283.0">
+                                                   <children>
+                                                      <TextField fx:id="commentchangeserial" alignment="TOP_CENTER" promptText="Book Serial">
+                                                         <VBox.margin>
+                                                            <Insets left="15.0" right="15.0" top="15.0" />
+                                                         </VBox.margin>
+                                                      </TextField>
+                                                      <TextArea fx:id="commentchangearea" prefHeight="200.0" prefWidth="200.0" promptText="New Comments">
+                                                         <VBox.margin>
+                                                            <Insets left="15.0" right="15.0" top="15.0" />
+                                                         </VBox.margin>
+                                                      </TextArea>
+                                                      <Button mnemonicParsing="false" onAction="#changeComments" text="Change">
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </Button>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </AnchorPane>
+                                      </content>
+                                    </Tab>
+                                </tabs>
+                              </TabPane>
+                           </children>
+                        </VBox>
+                        <VBox layoutX="280.0" prefHeight="682.0" prefWidth="994.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="59.0" prefWidth="994.0">
+                                 <children>
+                                    <Label text="Search:">
+                                       <HBox.margin>
+                                          <Insets right="20.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField fx:id="searchbox2" onAction="#addBookToSearch" onKeyPressed="#addBookToSearch" prefHeight="31.0" prefWidth="371.0" />
+                                    <Button mnemonicParsing="false" onAction="#bookPrint" text="Print Table">
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <TableView fx:id="booktable" editable="true" prefHeight="597.0" prefWidth="994.0" tableMenuButtonVisible="true">
+                                <columns>
+                                  <TableColumn fx:id="titlecol" prefWidth="183.0" text="Title" />
+                                  <TableColumn fx:id="authorcol" prefWidth="122.0" text="Author" />
+                                    <TableColumn fx:id="serialcol" prefWidth="107.0" text="Serial" />
+                                    <TableColumn fx:id="availablecol" prefWidth="95.0" text="Availability" />
+                                    <TableColumn fx:id="ownercol" prefWidth="91.0" text="Owner" />
+                                    <TableColumn fx:id="holdcol" prefWidth="78.0" text="On Hold" />
+                                    <TableColumn fx:id="commentcol" prefWidth="195.0" text="Comments/Genres" />
+                                    <TableColumn fx:id="outdatecol" prefWidth="122.0" text="Out Date" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </VBox>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Quick Reports">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="681.0" prefWidth="1280.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="115.0" prefWidth="1280.0">
+                                 <children>
+                                    <Button fx:id="reportall" mnemonicParsing="false" onAction="#allOverdue" text="Show All Overdue Users">
+                                       <HBox.margin>
+                                          <Insets right="15.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button fx:id="reportbyhomeroom" mnemonicParsing="false" onAction="#showTeachSearch" text="Show Overdue Users by Homeroom" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="125.0" prefWidth="1280.0">
+                                 <children>
+                                    <TextField fx:id="reportsearch" promptText="Teacher (Case Sensistive)" visible="false">
+                                       <HBox.margin>
+                                          <Insets left="15.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <Button fx:id="reportsearchbutton" mnemonicParsing="false" onAction="#overdueByHomeroom" text="Search" visible="false">
+                                       <HBox.margin>
+                                          <Insets left="15.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="114.0" prefWidth="1280.0">
+                                 <children>
+                                    <Button fx:id="reportprint" mnemonicParsing="false" onAction="#printQuick" text="Print Report" />
+                                 </children>
+                              </HBox>
+                              <TableView fx:id="reporttable" editable="true" prefHeight="580.0" prefWidth="1280.0" tableMenuButtonVisible="true">
+                                <columns>
+                                  <TableColumn fx:id="reportfn" prefWidth="178.0" text="First Name" />
+                                  <TableColumn fx:id="reportln" prefWidth="213.0" text="Last Name" />
+                                    <TableColumn fx:id="reportid" prefWidth="128.0" text="User ID" />
+                                    <TableColumn fx:id="reporthomeroom" prefWidth="144.0" text="Homeroom" />
+                                    <TableColumn fx:id="reportfines" prefWidth="86.0" text="Fines" />
+                                    <TableColumn fx:id="reportbooks" prefWidth="530.0" text="Books" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Custom Reports">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TabPane prefHeight="682.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE">
+                          <tabs>
+                            <Tab text="User Reports">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox prefHeight="644.0" prefWidth="1280.0">
+                                             <children>
+                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <TextField fx:id="userreportfield" />
+                                                      <Button fx:id="userreportsearch" mnemonicParsing="false" onAction="#userReportSearch" text="Search">
+                                                         <HBox.margin>
+                                                            <Insets left="15.0" />
+                                                         </HBox.margin>
+                                                      </Button>
+                                                      <Label text="By:">
+                                                         <HBox.margin>
+                                                            <Insets left="15.0" right="15.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                      <ComboBox fx:id="userreportbox" prefWidth="150.0" promptText="All" />
+                                                      <Button mnemonicParsing="false" onAction="#userReportPrint" text="Print Table">
+                                                         <HBox.margin>
+                                                            <Insets left="150.0" />
+                                                         </HBox.margin>
+                                                      </Button>
+                                                   </children>
+                                                </HBox>
+                                                <TableView fx:id="userreporttable" editable="true" prefHeight="585.0" prefWidth="1280.0" tableMenuButtonVisible="true">
+                                                  <columns>
+                                                    <TableColumn fx:id="userreportfn" prefWidth="103.0" text="First Name" />
+                                                    <TableColumn fx:id="userreportln" prefWidth="116.0" text="Last Name" />
+                                                      <TableColumn fx:id="userreportid" prefWidth="116.0" text="User ID" />
+                                                      <TableColumn fx:id="userreportusername" prefWidth="103.0" text="Username" />
+                                                      <TableColumn fx:id="userreportpassword" prefWidth="103.0" text="Password" />
+                                                      <TableColumn fx:id="userreportusertype" prefWidth="103.0" text="User Type" />
+                                                      <TableColumn fx:id="userreporthomeroom" prefWidth="103.0" text="Homeroom" />
+                                                      <TableColumn fx:id="userreportcomments" prefWidth="103.0" text="Comments" />
+                                                      <TableColumn fx:id="userreportfines" prefWidth="103.0" text="Fines" />
+                                                      <TableColumn fx:id="userreportbooks" prefWidth="195.0" text="Books" />
+                                                      <TableColumn fx:id="userreportbookcount" prefWidth="131.0" text="Book Count" />
+                                                  </columns>
+                                                </TableView>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                            <Tab text="Library Reports">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox prefHeight="644.0" prefWidth="1280.0">
+                                             <children>
+                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <TextField fx:id="libraryreportfield" />
+                                                      <Button fx:id="libraryreportsearch" mnemonicParsing="false" onAction="#libraryReportSearch" text="Search">
+                                                         <HBox.margin>
+                                                            <Insets left="15.0" />
+                                                         </HBox.margin>
+                                                      </Button>
+                                                      <Label text="By:">
+                                                         <HBox.margin>
+                                                            <Insets left="15.0" right="15.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                      <ComboBox fx:id="libraryreportbox" prefWidth="150.0" promptText="All" />
+                                                      <Button mnemonicParsing="false" onAction="#libraryReportPrint" text="Print Table">
+                                                         <HBox.margin>
+                                                            <Insets left="150.0" />
+                                                         </HBox.margin>
+                                                      </Button>
+                                                   </children>
+                                                </HBox>
+                                                <TableView fx:id="libraryreporttable" editable="true" prefHeight="585.0" prefWidth="1280.0" tableMenuButtonVisible="true">
+                                                   <columns>
+                                                      <TableColumn fx:id="libraryreporttitle" prefWidth="283.0" text="Title" />
+                                                      <TableColumn fx:id="libraryreportauthor" prefWidth="146.0" text="Author" />
+                                                      <TableColumn fx:id="libraryreportserial" prefWidth="143.0" text="Serial" />
+                                                      <TableColumn fx:id="libraryreportavailable" prefWidth="84.0" text="Available" />
+                                                      <TableColumn fx:id="libraryreportcomments" prefWidth="283.0" text="Comments/Genres" />
+                                                      <TableColumn fx:id="libraryreportownerid" prefWidth="117.0" text="Owner ID" />
+                                                      <TableColumn fx:id="libraryreporthold" prefWidth="84.0" text="On Hold" />
+                                                      <TableColumn fx:id="libraryreportoutdate" prefWidth="139.0" text="Outdate" />
+                                                   </columns>
+                                                </TableView>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                          </tabs>
+                        </TabPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
