@@ -1,0 +1,201 @@
+package application;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.EnumSet;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.HBox;
+
+ 
+
+
+//Employee information including shifts(AM vs PM) and Scheduled Date
+public class Employee_Shift_SchedulerModel {
+	public static enum EmployeesScheduleShift {
+	    AM,
+	    PM,
+	    NONE,
+		BOTH;
+
+	    public String toString() {
+	        return super.toString().toLowerCase();
+	    };
+	}
+	public static class RadioButtonCell<S,T extends Enum<T>> extends TableCell<S,T>{
+
+        private EnumSet<T> enumeration;
+
+        public RadioButtonCell(EnumSet<T> enumeration) {
+            this.enumeration = enumeration;
+        }
+
+        @Override
+        protected void updateItem(T item, boolean empty)
+        {
+            super.updateItem(item, empty);
+            if (!empty) 
+            {
+                // gui setup
+                HBox hb = new HBox(7);
+                hb.setAlignment(Pos.CENTER);
+                final ToggleGroup group = new ToggleGroup();
+
+                // create a radio button for each 'element' of the enumeration
+                for (Enum<T> enumElement : enumeration) {
+                    RadioButton radioButton = new RadioButton(enumElement.toString());
+                    radioButton.setUserData(enumElement);
+                    radioButton.setToggleGroup(group);
+                    hb.getChildren().add(radioButton);
+                    if (enumElement.equals(item)) {
+                        radioButton.setSelected(true);
+                    }
+                }
+
+                // issue events on change of the selected radio button
+                group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+
+                    @SuppressWarnings("unchecked")
+
+					@Override
+					public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue,
+							Toggle newValue) {
+						getTableView().edit(getIndex(), getTableColumn());
+                        RadioButtonCell.this.commitEdit((T) newValue.getUserData());
+					}
+                });
+                setGraphic(hb);
+            } 
+        }
+    }
+	
+	private final SimpleIntegerProperty EmployeesID;
+	private final SimpleStringProperty EmployeesName;
+	private final SimpleStringProperty EmployeesScheduleDate;
+	private final SimpleObjectProperty<EmployeesScheduleShift> EmployeesScheduleShift;
+	
+	Connection connection;
+	
+    private Statement statement;
+    private ResultSet resultSet;
+    
+    //Constructors
+    public Employee_Shift_SchedulerModel(int EmployeesID, String Date, String Shift, String Name){
+
+		this.EmployeesID = new SimpleIntegerProperty(EmployeesID);
+		this.EmployeesScheduleDate = new SimpleStringProperty(Date);
+		this.EmployeesScheduleShift = new SimpleStringProperty(Shift);
+		this.EmployeesName = new SimpleStringProperty(Name);
+	}
+    
+    public Employee_Shift_SchedulerModel(int EmployeesID, String Name){
+
+		this.EmployeesID = new SimpleIntegerProperty(EmployeesID);
+		this.EmployeesScheduleDate = new SimpleStringProperty("");
+		this.EmployeesScheduleShift = new SimpleStringProperty("");
+		this.EmployeesName = new SimpleStringProperty(Name);
+	}
+	
+	public Employee_Shift_SchedulerModel(){
+
+		this.EmployeesID = new SimpleIntegerProperty(0);
+		this.EmployeesName = new SimpleStringProperty("");
+		this.EmployeesScheduleDate = new SimpleStringProperty("");
+		this.EmployeesScheduleShift = new SimpleStringProperty("");
+	}
+	
+	
+	//Adds new Employees to Observable List to eventually be loaded into the table
+	public ObservableList getDataFromSqlAndAddToObservableList(String query){
+        ObservableList<Employee_Shift_SchedulerModel> employeeTableData = FXCollections.observableArrayList();
+        try {
+        	connection = SqliteConnection.Connector();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(query); 
+           
+            while(resultSet.next()){
+                employeeTableData.add(new Employee_Shift_SchedulerModel(
+                        resultSet.getInt("ID"),
+                        resultSet.getString("First_Name")+ " "+
+                        resultSet.getString("Last_Name")
+                        ));
+            }
+            
+            statement.close();
+            resultSet.close();
+            connection.close();
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return employeeTableData;
+
+    }
+	
+	/*//Add new Employees to the Employees_Schedule Table with their scheduler information
+	public ObservableList getDataFromSqlAndAddToObservableListSchedule(String query){
+		ObservableList<Employee_Shift_SchedulerModel> employeeTableData = FXCollections.observableArrayList();
+        try {
+        	connection = SqliteConnection.Connector();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(query); 
+           
+            while(resultSet.next()){
+                employeeTableData.add(
+                        resultSet.getInt("ID"), resultSet.getString("First_Name") +" "+
+                        resultSet.getString("Last_Name")
+                        );
+            }
+            
+            statement.close();
+            resultSet.close();
+            connection.close();
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return employeeTableData;
+
+    }
+    */
+
+		// getters and setters
+	    public Integer getEmployeesID() {
+	        return EmployeesID.get();
+	    }
+
+	    public SimpleIntegerProperty EmployeesID() {
+	        return EmployeesID();
+	    }
+
+	    public void setEmployeesID(Integer EmployeesID) {
+	        this.EmployeesID.set(EmployeesID);
+	    }
+	    
+	    public String getEmployeesName() {
+	        return EmployeesName.get();
+	    }
+
+	    public SimpleStringProperty EmployeesName() {
+	        return EmployeesName();
+	    }
+
+	    public void setEmployeesName(String Employees_Name) {
+	        this.EmployeesName.set(Employees_Name);
+	    }
+	    
+	    
+}

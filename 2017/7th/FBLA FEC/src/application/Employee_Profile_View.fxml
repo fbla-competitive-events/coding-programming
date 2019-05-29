@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<HBox alignment="CENTER" prefHeight="249.0" prefWidth="517.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Employee_Profile_ViewController">
+    <children>
+        <AnchorPane prefHeight="249.0" prefWidth="567.0">
+            <children>
+                <ImageView fx:id="profilePic" fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" />
+                <Text fx:id="txtName" fill="#0091ea" layoutX="238.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Last">
+                    <font>
+                        <Font size="40.0" />
+                    </font>
+                </Text>
+                <Text fx:id="txtPhone" fill="#f57c00" layoutX="238.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="973 495 0113">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Text>
+                <Text fx:id="txtEmail" fill="#f57c00" layoutX="238.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="kevinjacobmathew2000@gmail.com">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Text>
+                <GridPane layoutX="238.0" layoutY="164.0" prefHeight="73.0" prefWidth="262.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="357.0" minWidth="10.0" prefWidth="349.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Text fx:id="txtDOB" fill="#00897b" strokeType="OUTSIDE" strokeWidth="0.0" text="12/14/2000">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Text>
+                        <Text fx:id="txtID" fill="#00897b" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" GridPane.rowIndex="1">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Text>
+                        <Text fx:id="txtAddress" fill="#00897b" strokeType="OUTSIDE" strokeWidth="0.0" text="54 Raymound BLVD" GridPane.rowIndex="2">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Text>
+                    </children>
+                </GridPane>
+            </children>
+         <opaqueInsets>
+            <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+         </opaqueInsets>
+         <HBox.margin>
+            <Insets bottom="25.0" left="15.0" right="25.0" top="25.0" />
+         </HBox.margin>
+        </AnchorPane>
+    </children>
+</HBox>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="false" key="isRegEx"/>
+		<item value="" key="selection"/>
+		<item value="false" key="casesensitive"/>
+		<item value="false" key="incremental"/>
+		<item value="true" key="wrap"/>
+		<item value="false" key="wholeword"/>
+		<list key="findhistory">
+			<item value="AM/PM"/>
+			<item value="cbDOW.get"/>
+			<item value="setOn"/>
+			<item value="Event"/>
+			<item value="Stack"/>
+			<item value="Main_Menu_Employee"/>
+			<item value="setMainMenuAdd"/>
+			<item value="setCustomer"/>
+		</list>
+		<list key="replacehistory">
+			<item value="barchart"/>
+			<item value="dtWeek.getValue()"/>
+			<item value="day_of_week"/>
+			<item value="saturday = "/>
+			<item value="friday = "/>
+			<item value="thursday = "/>
+			<item value="wednesday = "/>
+			<item value="tuesday = "/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="290" key="DIALOG_WIDTH"/>
+		<item value="1|.SF NS Text|11.0|0|COCOA|1|.SFNSText" key="DIALOG_FONT_NAME"/>
+		<item value="409" key="DIALOG_HEIGHT"/>
+		<item value="17" key="DIALOG_X_ORIGIN"/>
+		<item value="465" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>

@@ -1,0 +1,431 @@
+package application;
+
+import java.awt.Insets;
+import java.io.IOException;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
+import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXRadioButton;
+
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableView;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.util.Callback;
+import javafx.util.Duration;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.MultipleSelectionModel;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TableView;
+
+import javafx.scene.control.TableColumn;
+
+public class Menu_CustomerController implements Initializable {
+
+	public Menu_Customer_AttendanceModel Customers_Table_Attendance_Screen = new Menu_Customer_AttendanceModel();
+	
+	//UI Features
+	@FXML
+	AnchorPane ancpane;
+	@FXML
+	StackPane stack;
+	@FXML
+	private Button txtAdd;
+	@FXML
+	private Button btShowAllAtt;
+	@FXML
+	private ToggleGroup group;
+	@FXML
+	private JFXRadioButton rdAM;
+	@FXML
+	private JFXRadioButton rdPM;
+	@FXML
+	private JFXDatePicker dtAttendance;
+	
+	@FXML
+	private Text lblCustomerAtt;
+	
+	@FXML
+	private Button btSearchCust;
+	
+	@FXML
+	private TableView<Menu_Customer_AttendanceModel> TableCustomerAttendance;
+	@FXML
+	private TableColumn<Menu_Customer_AttendanceModel, String> CustomerAttFirst_Name;
+	@FXML
+	private TableColumn<Menu_Customer_AttendanceModel, String> CustomerAttLast_Name;
+	@FXML
+	private TableColumn<Menu_Customer_AttendanceModel, String> CustomerAttDate;
+	@FXML
+	private TableColumn<Menu_Customer_AttendanceModel, String> CustomerAttAMPM;
+
+	@FXML
+	private JFXDrawer topDrawer;
+	@FXML
+	private JFXButton buttonDetails;
+	@FXML
+	private JFXButton buttonSchedule;
+	@FXML
+	private JFXButton buttonCustomer;
+	@FXML
+	private JFXButton buttonReports;
+	@FXML
+	private JFXButton buttonAbout;
+	@FXML
+	private JFXButton buttonExit;
+	@FXML
+	private HBox hbMenu;
+	
+	@FXML
+	private Button DeleteAttendanceButton;
+	@FXML
+	private Button SaveAttendanceButton;
+	
+	Connection connection;
+	private Statement statement;
+	private ResultSet resultSet;
+
+	private int temp;
+	
+	
+	@FXML
+	private StackPane root;
+	
+	public static StackPane rootP;
+	
+	private static int customerID = -1;
+	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+	
+	
+		CustomerAttFirst_Name.setCellValueFactory(new PropertyValueFactory<Menu_Customer_AttendanceModel,String>("Customers_FirstName")); 
+		CustomerAttLast_Name.setCellValueFactory(new PropertyValueFactory<Menu_Customer_AttendanceModel,String>("Customers_LastName"));
+		CustomerAttDate.setCellValueFactory(new PropertyValueFactory<Menu_Customer_AttendanceModel,String>("Customers_Date"));
+		CustomerAttAMPM.setCellValueFactory(new PropertyValueFactory<Menu_Customer_AttendanceModel,String>("Customers_AMPM"));
+
+		buttonDetails.setGraphic(new ImageView("application/ic_perm_identity_white_48pt.png"));
+        buttonSchedule.setGraphic(new ImageView("application/ic_date_range_white_48pt.png"));
+        buttonCustomer.setGraphic(new ImageView("application/ic_group_white_2x.png"));
+        buttonReports.setGraphic(new ImageView("application/ic_insert_chart_white_2x.png"));
+        buttonAbout.setGraphic(new ImageView("application/ic_info_outline_white_48pt.png"));
+        buttonExit.setGraphic(new ImageView("application/ic_clear_white_48pt.png"));
+	      
+	      
+		rdAM.setSelected(true);
+		CustomersAttendanceSetAllDisable();
+			
+			dtAttendance.setEditable(false);
+			
+	        for(Node node: hbMenu.getChildren()){
+	    		if(node.getAccessibleText()!=null){
+	    			node.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
+	    				
+	    				switch(node.getAccessibleText()){
+	    				case "Employee Details":
+	    					BorderPane pane;
+	    					try {
+	    						pane = FXMLLoader.load(getClass().getResource("Main_Menu_Employee.fxml"));
+	    						root.getChildren().setAll(pane);
+	    					} catch (IOException e3) {
+	    						// TODO Auto-generated catch block
+	    						e3.printStackTrace();
+	    					}
+	    					break;
+	    				case "Schedule Employee":
+	    					AnchorPane pane1;
+	    					try {
+	    						pane1 = FXMLLoader.load(getClass().getResource("Employee_Shift_Scheduler.fxml"));
+	    						root.getChildren().setAll(pane1);
+	    					} catch (IOException e1) {
+	    						// TODO Auto-generated catch block
+	    						e1.printStackTrace();
+	    					}
+	    					break;
+	    				case "Customer Attendance":
+	    					StackPane pane2;
+	    					try {
+	    						pane2 = FXMLLoader.load(getClass().getResource("Menu_Customer_Attendance.fxml"));
+	    						root.getChildren().setAll(pane2);
+	    					} catch (IOException e2) {
+	    						// TODO Auto-generated catch block
+	    						e2.printStackTrace();
+	    					}
+	    					break;
+	    				case "Reports":
+	    					BorderPane pane3;
+	    					try {
+	    						pane3 = FXMLLoader.load(getClass().getResource("ReportScreen.fxml"));
+	    						root.getChildren().setAll(pane3);
+	    					} catch (IOException e4) {
+	    						// TODO Auto-generated catch block
+	    						e4.printStackTrace();
+	    					}
+	    					break;
+	    				case "About":
+	    					BorderPane pane4;
+	    					try {
+	    						pane4 = FXMLLoader.load(getClass().getResource("About.fxml"));
+	    						root.getChildren().setAll(pane4);
+	    					} catch (IOException e5) {
+	    						// TODO Auto-generated catch block
+	    						e5.printStackTrace();
+	    					}
+	    				case "Exit":
+	    				}
+	    			});
+		
+		
+	    	}
+	  }
+	}
+
+	public void setCustomer(int ID){
+		this.customerID = ID;
+		
+		TableCustomerAttendance.setItems(Customers_Table_Attendance_Screen.getDataFromSqlAndAddToObservableList("SELECT Customers_Attendance.*, Customers.ID, Customers.First_Name, Customers.Last_Name FROM"
+				+ " Customers_Attendance INNER JOIN Customers ON Customers_Attendance.ID=Customers.ID WHERE Customers_Attendance.ID = " + customerID + ";"));
+		CustomersAttendanceSetAllEnable();
+  
+	}
+
+	//Display Customer Attendance Text Fields
+	private void CustomersAttendanceSetAllDisable(){
+		DeleteAttendanceButton.setDisable(true);
+		dtAttendance.setDisable(true);
+		SaveAttendanceButton.setDisable(true);
+		rdAM.setDisable(true);
+		rdPM.setDisable(true);
+		//TableCustomerAttendance.setDisable(true);
+	}
+
+	//Enable CustomerAttendance Fields
+	private void CustomersAttendanceSetAllEnable(){
+		DeleteAttendanceButton.setDisable(false);
+		dtAttendance.setDisable(false);
+		SaveAttendanceButton.setDisable(false);
+		rdAM.setDisable(false);
+		rdPM.setDisable(false);
+		//TableCustomerAttendance.setDisable(false);
+	}
+
+	
+
+	//Disables date picker for adding attendance
+	private void CustomersAttendanceSetAllClear(){
+		dtAttendance.setValue(null);
+	}
+
+	
+
+	//Method to save a new Customer Attendance
+	@FXML
+	private void setCustomerAttendanceSaveButtonClick(Event event){
+		if(customerID != -1){
+			try{
+				if(validateAttendanceDate()){
+					connection = SqliteConnection.Connector();
+					statement = connection.createStatement();
+
+					
+
+					int rowsAffected = statement.executeUpdate("insert into`Customers_Attendance` "+
+							"(ID, `Date`,`AMPM`,`Day_of_Week`"+
+							""+
+							") "+
+							"values ("+customerID+ ",'"+dtAttendance.getValue().toString()+"','"+AMPM() +"','" +dtAttendance.getValue().getDayOfWeek().toString()
+							+"'); ");
+
+
+
+					
+					TableCustomerAttendance.setItems(Customers_Table_Attendance_Screen.getDataFromSqlAndAddToObservableList("SELECT Customers_Attendance.*, Customers.ID, Customers.First_Name, Customers.Last_Name FROM"
+							+ " Customers_Attendance INNER JOIN Customers ON Customers_Attendance.ID=Customers.ID WHERE Customers_Attendance.ID = " + customerID + ";"));
+
+					/*CustomersAttendanceSetAllClear();
+					btShowAllAtt.setDisable(false);*/
+					statement.close();
+					connection.close();
+				}
+
+			}
+			catch (SQLException e){
+				e.printStackTrace();
+			}
+    
+		}
+		else{
+			JFXDialogLayout content = new JFXDialogLayout();
+				content.setHeading(new Text("No Customer Selected"));
+				content.setBody(new Text("To add, please select a customer"));
+				JFXButton button = new JFXButton("Okay");
+				JFXDialog dialog = new JFXDialog(stack, content, JFXDialog.DialogTransition.LEFT);  
+				content.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+				button.setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+					public void handle(ActionEvent event){
+						dialog.close();
+					}
+				});
+				content.setActions(button);
+				
+				dialog.show();
+		}
+		
+	}
+
+
+	//method called when the add new attendance button is clicked
+	private void setAddDeleteAttendance(){
+		btShowAllAtt.setDisable(true);
+		CustomersAttendanceSetAllEnable();
+		//TableCustomerAttendance.setDisable(false);
+
+	}
+
+	//Checks to see whether AM or PM is selected
+	public String AMPM(){
+		if(rdAM.isSelected())
+		{
+			return "AM";
+		}
+		else{
+			return "PM";
+		}
+	}
+
+	@FXML
+	private void LaunchCustomerDetails(Event event) throws IOException{
+		((Node)event.getSource()).getScene().getWindow().hide();
+	 	Parent CustomerScreen = FXMLLoader.load(getClass().getResource("Menu_Customer_Details.fxml"));
+	 	Scene customer_screen = new Scene(CustomerScreen);
+	 	Stage Customer_Screen = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	 	Customer_Screen.hide();
+	 	Customer_Screen.setScene(customer_screen);
+	 	Customer_Screen.setTitle("Infinity Family Entertainment Center");
+	 	Customer_Screen.show();
+	 	
+	}
+
+	//Method for deleting a customer attendance
+	@FXML
+	private void setCustomerAttendanceDeleteButtonClick(Event event){
+		if(TableCustomerAttendance.getSelectionModel().getSelectedItem()!=null){
+			Menu_Customer_AttendanceModel getSelectedRow = TableCustomerAttendance.getSelectionModel().getSelectedItem();
+			String sqlQuery = "delete from Customers_Attendance where ID = "+getSelectedRow.getCustomers_ID()+ " AND Date = '"+getSelectedRow.getCustomers_Date()+ "' AND AMPM = '"+getSelectedRow.getCustomers_AMPM()+ "';";
+
+
+			try {
+				connection = SqliteConnection.Connector();
+				statement = connection.createStatement();
+
+				statement.executeUpdate(sqlQuery);
+
+				TableCustomerAttendance.setItems(Customers_Table_Attendance_Screen.getDataFromSqlAndAddToObservableList("SELECT Customers_Attendance.*, Customers.ID, Customers.First_Name, Customers.Last_Name FROM"
+						+ " Customers_Attendance INNER JOIN Customers ON Customers_Attendance.ID=Customers.ID WHERE Customers_Attendance.ID = " + customerID + ";"));
+				statement.close();
+				connection.close();
+
+				CustomersAttendanceSetAllDisable();
+				btShowAllAtt.setDisable(false);
+
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
+		else{
+			JFXDialogLayout content = new JFXDialogLayout();
+				content.setHeading(new Text("No Attendance Selected"));
+				content.setBody(new Text("Please select an attendance from the table."));
+				JFXButton button = new JFXButton("Okay");
+				JFXDialog dialog = new JFXDialog(stack, content, JFXDialog.DialogTransition.LEFT);  
+				content.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+				button.setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+					public void handle(ActionEvent event){
+						dialog.close();
+					}
+				});
+				content.setActions(button);
+				
+				dialog.show();
+		}     	 	
+	}
+
+	//Method to refresh customer attendance table
+	@FXML
+	private void setShowAllAttClick(Event event){
+		TableCustomerAttendance.setItems(Customers_Table_Attendance_Screen.getDataFromSqlAndAddToObservableList("SELECT Customers_Attendance.*, Customers.ID, Customers.First_Name, Customers.Last_Name FROM"
+				+ " Customers_Attendance INNER JOIN Customers ON Customers_Attendance.ID=Customers.ID;"));
+	}
+
+	
+	private boolean validateAttendanceDate(){
+		if(dtAttendance.getValue() != null){
+			return true;
+		}
+		else{
+			JFXDialogLayout content = new JFXDialogLayout();
+				content.setHeading(new Text("Error Date"));
+				content.setBody(new Text("Please select a valid date."));
+				JFXButton button = new JFXButton("Okay");
+				JFXDialog dialog = new JFXDialog(stack, content, JFXDialog.DialogTransition.LEFT);  
+				content.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+				button.setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+					public void handle(ActionEvent event){
+						dialog.close();
+					}
+				});
+				content.setActions(button);
+				
+				dialog.show();
+
+			return false;
+		}			 
+	}
+}

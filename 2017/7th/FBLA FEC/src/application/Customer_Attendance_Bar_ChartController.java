@@ -1,0 +1,238 @@
+package application;
+
+//import statements
+import java.lang.reflect.InvocationTargetException;
+//importing all packages needed for this class
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.ResourceBundle;
+
+import javafx.event.Event;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.print.PageLayout;
+import javafx.print.PageOrientation;
+import javafx.print.Paper;
+import javafx.print.Printer;
+import javafx.print.PrinterJob;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
+import javafx.scene.transform.Scale;
+import javafx.util.Duration;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
+
+public class Customer_Attendance_Bar_ChartController implements Initializable{
+	
+	//This is an instance of the Customer_Attendance_Report_Model Class which will perform the actual calculations for the chart
+	Customer_Attendance_Report_Model barchart = new Customer_Attendance_Report_Model();
+	
+	//DatePicker to choose which week attendance to display
+	@FXML
+	private DatePicker dtWeek;
+		
+	//Label to display which week's attendance is shown
+	@FXML
+	private Label lblWeek;
+	
+	//Pane where all the UI features or on
+	@FXML
+	private Pane Screen;
+		
+	//Actual bar chart
+	@FXML
+	private BarChart<String,Integer> barChartAttendance;
+	
+	@FXML
+	private Button btnPrint;
+	
+	//array for the purposes of storing what week the user chooses
+	private String[] week = new String[7];
+	
+	//Series for the bar chart
+	XYChart.Series<String, Integer> seriesAM;
+	XYChart.Series<String, Integer> seriesPM;
+	
+	@Override
+	public void initialize(URL url, ResourceBundle rb){
+		
+		//sets the two series to new XYChart.Series objects
+		seriesAM = new XYChart.Series<>();
+		seriesPM = new XYChart.Series<>();
+		
+		//Two series for the purposes of different shift times
+		seriesAM.setName("AM");
+		seriesPM.setName("PM");
+		
+		//disables dtWeek so user can not edit it immediately
+		dtWeek.setEditable(false);
+		
+		//Sets the label of the week to the current date
+		lblWeek.setText("Week of " + LocalDate.now().toString());
+		
+        //Loads in this week's data
+		setDates(LocalDate.now());	   
+		addDataToXYChart();
+		
+		//Adds the two series to the Bar Chart
+		barChartAttendance.getData().addAll(seriesAM, seriesPM);     
+	}
+	
+	//Set days of week's string values to their respective dates
+		@FXML
+		public void setDates(LocalDate date)
+		{
+			String day_of_week = date.getDayOfWeek().toString();
+
+			if(day_of_week == "SUNDAY"){
+				
+				for(int i = 0; i < 7; i++){			
+					week[i] = date.plusDays(i).toString(); 
+				}
+				
+			}
+			else if(day_of_week == "MONDAY"){
+				
+				for(int i = 1; i < 7; i++){			
+					week[i] = date.plusDays(i-1).toString(); 
+				}
+				for(int i = 0; i < 1; i++){
+					week[i] = (date.minusDays(1-i).toString());
+				}
+				
+			}
+			else if(day_of_week == "TUESDAY"){
+				for(int i = 2; i < 7; i++){			
+					week[i] = date.plusDays(i-2).toString(); 
+				}
+				for(int i = 0; i < 2; i++){
+					week[i] = (date.minusDays(2-i).toString());
+				}
+			}
+			else if(day_of_week == "WEDNESDAY"){
+				for(int i = 3; i < 7; i++){			
+					week[i] = date.plusDays(i-3).toString(); 
+				}
+				for(int i = 0; i < 3; i++){
+					week[i] = (date.minusDays(3-i).toString());
+				}
+			}
+			else if(day_of_week == "THURSDAY"){
+				
+				for(int i = 4; i < 7; i++){			
+					week[i] = date.plusDays(i-4).toString(); 
+				}
+				for(int i = 0; i < 4; i++){
+					week[i] = (date.minusDays(4-i).toString());
+				}
+			}
+			else if(day_of_week == "FRIDAY"){
+				
+				for(int i = 5; i < 7; i++){			
+					week[i] = date.plusDays(i-5).toString(); 
+				}
+				for(int i = 0; i < 5; i++){
+					week[i] = (date.minusDays(5-i).toString());
+				}	
+			}
+			else if(day_of_week == "SATURDAY"){
+				
+				for(int i = 6; i < 7; i++){			
+					week[i] = date.plusDays(i-6).toString(); 
+				}
+				for(int i = 0; i < 6; i++){
+					week[i] = (date.minusDays(6-i).toString());
+				}	
+			}	
+		}
+		
+		@FXML
+		public void addDataToXYChart(){
+			
+			//Calculates the amount of AM Customer Attendances for each day of the Week
+			//The calcNumAM methods are in the Customer_Attendance_Report_Model class
+			seriesAM.getData().add(new XYChart.Data<>("Sunday", barchart.calcNumAMSunday(week[0])));
+			seriesAM.getData().add(new XYChart.Data<>("Monday", barchart.calcNumAMMonday(week[1])));
+			seriesAM.getData().add(new XYChart.Data<>("Tuesday", barchart.calcNumAMTuesday(week[2])));
+			seriesAM.getData().add(new XYChart.Data<>("Wednesday", barchart.calcNumAMWednesday(week[3])));			
+			seriesAM.getData().add(new XYChart.Data<>("Thursday", barchart.calcNumAMThursday(week[4])));
+			seriesAM.getData().add(new XYChart.Data<>("Friday", barchart.calcNumAMFriday(week[5])));
+			seriesAM.getData().add(new XYChart.Data<>("Saturday", barchart.calcNumAMSaturday(week[6])));
+			
+			//Calculates the amount of PM Customer Attendances for each day of the Week
+			//The calcNumPM methods are in the Customer_Attendance_Report_Model class
+			seriesPM.getData().add(new XYChart.Data<>("Sunday", barchart.calcNumPMSunday(week[0])));
+			seriesPM.getData().add(new XYChart.Data<>("Monday", barchart.calcNumPMMonday(week[1])));
+			seriesPM.getData().add(new XYChart.Data<>("Tuesday", barchart.calcNumPMTuesday(week[2])));
+			seriesPM.getData().add(new XYChart.Data<>("Wednesday", barchart.calcNumPMWednesday(week[3])));
+			seriesPM.getData().add(new XYChart.Data<>("Thursday", barchart.calcNumPMThursday(week[4])));
+			seriesPM.getData().add(new XYChart.Data<>("Friday", barchart.calcNumPMFriday(week[5])));
+			seriesPM.getData().add(new XYChart.Data<>("Saturday", barchart.calcNumPMSaturday(week[6])));
+		}
+			
+		//Method Called when a date is Chosen
+		@FXML
+		public void setOnDatePickerChosen(Event event){
+			
+			dtWeek.setEditable(false);
+			lblWeek.setText("Week of " + dtWeek.getValue().toString());
+			
+			//Generates the chart based on the values from dtWeek
+			setDates(dtWeek.getValue());
+			addDataToXYChart();		
+		}
+			
+		//Method to print the Bar Chart
+		@FXML  
+		public void printChart(Event event) throws InvocationTargetException{
+			Printer printer = Printer.getDefaultPrinter();
+			PrinterJob job = PrinterJob.createPrinterJob();
+			
+			//if default printer is found, Scale the printer to the size of the page, based on 
+			//default printer setup. Orientation should be Landscape
+			try {
+				//sets btnPrint to invisible so that it doesn't show up when printing
+				btnPrint.setVisible(false);
+				
+				if(printer != null){
+					//Scales the panes for printing purposes 
+					 PageLayout pageLayout = printer.createPageLayout(Paper.A4, PageOrientation.LANDSCAPE, Printer.MarginType.DEFAULT);
+					 double scaleX = pageLayout.getPrintableWidth() / Screen.getBoundsInParent().getWidth();
+					 double scaleY = pageLayout.getPrintableHeight() / Screen.getBoundsInParent().getHeight();
+					 Scale scale = new Scale(scaleX, scaleY);
+				  	 Screen.getTransforms().add(scale);
+				  	   
+				if(job.printPage(pageLayout, Screen)){
+				     job.endJob();
+				     //Scale the chart back to normal
+				     Screen.getTransforms().remove(scale);        	
+				    }
+				    else{
+				    	NotificationType notificationType = NotificationType.ERROR;
+				        TrayNotification tray = new TrayNotification();
+				        tray.setTitle("Printing error");
+				        tray.setMessage("Try turning on your printers");
+				        tray.setNotificationType(notificationType);
+				        tray.showAndDismiss(Duration.millis(10000));
+				    }
+				}
+				//if printer is null, give a tray notification that printer is not found
+				else if(printer == null){
+			    	//tray notification printer not found
+			    		
+					NotificationType notificationType = NotificationType.ERROR;
+			        TrayNotification tray = new TrayNotification();
+			        tray.setTitle("Printer not found");
+			        tray.setMessage("Please set default printer/turn printer on");
+			        tray.setNotificationType(notificationType);
+			        tray.showAndDismiss(Duration.millis(10000));	
+			    }
+			} finally {
+				btnPrint.setVisible(true);
+			}
+		}
+}

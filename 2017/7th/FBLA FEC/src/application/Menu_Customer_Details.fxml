@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Menu_Customer_DetailsController">
+   <top>
+      <JFXDrawer fx:id="topDrawer" BorderPane.alignment="CENTER">
+         <children>
+            <HBox fx:id="hbMenu" stylesheets="@application.css">
+               <children>
+                  <JFXButton fx:id="buttonDetails" accessibleText="Employee Details" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1E90FF;" stylesheets="@application.css">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>                     
+                  </JFXButton>
+                  <JFXButton fx:id="buttonSchedule" accessibleText="Schedule Employee" minWidth="0.0" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1E90FF;">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="buttonCustomer" accessibleText="Customer Attendance" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1E90FF;">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>                     
+                  </JFXButton>
+                  <JFXButton fx:id="buttonReports" accessibleText="Reports" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1E90FF;">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>                     
+                  </JFXButton>
+                  <JFXButton fx:id="buttonAbout" accessibleText="About" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1E90FF;">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>                     
+                  </JFXButton>
+                  <JFXButton fx:id="buttonExit" accessibleText="Exit" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1E90FF;">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>                     
+                  </JFXButton>
+               </children>
+            </HBox>
+         </children>
+      </JFXDrawer>
+   </top>
+   <center>
+      <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <items>
+            <AnchorPane prefHeight="521.0" prefWidth="742.0">
+               <children>
+                  <JFXTextField fx:id="txtSearch" layoutX="14.0" layoutY="30.0" onKeyReleased="#setOnSearchKeyPressed" prefHeight="25.0" prefWidth="705.0" promptText="Search Customer Name..." />
+                  <TableView fx:id="TableCustomers" layoutX="-3.0" layoutY="76.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="416.0" prefWidth="745.0">
+                     <columns>
+                        <TableColumn fx:id="CustomersID" prefWidth="40.0" text="ID" />
+                        <TableColumn fx:id="CustomersFirst_Name" prefWidth="178.0" text="First Name" />
+                        <TableColumn fx:id="CustomersLast_Name" prefWidth="253.0" text="Last Name" />
+                        <TableColumn fx:id="CustomersEmail" prefWidth="273.0" text="Email" />
+                     </columns>
+                  </TableView>
+                  <Button fx:id="btOK" layoutX="14.0" layoutY="499.0" mnemonicParsing="false" onAction="#setOKClicked" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #00CED1;" text="OK" textFill="WHITE">
+                     <padding>
+                        <Insets left="1.0" right="1.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <StackPane fx:id="stack" prefHeight="150.0" prefWidth="200.0">
+               <children>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="548.0" prefWidth="535.0">
+                     <children>
+                        <AnchorPane layoutX="-9.0" minHeight="0.0" minWidth="0.0" prefHeight="536.0" prefWidth="447.0">
+                           <children>
+                              <Separator layoutX="97.0" layoutY="80.0" prefHeight="2.0" prefWidth="272.0" />
+                              <GridPane layoutX="86.0" layoutY="94.0" onKeyReleased="#setOnPhoneKeyReleased" prefHeight="364.0" prefWidth="286.0">
+                                 <children>
+                                    <JFXTextField fx:id="txtFirst_Name" alignment="BOTTOM_LEFT" labelFloat="true" prefHeight="34.0" prefWidth="279.0" promptText="First Name" />
+                                    <JFXTextField fx:id="txtLast_Name" alignment="BOTTOM_LEFT" labelFloat="true" prefHeight="42.0" prefWidth="286.0" promptText="Last Name" GridPane.rowIndex="1" />
+                                    <JFXTextField fx:id="txtEmail" alignment="BOTTOM_LEFT" labelFloat="true" prefHeight="43.0" prefWidth="190.0" promptText="Email" GridPane.rowIndex="2" />
+                                    <JFXTextField fx:id="txtPhone" alignment="BOTTOM_LEFT" labelFloat="true" onKeyReleased="#setOnPhoneKeyReleased" prefHeight="37.0" prefWidth="285.0" promptText="Phone" GridPane.rowIndex="3" />
+                                    <JFXTextField fx:id="txtAddress" alignment="BOTTOM_LEFT" labelFloat="true" prefHeight="41.0" prefWidth="305.0" promptText="Address" GridPane.rowIndex="4" />
+                                    <JFXDatePicker fx:id="dtDOB" prefHeight="37.0" prefWidth="299.0" promptText="Date of Birth" GridPane.rowIndex="5" />
+                                 </children>
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="61.0" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="82.0" minHeight="10.0" prefHeight="67.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="81.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="81.0" minHeight="10.0" prefHeight="62.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="82.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                              </GridPane>
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="65.0" layoutY="22.0" prefHeight="58.0" prefWidth="335.0" style="-fx-font-family: &quot;Calibri&quot;; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #154360;" text="Customer Details">
+                                 <font>
+                                    <Font size="19.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </padding>
+                              </Label>
+                              <Button fx:id="btnClear" disable="true" layoutX="282.0" layoutY="505.0" mnemonicParsing="false" onAction="#CustomersSetAllClear" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #483D8B; -fx-text-fill: white;" text="Clear">
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor>
+                              </Button>
+                              <Button fx:id="btnEdit" layoutX="106.0" layoutY="505.0" mnemonicParsing="false" onAction="#setCustomerEditButtonClick" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #00CED1;" text="Edit" textFill="WHITE">
+                                 <padding>
+                                    <Insets left="1.0" right="1.0" />
+                                 </padding>
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                        <Button fx:id="btnDelete" layoutX="185.0" layoutY="505.0" mnemonicParsing="false" onAction="#setCustomerDeleteButtonClick" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #DC143C;" text="Delete" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="btnSave" disable="true" layoutX="359.0" layoutY="505.0" mnemonicParsing="false" onAction="#setCustomerSaveButtonClick" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #2F4F4F; -fx-text-fill: white;" text="Save">
+                           <padding>
+                              <Insets right="1.0" />
+                           </padding>
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="btnAdd" layoutX="8.0" layoutY="505.0" mnemonicParsing="false" onAction="#setCustomersAddNewButtonClick" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #1E90FF;" text="Add" textFill="WHITE">
+                           <padding>
+                              <Insets right="1.0" />
+                           </padding>
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </StackPane>
+         </items>
+      </SplitPane>
+   </center>
+</BorderPane>

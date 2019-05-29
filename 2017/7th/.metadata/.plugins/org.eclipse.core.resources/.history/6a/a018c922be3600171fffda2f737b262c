@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.WelcomeSplashScreenController">
+   <children>
+      <Pane prefHeight="750.0" prefWidth="1400.0" style="-fx-background-color: B0E0E6;">
+         <children>
+            <Label layoutX="274.0" layoutY="314.0" style="-fx-font-family: &quot;Helvetica Neue&quot;; -fx-font-size: 100 px;" text="Welcome" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

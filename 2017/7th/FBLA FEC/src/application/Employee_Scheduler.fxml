@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="root" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Employee_SchedulerController">
+   <children>
+      <BorderPane prefHeight="650.0" prefWidth="1200.0">
+         <center>
+            <SplitPane prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="689.0" prefWidth="1138.0">
+                     <children>
+                        <Text fill="#0091ea" layoutX="513.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Weekly Schedule">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="btAdd_Employee" layoutX="16.0" layoutY="665.0" mnemonicParsing="false" onAction="#addEmployeeClicked" prefHeight="27.0" prefWidth="193.0" style="-fx-background-color: #09B28C;" text="Add Employee to Schedule" textFill="WHITE" />
+                        <RadioButton fx:id="rdAM_Shift" layoutX="237.0" layoutY="670.0" mnemonicParsing="false" text="AM Shift">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="group" />
+                           </toggleGroup></RadioButton>
+                        <RadioButton fx:id="rdPM_Shift" layoutX="328.0" layoutY="670.0" mnemonicParsing="false" text="PM Shift" toggleGroup="$group" />
+                        <Separator layoutX="41.0" layoutY="361.0" prefHeight="6.0" prefWidth="1015.0" />
+                        <Button fx:id="btPrintSchedule" layoutX="882.0" layoutY="683.0" mnemonicParsing="false" onAction="#doPrint" prefHeight="27.0" prefWidth="129.0" style="-fx-background-color: #09B28C;" text="Print Schedule" textFill="WHITE" />
+                        <Button fx:id="btDelete" layoutX="439.0" layoutY="666.0" mnemonicParsing="false" onAction="#schedulerDelete" prefHeight="27.0" prefWidth="221.0" style="-fx-background-color: #FF5151;" text="Delete Employee From Schedule" textFill="WHITE" />
+                        <HBox layoutX="8.0" layoutY="214.0" prefHeight="251.0" prefWidth="1200.0">
+                           <children>
+                              <GridPane fx:id="grSchedule" gridLinesVisible="true" minWidth="-Infinity" prefHeight="247.0" prefWidth="1181.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="178.0" minWidth="10.0" prefWidth="147.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="10.0" prefWidth="154.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="182.0" minWidth="10.0" prefWidth="157.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="10.0" prefWidth="158.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="0.0" prefWidth="161.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="173.0" minWidth="3.0" prefWidth="143.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="146.0" minWidth="10.0" prefWidth="145.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints maxHeight="122.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="217.0" minHeight="10.0" prefHeight="176.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <ListView fx:id="listSun" editable="true" style="-fx-font-family: &quot;Courier New&quot;;" GridPane.rowIndex="1" />
+                                    <ListView fx:id="listMon" style="-fx-font-family: &quot;Courier New&quot;;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <ListView fx:id="listTues" style="-fx-font-family: &quot;Courier New&quot;;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <ListView fx:id="listWed" style="-fx-font-family: &quot;Courier New&quot;;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <ListView fx:id="listThurs" style="-fx-font-family: &quot;Courier New&quot;;" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                    <ListView fx:id="listFri" style="-fx-font-family: &quot;Courier New&quot;;" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                                    <ListView fx:id="listSat" prefHeight="193.0" prefWidth="209.0" style="-fx-font-family: &quot;Courier New&quot;;" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                                    <VBox prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <Text fill="#0091ea" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: &quot;Arial&quot;;" text="Sun." textAlignment="CENTER" wrappingWidth="170.24609375">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                          <Label fx:id="lblSun" alignment="CENTER" prefHeight="17.0" prefWidth="170.0" style="-fx-font-family: &quot;Arial&quot;;" text="Label">
+                                             <opaqueInsets>
+                                                <Insets left="10.0" />
+                                             </opaqueInsets>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="59.0" prefWidth="105.0" GridPane.columnIndex="1">
+                                       <children>
+                                          <Text fill="#0091ea" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: &quot;Arial&quot;;" text="Mon." textAlignment="CENTER" wrappingWidth="177.24609375">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                          <Label fx:id="lblMon" alignment="CENTER" prefHeight="17.0" prefWidth="177.0" style="-fx-font-family: &quot;Arial&quot;;" text="Label" />
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
+                                       <children>
+                                          <Text fill="#0091ea" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: &quot;Arial&quot;;" text="Tues." textAlignment="CENTER" wrappingWidth="180.24609375">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                          <Label fx:id="lblTues" alignment="CENTER" prefHeight="17.0" prefWidth="178.0" style="-fx-font-family: &quot;Arial&quot;;" text="Label" />
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3">
+                                       <children>
+                                          <Text fill="#0091ea" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: &quot;Arial&quot;;" text="Wed." textAlignment="CENTER" wrappingWidth="180.24609375">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                          <Label fx:id="lblWed" alignment="CENTER" prefHeight="17.0" prefWidth="180.0" style="-fx-font-family: &quot;Arial&quot;;" text="Label" />
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4">
+                                       <children>
+                                          <Text fill="#0091ea" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: &quot;Arial&quot;;" text="Thurs." textAlignment="CENTER" wrappingWidth="182.24609375">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                          <Label fx:id="lblThurs" alignment="CENTER" prefHeight="17.0" prefWidth="183.0" style="-fx-font-family: &quot;Arial&quot;;" text="Label" />
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5">
+                                       <children>
+                                          <Text fill="#0091ea" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: &quot;Arial&quot;;" text="Fri." textAlignment="CENTER" wrappingWidth="164.24609375">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                          <Label fx:id="lblFri" alignment="CENTER" prefHeight="17.0" prefWidth="165.0" style="-fx-font-family: &quot;Arial&quot;;" text="Label" />
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="39.0" prefWidth="89.0" GridPane.columnIndex="6">
+                                       <children>
+                                          <Text fill="#0091ea" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: &quot;Arial&quot;;" text="Sat." textAlignment="CENTER" wrappingWidth="148.24609375">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                          <Label fx:id="lblSat" alignment="CENTER" prefHeight="17.0" prefWidth="144.0" style="-fx-font-family: &quot;Arial&quot;;" text="Label" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </HBox>
+                        <Button fx:id="txtDelete" layoutX="14.0" layoutY="504.0" mnemonicParsing="false" onAction="#schedulerDelete" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #DC143C;" text="Delete" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                        </Button>
+                        <JFXDatePicker fx:id="dtSchedule" layoutX="18.0" layoutY="60.0" onAction="#setOnDatePickerChosen" prefHeight="29.0" prefWidth="247.0" promptText="Choose Week" />
+                        <JFXComboBox fx:id="cbEmployee" layoutX="374.0" layoutY="66.0" prefHeight="27.0" prefWidth="234.0" promptText="Employee" />
+                        <JFXCheckBox fx:id="cbAM" layoutX="1078.0" layoutY="47.0" text="AM" />
+                        <JFXCheckBox fx:id="cbPM" layoutX="1078.0" layoutY="79.0" text="PM" />
+                        <Separator layoutX="19.0" layoutY="147.0" prefHeight="6.0" prefWidth="1160.0" />
+                        <JFXComboBox fx:id="cbDOW" layoutX="749.0" layoutY="66.0" prefHeight="27.0" prefWidth="267.0" promptText="Day Of Week" />
+                        <Button fx:id="txtAdd" layoutX="1078.0" layoutY="115.0" mnemonicParsing="false" onAction="#addEmployeeClicked" prefHeight="26.0" prefWidth="80.0" style="-fx-background-color: #1E90FF;" text="Add" textFill="WHITE">
+                           <padding>
+                              <Insets right="1.0" />
+                           </padding>
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="btPrintSchedule" layoutX="1056.0" layoutY="506.0" mnemonicParsing="false" onAction="#doPrint" prefHeight="27.0" prefWidth="129.0" style="-fx-background-color: #09B28C;" text="Print Schedule" textFill="WHITE" />
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </center>
+         <top>
+            <JFXDrawer fx:id="topDrawer" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox fx:id="hbMenu" stylesheets="@application.css">
+                     <children>
+                        <JFXButton fx:id="buttonDetails" accessibleText="Employee Details" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1E90FF;" stylesheets="@application.css">
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                           <tooltip>
+                              <Tooltip contentDisplay="TOP" graphicTextGap="10.0" text="Employee Details" />
+                           </tooltip>
+                        </JFXButton>
+                        <JFXButton fx:id="buttonSchedule" accessibleText="Schedule Employee" minWidth="0.0" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1E90FF;">
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                           <tooltip>
+                              <Tooltip text="Schedule Employee" />
+                           </tooltip>
+                        </JFXButton>
+                        <JFXButton fx:id="buttonCustomer" accessibleText="Customer Attendance" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1E90FF;">
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                           <tooltip>
+                              <Tooltip text="Customer Attendance" />
+                           </tooltip>
+                        </JFXButton>
+                        <JFXButton fx:id="buttonReports" accessibleText="Reports" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1E90FF;">
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                           <tooltip>
+                              <Tooltip text="Reports" />
+                           </tooltip>
+                        </JFXButton>
+                        <JFXButton fx:id="buttonAbout" accessibleText="About" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1E90FF;">
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                           <tooltip>
+                              <Tooltip text="About" />
+                           </tooltip>
+                        </JFXButton>
+                        <JFXButton fx:id="buttonExit" accessibleText="Exit" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1E90FF;">
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                           <tooltip>
+                              <Tooltip text="Exit" />
+                           </tooltip>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+               </children>
+            </JFXDrawer>
+         </top>
+      </BorderPane>
+   </children>
+</AnchorPane>

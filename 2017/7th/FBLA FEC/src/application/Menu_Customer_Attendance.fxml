@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+   
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Menu_CustomerController">
+   <children>
+      <StackPane fx:id="stack" prefHeight="650.0" prefWidth="1200.0">
+         <children>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0">
+               <children>
+                  <JFXDrawer fx:id="topDrawer">
+                     <children>
+                        <HBox fx:id="hbMenu" stylesheets="@application.css">
+                           <children>
+                              <JFXButton fx:id="buttonDetails" accessibleText="Employee Details" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1E90FF;" stylesheets="@application.css">
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor>                                 
+                              </JFXButton>
+                              <JFXButton fx:id="buttonSchedule" accessibleText="Schedule Employee" minWidth="0.0" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1E90FF;">
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor>                                 
+                              </JFXButton>
+                              <JFXButton fx:id="buttonCustomer" accessibleText="Customer Attendance" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1E90FF;">
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor>                                 
+                              </JFXButton>
+                              <JFXButton fx:id="buttonReports" accessibleText="Reports" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1E90FF;">
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor>                                 
+                              </JFXButton>
+                              <JFXButton fx:id="buttonAbout" accessibleText="About" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1E90FF;">
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor>                                 
+                              </JFXButton>
+                              <JFXButton fx:id="buttonExit" accessibleText="Exit" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1E90FF;">
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor>                                 
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                     </children>
+                  </JFXDrawer>
+                  <TableView fx:id="TableCustomerAttendance" layoutX="14.0" layoutY="144.0" prefHeight="443.0" prefWidth="825.0">
+                     <columns>
+                        <TableColumn fx:id="CustomerAttFirst_Name" prefWidth="290.9999694824219" text="First Name" />
+                        <TableColumn fx:id="CustomerAttLast_Name" maxWidth="3000.0" minWidth="0.0" prefWidth="275.0" text="Last Name" />
+                        <TableColumn fx:id="CustomerAttDate" prefWidth="164.0" text="Date" />
+                        <TableColumn fx:id="CustomerAttAMPM" prefWidth="94.0" text="AM/PM" />
+                     </columns>
+                  </TableView>
+                  <Text fx:id="lblCustomerAtt" fill="#0091ea" layoutX="922.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Attendance" wrappingWidth="193.712890625">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <JFXDatePicker fx:id="dtAttendance" layoutX="922.0" layoutY="222.0" promptText="Date">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </JFXDatePicker>
+                  <JFXRadioButton fx:id="rdAM" layoutX="928.0" layoutY="296.0" text="AM">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="group" />
+                     </toggleGroup>
+                  </JFXRadioButton>
+                  <JFXRadioButton fx:id="rdPM" layoutX="1025.0" layoutY="296.0" text="PM" toggleGroup="$group" />
+                  <Button fx:id="btnShowAllAtt" layoutX="663.0" layoutY="106.0" mnemonicParsing="false" onAction="#setShowAllAttClick" prefHeight="27.0" prefWidth="176.0" style="-fx-background-color: #00CED1;" text="Show All Attendance" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btnSave" layoutX="922.0" layoutY="372.0" mnemonicParsing="false" onAction="#setCustomerAttendanceSaveButtonClick" prefHeight="27.0" prefWidth="85.0" style="-fx-background-color: #1E90FF;" text="Add" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btnDelete" layoutX="1020.0" layoutY="372.0" mnemonicParsing="false" onAction="#setCustomerAttendanceDeleteButtonClick" prefHeight="27.0" prefWidth="85.0" style="-fx-background-color: #DC143C;" text="Delete" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </Button>
+                  <Separator layoutX="913.0" layoutY="178.0" prefWidth="200.0" />
+                  <Button fx:id="btnSearchCust" layoutX="14.0" layoutY="106.0" mnemonicParsing="false" onAction="#LaunchCustomerDetails" prefHeight="27.0" prefWidth="176.0" style="-fx-background-color: #483D8B;" text="Search Customer" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </Button>
+                  <JFXButton layoutX="333.0" layoutY="93.0" />                  
+                  <Label fx:id="lblCustomerName" layoutX="242.0" layoutY="106.0" prefHeight="27.0" prefWidth="370.0" textFill="#0091ea" alignment="CENTER" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                     </opaqueInsets>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>

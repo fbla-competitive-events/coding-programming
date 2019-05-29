@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 2 elements to &apos;TestCalendar/src/application&apos;&#x0A;- Original project: &apos;c4a2cf66efecbf3aa362-d961041852316cc6c055e6ac54a0be3e3c08054f&apos;&#x0A;- Destination element: &apos;TestCalendar/src/application&apos;&#x0A;- Original elements:&#x0A;     calendar-view.css&#x0A;     CalendarView.java" description="Copy files" destination="=TestCalendar/src&lt;application" element1="calendar-view.css" element2="CalendarView.java" files="2" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1483825282359" units="0" version="1.0"/>
+</session>

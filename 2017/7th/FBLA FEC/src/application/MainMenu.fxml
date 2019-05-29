@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.CubicCurve?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Main_Menu_Controller">
+   <center>
+      <SplitPane prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="675.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="99.0" layoutY="118.0" prefHeight="80.0" prefWidth="1001.0" style="-fx-font-family: &quot;Calibri&quot;; -fx-font-size: 25px; -fx-font-weight: bold; -fx-text-fill: #154360;" text="Infinity Family Entertainment Center">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                     </padding>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="98.0" layoutY="299.0" prefHeight="80.0" prefWidth="1001.0" style="-fx-font-family: &quot;Calibri&quot;; -fx-font-size: 25px; -fx-font-weight: bold; -fx-text-fill: #154360;" text="Welcome">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                     </padding>
+                  </Label>
+                  <Ellipse fill="#1fd7ff" layoutX="599.0" layoutY="243.0" radiusX="39.0" radiusY="31.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: #1E90FF;" />
+                  <CubicCurve controlX1="-50.0" controlX2="50.0" controlY1="-100.0" controlY2="100.0" endX="150.0" fill="DODGERBLUE" layoutX="599.0" layoutY="243.0" startX="-150.0" stroke="BLACK" style="-fx-fill: #00CED1;" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </center>
+   <top>
+      <JFXDrawer fx:id="topDrawer" BorderPane.alignment="CENTER">
+         <children>
+            <HBox fx:id="hbMenu" stylesheets="@application.css">
+               <children>
+                  <JFXButton fx:id="buttonDetails" accessibleText="Employee Details" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1E90FF;" stylesheets="@application.css">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="buttonSchedule" accessibleText="Schedule Employee" minWidth="0.0" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1E90FF;">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="buttonCustomer" accessibleText="Customer Attendance" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1E90FF;">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="buttonReports" accessibleText="Reports" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1E90FF;">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="buttonAbout" accessibleText="About" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1E90FF;">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="buttonExit" accessibleText="Exit" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1E90FF;">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </JFXButton>
+               </children>
+            </HBox>
+         </children>
+      </JFXDrawer>
+   </top>
+</BorderPane>

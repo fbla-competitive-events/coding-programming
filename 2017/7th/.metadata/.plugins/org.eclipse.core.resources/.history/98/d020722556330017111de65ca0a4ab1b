@@ -1,0 +1,695 @@
+package application;
+
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
+import javafx.util.Callback;
+import javafx.util.Duration;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
+
+import java.io.IOException;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
+import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXTreeTableView;
+import com.sun.prism.paint.Color;
+
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.scene.control.RadioButton;
+
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
+
+import javafx.scene.control.TableColumn;
+
+public class Main_Menu_EmployeeController implements Initializable {
+	
+	public Main_Menu_EmployeeModel Employee_Table_Screen = new Main_Menu_EmployeeModel();
+	
+	//Features of the UI
+	@FXML
+	private Button txtAdd;
+	@FXML
+	private Button MainMenuSaveButton;
+	@FXML
+	private Button MainMenuClearButton;
+	@FXML
+	private JFXTextField txtFirst_Name;
+	@FXML
+	private JFXTextField txtLast_Name;
+	@FXML
+	private JFXTextField txtEmail;
+	@FXML
+	private JFXTextField txtPhone;
+	@FXML
+	private JFXTextField txtAddress;
+	@FXML
+	private TextField txtSearch;
+	@FXML
+	private JFXDatePicker dtDOB;
+	@FXML
+	private TableView<Main_Menu_EmployeeModel> TableEmployees;
+	@FXML
+	private TableColumn<Main_Menu_EmployeeModel, String> EmployeesFirst_Name;
+	@FXML
+	private TableColumn<Main_Menu_EmployeeModel, String> EmployeesLast_Name;
+	@FXML
+	private TableColumn<Main_Menu_EmployeeModel, String> EmployeesID;
+	@FXML
+	private TableColumn<Main_Menu_EmployeeModel, String> EmployeesEmail;
+	
+	@FXML
+	private JFXDrawer topDrawer;
+	@FXML
+	private JFXButton buttonDetails;
+	@FXML
+	private JFXButton buttonSchedule;
+	@FXML
+	private JFXButton buttonCustomer;
+	@FXML
+	private JFXButton buttonReports;
+	@FXML
+	private JFXButton buttonAbout;
+	@FXML
+	private JFXButton buttonExit;
+	@FXML
+	private HBox hbMenu;
+	
+	private boolean isMainMenuAddNewButtonClick;
+	private boolean isMainMenuEditButtonClick;
+	
+	Connection connection;
+    private Statement statement;
+    private ResultSet resultSet;
+    
+    private int temp;
+    
+    
+	
+	@FXML
+	private BorderPane root;
+	
+	public static BorderPane rootP;
+	
+	
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+    	//"Configures" the value of each column in the table
+    	
+    	
+        MainMenuSetAllDisable();
+    	EmployeesFirst_Name.setCellValueFactory(new PropertyValueFactory<Main_Menu_EmployeeModel,String>("EmployeesFirst_Name")); 
+        EmployeesLast_Name.setCellValueFactory(new PropertyValueFactory<Main_Menu_EmployeeModel,String>("EmployeesLast_Name"));
+        EmployeesID.setCellValueFactory(new PropertyValueFactory<Main_Menu_EmployeeModel,String>("EmployeesID"));
+        EmployeesEmail.setCellValueFactory(new PropertyValueFactory<Main_Menu_EmployeeModel,String>("EmployeesEmail"));
+        
+        //Sets the values of the table from the Employee Screen
+        TableEmployees.setItems(Employee_Table_Screen.getDataFromSqlAndAddToObservableList("SELECT * FROM EMPLOYEES"));
+        dtDOB.setEditable(false);
+        
+        buttonDetails.setGraphic(new ImageView("application/ic_perm_identity_white_48pt.png"));
+        buttonSchedule.setGraphic(new ImageView("application/ic_date_range_white_48pt.png"));
+        buttonCustomer.setGraphic(new ImageView("application/ic_group_white_2x.png"));
+        buttonReports.setGraphic(new ImageView("application/ic_insert_chart_white_2x.png"));
+        buttonAbout.setGraphic(new ImageView("application/ic_info_outline_white_48pt.png"));
+        buttonExit.setGraphic(new ImageView("application/ic_clear_white_48pt.png"));
+		
+        for(Node node: hbMenu.getChildren()){
+    		if(node.getAccessibleText()!=null){
+    			node.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
+    				
+    				switch(node.getAccessibleText()){
+    				case "Employee Details":
+    					BorderPane pane;
+    					try {
+    						pane = FXMLLoader.load(getClass().getResource("Main_Menu_Employee.fxml"));
+    						root.getChildren().setAll(pane);
+    					} catch (IOException e3) {
+    						// TODO Auto-generated catch block
+    						e3.printStackTrace();
+    					}
+    					break;
+    				case "Schedule Employee":
+    					AnchorPane pane1;
+    					try {
+    						pane1 = FXMLLoader.load(getClass().getResource("Employee_Shift_Scheduler.fxml"));
+    						root.getChildren().setAll(pane1);
+    					} catch (IOException e1) {
+    						// TODO Auto-generated catch block
+    						e1.printStackTrace();
+    					}
+    					break;
+    				case "Customer Attendance":
+    					AnchorPane pane2;
+    					try {
+    						pane2 = FXMLLoader.load(getClass().getResource("Menu_Customer_Attendance.fxml"));
+    						root.getChildren().setAll(pane2);
+    					} catch (IOException e2) {
+    						// TODO Auto-generated catch block
+    						e2.printStackTrace();
+    					}
+    					break;
+    				case "Reports":
+    					BorderPane pane3;
+    					try {
+    						pane3 = FXMLLoader.load(getClass().getResource("ReportScreen.fxml"));
+    						root.getChildren().setAll(pane3);
+    					} catch (IOException e4) {
+    						// TODO Auto-generated catch block
+    						e4.printStackTrace();
+    					}
+    					break;
+    				case "About":
+    					BorderPane pane4;
+    					try {
+    						pane4 = FXMLLoader.load(getClass().getResource("ReportScreen.fxml"));
+    						root.getChildren().setAll(pane4);
+    					} catch (IOException e5) {
+    						// TODO Auto-generated catch block
+    						e5.printStackTrace();
+    					}
+    				case "Exit":
+    				}
+    			});
+    		}
+    	}
+		
+		
+    }
+	
+    //Method that runs when user wishes to add a new employee
+	@FXML
+    private void setMainMenuAddNewButtonClick(Event event){
+        MainMenuSetAllEnable();
+        MainMenuSetAllClear();
+        isMainMenuAddNewButtonClick = true;
+    }
+	
+	//Enables the field so the user can type the employee information
+	private void MainMenuSetAllEnable(){
+        txtFirst_Name.setDisable(false);
+        txtLast_Name.setDisable(false);
+        txtPhone.setDisable(false);
+        txtAddress.setDisable(false);
+        txtEmail.setDisable(false);
+        dtDOB.setDisable(false);
+        
+
+        MainMenuSaveButton.setDisable(false);
+        MainMenuClearButton.setDisable(false);
+
+    }
+	
+	//Disables all text fields
+	private void MainMenuSetAllDisable(){
+        txtFirst_Name.setDisable(true);
+        txtLast_Name.setDisable(true);
+        txtPhone.setDisable(true);
+        txtAddress.setDisable(true);
+        txtEmail.setDisable(true);
+        dtDOB.setDisable(true);
+        
+
+        MainMenuSaveButton.setDisable(true);
+        MainMenuClearButton.setDisable(true);
+
+    }
+	
+	 //Clears all text fields
+	 private void MainMenuSetAllClear(){
+		 	txtFirst_Name.clear();
+	        txtLast_Name.clear();
+	        txtPhone.clear();
+	        txtAddress.clear();
+	        txtEmail.clear();
+	        dtDOB.setValue(null);
+	        
+	       	        
+	    }
+	 
+	 //Method called when clear button is clicked
+	 @FXML
+	 private void MainMenuSetAllClear(Event event){
+		 	txtFirst_Name.clear();
+	        txtLast_Name.clear();
+	        txtPhone.clear();
+	        txtAddress.clear();
+	        txtEmail.clear();
+	        dtDOB.setValue(null);
+	       	        
+	    }
+	
+	//Saves the given employee information to the Employee database and loads it into the table
+	 @FXML
+	    private void setMainMenuSaveButtonClick(Event event){
+	        try{	       
+	  
+	            if(validateFirstName() && validateLastName() && validateEmail() && validatePhone() && validateDOB() && validateAddress()){
+	            	
+	            	connection = SqliteConnection.Connector();
+		            statement = connection.createStatement();
+		            
+	            	if(isMainMenuAddNewButtonClick){
+		                int rowsAffected = statement.executeUpdate("insert into`Employees` "+
+		                        "(`First_Name`,`Last_Name`,`Email`,`Phone`,"+
+		                        "`Address`,`DOB`"+
+		                        ") "+
+		                        "values ('"+txtFirst_Name.getText()+"','"+txtLast_Name.getText()+"','"+txtEmail.getText()
+		                        +"','"+txtPhone.getText()
+		                        +"','"+txtAddress.getText()
+		                        +"','"+dtDOB.getValue().toString()
+		                        +"'); ");
+		           
+		            }
+		            else if (isMainMenuEditButtonClick){
+
+		                int rowsAffected = statement.executeUpdate("update Employees set "+
+		                        "First_Name = '"+txtFirst_Name.getText()+"',"+
+		                        "Last_Name = '"+txtLast_Name.getText()+"',"+                      
+		                        "Email = '"+txtEmail.getText()+"',"+
+		                        "Phone = '"+txtPhone.getText()+"',"+
+		                        "Address = '"+txtAddress.getText()+"',"+
+		                        "DOB = '"+dtDOB.getValue()+
+		                        "' where ID = "+
+		                        temp+";");	               
+		            }
+
+		            statement.close();
+		            connection.close();
+		            
+		            MainMenuSetAllClear();
+			        MainMenuSetAllDisable();
+			        TableEmployees.setItems(Employee_Table_Screen.getDataFromSqlAndAddToObservableList("SELECT * FROM Employees;"));
+			        isMainMenuEditButtonClick=false;
+			        isMainMenuAddNewButtonClick = false;
+	            }
+	        }
+		        catch (SQLException e){
+		            e.printStackTrace();
+		        }
+		        
+		    }
+	            
+	            
+	            
+	 //Loads in the information into the text fields of the employee that is trying to be edited
+	 @FXML
+	    private void setMainMenuEditButtonClick(Event event){
+	        
+	     if(TableEmployees.getSelectionModel().getSelectedItem()!=null) {
+	    	 Main_Menu_EmployeeModel getSelectedRow = TableEmployees.getSelectionModel().getSelectedItem();
+	        	String sqlQuery = "select * FROM Employees where ID = "+getSelectedRow.getEmployeesID()+";";
+	        	 
+	        try {
+	        	 connection = SqliteConnection.Connector();
+		         statement = connection.createStatement();
+	             resultSet = statement.executeQuery(sqlQuery);
+	        
+	             MainMenuSetAllEnable();
+	             while(resultSet.next()) {
+	                 txtFirst_Name.setText(resultSet.getString("First_Name"));
+	                 txtLast_Name.setText(resultSet.getString("Last_Name"));
+	                 txtEmail.setText(resultSet.getString("Email"));
+	                 txtPhone.setText(resultSet.getString("Phone"));
+	                 txtAddress.setText(resultSet.getString("Address"));
+	                 dtDOB.setValue(LocalDate.parse(resultSet.getString("DOB")));
+	                 temp = resultSet.getInt("ID");
+	 	             isMainMenuEditButtonClick = true;
+	            }
+
+	            
+	        }
+	        catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+
+	     }
+	     else{
+	    	    NotificationType notificationType = NotificationType.ERROR;
+	            TrayNotification tray = new TrayNotification();
+	            tray.setTitle("No Employee Selected");
+	            tray.setMessage("To edit, please select an Employee from the table");
+	            tray.setNotificationType(notificationType);
+	            tray.showAndDismiss(Duration.millis(5000));
+	     }
+		 		
+	    }
+	 
+	 //Deletes an employee from the Employee Database and refreshes the table
+	 @FXML
+	    private void setMainMenuDeleteButtonClick(Event event){
+		 	TableEmployees.setPlaceholder(new Label("No Employees"));
+		 	if(TableEmployees.getSelectionModel().getSelectedItem()!=null){
+		 		Main_Menu_EmployeeModel getSelectedRow = TableEmployees.getSelectionModel().getSelectedItem();
+		        String sqlQuery = "delete from Employees where ID = '"+getSelectedRow.getEmployeesID()+"';";
+		        String sqlQuery2 = "delete from Employees_Schedule where ID = '"+getSelectedRow.getEmployeesID()+"';";
+		        
+		        try {
+		        	connection = SqliteConnection.Connector();
+			        statement = connection.createStatement();
+		             
+		            statement.executeUpdate(sqlQuery);
+		            statement.executeUpdate(sqlQuery2);
+		       
+		            TableEmployees.setItems(Employee_Table_Screen.getDataFromSqlAndAddToObservableList("SELECT * FROM Employees;"));
+		            statement.close();
+		            connection.close();
+
+		        }
+		        catch (SQLException e) {
+		            e.printStackTrace();
+		        }
+		 	}
+		 	else{
+		 		NotificationType notificationType = NotificationType.ERROR;
+	            TrayNotification tray = new TrayNotification();
+	            tray.setTitle("No Employee Selected");
+	            tray.setMessage("To delete, please select an Employee from the table");
+	            tray.setNotificationType(notificationType);
+	            tray.showAndDismiss(Duration.millis(5000));
+		 	}        
+	    }
+	 
+	 //Method to search for an employee based on given ID
+	 @FXML
+	    private void setMainMenuSearchButtonClick(Event event){
+	        String sqlQuery = "select * FROM Employees where ID = '"+txtSearch.getText()+"';";
+	        TableEmployees.setItems(Employee_Table_Screen.getDataFromSqlAndAddToObservableList(sqlQuery));
+	    }
+	 
+	 //Method to refresh employee table
+	 @FXML
+	    private void setMainMenuRefreshButtonClick(Event event){
+	        TableEmployees.setItems(Employee_Table_Screen.getDataFromSqlAndAddToObservableList("SELECT * FROM Employees;"));//sql Query
+	        txtSearch.clear();
+	    }
+	 
+	 //The following launch methods are for loading other screens in the program when their respective buttons are clicked
+	 
+	 @FXML
+	    private void launchScheduler(Event event) throws IOException{
+		 	((Node)event.getSource()).getScene().getWindow().hide();
+		 	Parent Scheduler = FXMLLoader.load(getClass().getResource("Employee_Shift_Scheduler.fxml"));
+		 	Scene scheduler = new Scene(Scheduler);
+		 	Stage Schedule = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		 	Schedule.hide();
+		 	Schedule.setScene(scheduler);
+		 	Schedule.setTitle("Scheduler");
+		 	Schedule.show();
+	    }
+	 
+
+	 @FXML
+	    private void launchCustomerScreen(Event event) throws IOException{
+		 	((Node)event.getSource()).getScene().getWindow().hide();
+		 	Parent CustomerScreen = FXMLLoader.load(getClass().getResource("Menu_Customer.fxml"));
+		 	Scene customer_screen = new Scene(CustomerScreen);
+		 	Stage Customer_Screen = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		 	Customer_Screen.hide();
+		 	Customer_Screen.setScene(customer_screen);
+		 	Customer_Screen.setTitle("Customer Screen");
+		 	Customer_Screen.show();
+	    }
+	 
+	 @FXML
+	    private void launchBarChart(Event event) throws IOException{
+		 	FXMLLoader loader = new FXMLLoader();
+	        loader.setLocation(getClass().getResource("AMPM_Bar_Chart.fxml"));
+	        loader.load();
+	        Parent p = loader.getRoot();
+	        Stage stage = new Stage();
+	        stage.setScene(new Scene(p));
+	        stage.setTitle("All Customer Attendance Data");
+	        stage.show();
+	    }
+	 
+	 @FXML
+	    private void launchLineChart(Event event) throws IOException{
+		 	FXMLLoader loader = new FXMLLoader();
+	        loader.setLocation(getClass().getResource("Customer_Attendance_Line_Chart.fxml"));
+	        loader.load();
+	        Parent p = loader.getRoot();
+	        Stage stage = new Stage();
+	        stage.setScene(new Scene(p));
+	        stage.setTitle("Week Customer Attendance Data");
+	        stage.show();
+	    }
+
+	 //Shows the extra employee information by launching a mini-window
+	 @FXML
+	    private void setMainMenuViewButtonClick(Event event) throws IOException {
+
+		 if(TableEmployees.getSelectionModel().getSelectedItem()!=null){
+			 	Employee_Profile_ViewModel info = new Employee_Profile_ViewModel(TableEmployees.getSelectionModel().getSelectedItem().getEmployeesID().toString());
+			 	FXMLLoader loader = new FXMLLoader();
+		        loader.setLocation(getClass().getResource("Employee_Profile_View.fxml"));
+		        loader.load();
+		        Parent p = loader.getRoot();
+		        Stage stage = new Stage();
+		        stage.setScene(new Scene(p));
+
+		        Employee_Profile_ViewController profileView = loader.getController();
+		        profileView.setCurrentInfo(info);
+		        stage.show();
+		 }
+		 else{
+			    NotificationType notificationType = NotificationType.ERROR;
+	            TrayNotification tray = new TrayNotification();
+	            tray.setTitle("No Employee Selected");
+	            tray.setMessage("Select Employee to View");
+	            tray.setNotificationType(notificationType);
+	            tray.showAndDismiss(Duration.millis(5000));
+		 }
+	        
+	    }
+	 
+	 //The following validate methods check to see whether the Employee information is valid/ given in the right format
+	 private boolean validateFirstName(){
+		 Pattern p = Pattern.compile("[a-zA-z]+");
+		 Matcher m = p.matcher(txtFirst_Name.getText());
+		 if(m.find() && m.group().equals(txtFirst_Name.getText())){
+			 return true;
+		 }
+		 else{
+			 Alert alert = new Alert(AlertType.WARNING);
+		   	 alert.setTitle("Validate Name");
+		   	 alert.setHeaderText(null);
+			 alert.setContentText("Please Enter a Valid First Name");
+			 alert.showAndWait();
+			 txtFirst_Name.clear();
+			 
+			 txtFirst_Name.requestFocus();
+			 
+			 	
+			 return false;
+		}
+	}
+	
+	 
+	 private boolean validateLastName(){
+		 Pattern p = Pattern.compile("[a-zA-z]+");
+		 Matcher m = p.matcher(txtLast_Name.getText());
+		 if(m.find() && m.group().equals(txtLast_Name.getText())){
+			 return true;
+		 }
+		 else{
+			 Alert alert = new Alert(AlertType.WARNING);
+			 alert.setTitle("Validate Name");
+			 alert.setHeaderText(null);
+			 alert.setContentText("Please Enter a Valid Last Name");
+			 alert.showAndWait();
+			 txtLast_Name.clear();
+			
+			 txtLast_Name.requestFocus();
+			 
+			
+			 
+			 return false;
+		 }
+	 }
+	 
+	 private boolean validateEmail(){
+		 Pattern p = Pattern.compile("[a-zA-Z0-9][a-zA-Z0-9._-]*@[a-zA-Z0-9]+([.][a-zA-Z]+)+");
+		 Matcher m = p.matcher(txtEmail.getText());
+		 if(m.find() && m.group().equals(txtEmail.getText())){
+			 return true;
+		 }
+		 else{
+			 Alert alert = new Alert(AlertType.WARNING);
+			 alert.setTitle("Validate Email");
+			 alert.setHeaderText(null);
+			 alert.setContentText("Please Enter a Valid Email");
+			 alert.showAndWait();
+			 txtEmail.clear();
+		
+			 txtEmail.requestFocus();
+			 
+			
+			 return false;
+		 }
+	 }
+	 
+	 private boolean validatePhone(){
+		 Pattern p = Pattern.compile("[0-9]{3}[-][0-9]{3}[-][0-9]{4}");
+		 Matcher m = p.matcher(txtPhone.getText());
+		 if(m.find() && m.group().equals(txtPhone.getText())){
+			 return true;
+		 }
+		 else{
+			 Alert alert = new Alert(AlertType.WARNING);
+			 alert.setTitle("Validate Phone Number");
+			 alert.setHeaderText(null);
+			 alert.setContentText("Please Enter a Valid Phone Number (aaa-aaa-aaaa)");
+			 alert.showAndWait();
+			 txtPhone.clear();
+			
+			 txtPhone.requestFocus();
+			 
+			
+			 return false;
+			 
+		 }
+	 }
+	 
+	 private boolean validateDOB(){
+		 if(dtDOB.getValue() != null){
+			 return true;
+		 }
+		 else{
+			 Alert alert = new Alert(AlertType.WARNING);
+			 alert.setTitle("Validate Date");
+			 alert.setHeaderText(null);
+			 alert.setContentText("Please Enter a DOB");
+			 alert.showAndWait();
+			 
+			 return false;
+		 }
+		 
+	 }
+	 
+	 private boolean validateAddress(){
+		 if(txtAddress.getText() != null){
+			 return true;
+		 }
+		 else{
+			 Alert alert = new Alert(AlertType.WARNING);
+			 alert.setTitle("Validate Address");
+			 alert.setHeaderText(null);
+			 alert.setContentText("Please Enter an Address");
+			 alert.showAndWait();
+			 
+			 txtAddress.requestFocus();
+			 
+			 
+			 
+			 return false;
+		 } 
+	 }
+	 
+	 //Method to seach for employee based on name
+	 @FXML
+	 public void setOnSearchKeyPressed(KeyEvent event) throws IOException{
+		 if(txtSearch.getText()!=""){
+			 String sqlQuery = "select * FROM Employees where First_Name like '%"+txtSearch.getText()+"%' OR "
+			 		+ "Last_Name like '%"+txtSearch.getText() + "%';";
+			 if(Employee_Table_Screen.getDataFromSqlAndAddToObservableList(sqlQuery)==null){
+		    	 TableEmployees.setPlaceholder(new Label("No Employee With Given Name"));
+		     }
+			 TableEmployees.setItems(Employee_Table_Screen.getDataFromSqlAndAddToObservableList(sqlQuery));
+		 }
+		 else{
+			 TableEmployees.setItems(Employee_Table_Screen.getDataFromSqlAndAddToObservableList("select * FROM Employees"));
+		 }
+	 } 
+	 
+	 //Method to automatically put in dashes when the user types in the phone number
+	 @FXML
+	 public void setOnPhoneKeyReleased(KeyEvent event) throws IOException{
+		 if(txtPhone.getText().length()==3){
+			 txtPhone.setText(txtPhone.getText()+"-");
+			 txtPhone.positionCaret(4);
+		 }
+		 else if(txtPhone.getText().length()==7){
+			 txtPhone.setText(txtPhone.getText()+"-");
+			 txtPhone.positionCaret(8);
+		 }
+		 else if(txtPhone.getText().length()>12 ){
+			 txtPhone.setText(txtPhone.getText().substring(0,12));
+			 txtPhone.positionCaret(12);
+		 }
+	 }
+	 
+	 //Method to launch extra employee information window if the employee is double clicked on the table
+	 @FXML
+	 public void handleDoubleClick(MouseEvent mouseEvent) throws IOException {
+	        if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
+	            if(mouseEvent.getClickCount() == 2){
+	            	if(TableEmployees.getSelectionModel().getSelectedItem()!=null){
+	    			 	Employee_Profile_ViewModel info = new Employee_Profile_ViewModel(TableEmployees.getSelectionModel().getSelectedItem().getEmployeesID().toString());
+	    			 	FXMLLoader loader = new FXMLLoader();
+	    		        loader.setLocation(getClass().getResource("Employee_Profile_View.fxml"));
+	    		        loader.load();
+	    		        Parent p = loader.getRoot();
+	    		        Stage stage = new Stage();
+	    		        stage.setScene(new Scene(p));
+
+	    		        Employee_Profile_ViewController profileView = loader.getController();
+	    		        profileView.setCurrentInfo(info);
+	    		        stage.show();
+	    		 }
+	    		 else{
+	    			    NotificationType notificationType = NotificationType.ERROR;
+	    	            TrayNotification tray = new TrayNotification();
+	    	            tray.setTitle("No Employee Selected");
+	    	            tray.setMessage("Select Employee to View");
+	    	            tray.setNotificationType(notificationType);
+	    	            tray.showAndDismiss(Duration.millis(5000));
+	    		 }
+	            }
+	        }
+	 }
+}
+
+	 
+	
+
+
+	
+

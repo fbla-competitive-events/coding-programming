@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.chart.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Customer_Attendance_Line_ChartController">
+   <children>
+      <Pane fx:id="Screen" prefHeight="700.0" prefWidth="700.0">
+         <children>
+            <LineChart fx:id="lineChartAttendance" layoutX="1.0" prefHeight="700.0" prefWidth="700.0" stylesheets="@application.css" title="Customer Attendance">
+              <xAxis>
+                <CategoryAxis label="Day of Week" side="BOTTOM" styleClass=".axis" stylesheets="@application.css" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis fx:id="CustomerNumberAxis" label="Number of Customers" side="LEFT" styleClass=".axis" stylesheets="@application.css" />
+              </yAxis>
+            </LineChart>
+            <DatePicker fx:id="dtWeek" editable="false" layoutX="254.0" layoutY="37.0" onAction="#setOnDatePickerChosen" />
+            <Label fx:id="lblWeek" alignment="CENTER" layoutX="254.0" layoutY="71.0" prefHeight="17.0" prefWidth="196.0" text="Date" textAlignment="CENTER" />
+            <Button fx:id="btnPrint" layoutX="617.0" layoutY="673.0" mnemonicParsing="false" onAction="#printChart" prefHeight="8.0" prefWidth="69.0" style="-fx-background-color: #09B28C;" text="Print" textFill="WHITE" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

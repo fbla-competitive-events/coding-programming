@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;Main_Menu_Employee.fxml&apos; to &apos;FBLA FEC/src/application&apos;&#x0A;- Original project: &apos;FBLA FEC&apos;&#x0A;- Destination element: &apos;FBLA FEC/src/application&apos;&#x0A;- Original element: &apos;Main_Menu_Employee.fxml&apos;" description="Copy file" destination="/src&lt;application" element1="src/application/Main_Menu_Employee.fxml" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1493094250313" units="0" version="1.0"/>
+</session>

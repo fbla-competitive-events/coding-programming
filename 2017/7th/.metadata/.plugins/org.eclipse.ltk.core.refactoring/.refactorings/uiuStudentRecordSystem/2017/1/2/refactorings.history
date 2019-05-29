@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;default-user-icon.png&apos; to &apos;FBLA FEC/src/application&apos;&#x0A;- Original project: &apos;uiuStudentRecordSystem&apos;&#x0A;- Destination element: &apos;FBLA FEC/src/application&apos;&#x0A;- Original element: &apos;default-user-icon.png&apos;" description="Copy file" destination="=FBLA FEC/src&lt;application" element1="src/image/default-user-icon.png" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1484436289565" units="0" version="1.0"/>
+</session>
