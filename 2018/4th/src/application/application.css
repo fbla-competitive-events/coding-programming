@@ -1,0 +1,53 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.msgtext {
+    -fx-font-family: 'Lucida Sans';
+    -fx-font-weight: Normal;
+    -fx-font-size: 12;
+    -fx-text-fill: red; 
+}
+.pane {
+    -fx-background-color: #ccffff;
+}
+.buttonLarge {
+    -fx-background-color: #ffff33;
+    -fx-border-color: #008000;
+    -fx-pref-width: 150;
+    -fx-font-family: 'Lucida Sans';
+    -fx-font-weight: bold;
+}
+.buttonXLarge {
+    -fx-background-color: #ffff33;
+    -fx-border-color: #008000;
+    -fx-pref-width: 205;
+    -fx-font-family: 'Lucida Sans';
+    -fx-font-weight: bold;
+}
+.buttonSmall {
+    -fx-background-color: #ffff33;
+    -fx-border-color: #008000;
+    -fx-pref-width: 80;
+    -fx-font-family: 'Lucida Sans';
+    -fx-font-weight: bold;
+}
+.heading {
+    -fx-font-family: 'Lucida Sans';
+    -fx-font-weight: Normal;
+    -fx-font-size: 20;
+}
+.alert {
+    -fx-font-family: 'Lucida Sans';
+    -fx-font-weight: Normal;
+    -fx-font-size: 12;
+}
+.labelText {
+    -fx-font-family: 'Lucida Sans';
+    -fx-font-weight: Normal;
+    -fx-font-size: 12;
+}
+.datePicker {
+    -fx-font-family: 'Lucida Sans';
+    -fx-font-weight: bold;
+    -fx-font-size: 12;
+    -fx-background-color: white;
+}

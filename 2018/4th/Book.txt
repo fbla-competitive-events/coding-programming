@@ -1,0 +1,49 @@
+10000|Harry Potter and the Sorcerer's Stone|J.K. Rowling|true|Teacher|5000|Lorie Moore|May-01-2018|May-08-2018
+10002|Harry Potter and the Prisoner of Azkaban|J.K. Rowling|true|Teacher|5000|Lorie Moore|May-11-2018|May-18-2018
+10003|A Brief History of Time|Stephen Hawking|true|Teacher|5000|Lorie Moore|May-11-2018|May-18-2018
+10004|Leave it to Psmith|P.G. Wodehouse|true|Student|1002|Sahiti Gellala|May-01-2018|May-06-2018
+10005|Emma|Jane Austen|true|Student|1005|Neha Deshpande|May-11-2018|May-16-2018
+10006|Emma|Jane Austen|true|Student|1015|Sally Stevens|May-11-2018|May-16-2018
+10007|Murder on the Orient Express|Agatha Christie|true|Student|1005|Neha Deshpande|May-11-2018|May-16-2018
+10008|Five Little Pigs|Agatha Christie|false|null|null|null|null|null
+10009|Death on the Nile|Agatha Christie|false|null|null|null|null|null
+10010|The ABC Murders|Agatha Christie|true|Student|1015|Sally Stevens|May-01-2018|May-06-2018
+10012|The War of the Worlds|H G Wells|false|null|null|null|null|null
+10013|The Time Machine|H G Wells|false|null|null|null|null|null
+10014|To Kill a Mocking Bird|Harper Lee|false|null|null|null|null|null
+10015|The Great Gatsby|F Scott Fitzgerald|false|null|null|null|null|null
+10016|The Adventures of Huckleberry Finn|Mark Twain|false|null|null|null|null|null
+10017|The Catcher in the Rye|J D Salinger|false|null|null|null|null|null
+10018|The Catcher in the Rye|J D Salinger|false|null|null|null|null|null
+10019|The Grapes of Wrath|John Steinbeck|false|null|null|null|null|null
+10020|Of Mice and Men|John Steinbeck|false|null|null|null|null|null
+10021|The Scarlet Letter|Nathaniel Hawthorne|false|null|null|null|null|null
+10022|In Cold Blood|Truman Capote|false|null|null|null|null|null
+10023|Gone with the Wind|Margaret Mitchell|false|null|null|null|null|null
+10024|Gone with the Wind|Margaret Mitchell|false|null|null|null|null|null
+10025|The Old Man and the Sea|Ernest Hemingway|false|null|null|null|null|null
+10026|The Color Purple|Alice Walker|false|null|null|null|null|null
+10027|The Color Purple|Alice Walker|false|null|null|null|null|null
+10028|Wuthering Heights|Emily Bronte|false|null|null|null|null|null
+10029|The Time Machine|H G Wells|false|null|null|null|null|null
+10030|Animal Farm|George Orwell|false|null|null|null|null|null
+10031|Northanger Abbey|Jane Austen|false|null|null|null|null|null
+10032|The Hobbit|J R R Tolkien|false|null|null|null|null|null
+10033|Great Expectations|Charles Dickens|false|null|null|null|null|null
+10034|A Christmas Carol|Charles Dickens|false|null|null|null|null|null
+10035|A Tale of Two Cities|Charles Dickens|false|null|null|null|null|null
+10036|Mansfield Park|Jane Austen|false|null|null|null|null|null
+10037|Frankenstein|Mary Shelley|false|null|null|null|null|null
+10038|Romeo and Juliet|W Shakespeare|false|null|null|null|null|null
+10039|Great Expectations|Charles Dickens|false|null|null|null|null|null
+10040|Brave New World|Aldous Huxley|false|null|null|null|null|null
+10041|Macbeth|W Shakespeare|false|null|null|null|null|null
+10042|American Gods|Neil Gaiman|false|null|null|null|null|null
+10043|And Then There Were None|Agatha Christie|false|null|null|null|null|null
+10044|Atonement|Ian McEwan|false|null|null|null|null|null
+10045|Charlie and the Chocolate Factory|Roald Dahl|false|null|null|null|null|null
+10046|The Golden Compass|Philip Pullman|false|null|null|null|null|null
+10047|Winnie the Pooh|A A Milne|false|null|null|null|null|null
+10048|Winnie the Pooh|A A Milne|false|null|null|null|null|null
+10049|Winnie the Pooh|A A Milne|false|null|null|null|null|null
+10050|David Copperfield|Charles Dickens|false|null|null|null|null|null
